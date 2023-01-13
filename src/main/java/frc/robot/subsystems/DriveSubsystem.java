@@ -49,11 +49,14 @@ public class DriveSubsystem extends SubsystemBase {
  private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
  private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
  private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
+ private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
+ private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
  //---------------------------------------
 
  //motorcontrollergroup
          public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
          public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
+         public MotorControllerGroup m_middle = new MotorControllerGroup(middle1, middle2);
  //---------------------------------------
 
 
@@ -167,6 +170,15 @@ public void arcadeDrive(Double x, Double y){
   drive.arcadeDrive(x, y);
 }
 
+
+
+public void hDrive(Double x, Double y){
+
+  RunSpeed(y, false);
+  RunMiddle(x);
+
+}
+
 public void RunRightSideVolts(double volts){
 m_right.setVoltage(volts);
 }
@@ -198,6 +210,10 @@ public void RunRightSideSpeed(double speed){
       RunLeftSideSpeed(speed);
     }
 
+  }
+
+  public void RunMiddle(double speed){
+    m_middle.setVoltage(speed);
   }
 
   public void StopRightSide(){
