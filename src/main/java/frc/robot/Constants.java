@@ -10,13 +10,13 @@ public static class controller{
     public static class CAN {
 
       //bunları değiştir-----------------------
-        public static final int kRightLeaderID = 9;
-        public static final int kRightFollowerID = 11;
-        public static final int kLeftLeaderID = 6;
-        public static final int kLeftFollowerID = 10;
+        public static final int kRightLeaderID = 6;
+        public static final int kRightFollowerID = 10;
+        public static final int kLeftLeaderID = 11;
+        public static final int kLeftFollowerID = 9;
 
-        public static final int kMiddle1 = 1;
-        public static final int kMiddle2 = 2;
+        public static final int kMiddle1 = 3;
+        public static final int kMiddle2 = 1;
         //--------------------------------------
       }
 
@@ -49,13 +49,13 @@ public static class controller{
 
     public static class invert{
       //bunları da değiştir------------------------------------------------
-        public static final boolean rightleaderinvert = false;
+        public static final boolean rightleaderinvert = true;
         public static final boolean leftleaderinvert = false;
         public static final boolean rightrearinvert = true;
         public static final boolean leftrearinvert = true;
 
-        public static final boolean middle1 = true;
-        public static final boolean middle2 = true;
+        public static final boolean middle1 = false;
+        public static final boolean middle2 = false;
       //----------------------------------------------------------------
         public static final boolean rightencoderreversedirection = true;
         public static final boolean leftencoderreversedirection = false;

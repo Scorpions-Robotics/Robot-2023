@@ -11,24 +11,28 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+//import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
+//import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+
 import com.kauailabs.navx.frc.AHRS;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
  //imu --------------------------------
- AHRS imu = new AHRS(SPI.Port.kMXP);
+ AHRS imu = new AHRS(SerialPort.Port.kUSB);
  //------------------------------------
 
  //Encoder-----------------------------
- private Encoder leftDriveEncoder =
+ 
+ /*private Encoder leftDriveEncoder =
  new Encoder(
  Constants.ENCODERS.kLeftDriveEncoderChannelA,
  Constants.ENCODERS.kLeftDriveEncoderChannelB,
@@ -41,7 +45,7 @@ public class DriveSubsystem extends SubsystemBase {
  Constants.ENCODERS.kRightDriveEncoderChannelB,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
- );
+ );*/
  //---------------------------------------
 
  //Motor----------------------------------
@@ -91,13 +95,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getLeftEncoderDistance() {
-    leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    return leftDriveEncoder.getDistance() * 2.54;
+   // leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+   // return leftDriveEncoder.getDistance() * 2.54;
+  return 1;
   }
 
   public double getRightEncoderDistance() {
-    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    return rightDriveEncoder.getDistance() * 2.54;
+   // rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    //return rightDriveEncoder.getDistance() * 2.54;
+  return 1;
   }
 
   public double getStraightDriveDistance() {
@@ -106,8 +112,9 @@ public class DriveSubsystem extends SubsystemBase {
   
 
   public void ResetEncoders() {
-    leftDriveEncoder.reset();
-    rightDriveEncoder.reset();
+  //  leftDriveEncoder.reset();
+    //rightDriveEncoder.reset();
+  
   }
 
   public void arcadeDrive(double speed, double rotation) {
@@ -117,7 +124,8 @@ public class DriveSubsystem extends SubsystemBase {
 //acil kontrol
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-        leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
+      1, 1 * -1);
+       // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -193,11 +201,11 @@ public void RunVolts(double volts){
 }
 
 public void RunRightSideSpeed(double speed){
-  m_right.setVoltage(speed);
+  m_right.set(speed);
   }
   
   public void RunLeftSideSpeed(double speed){
-    m_left.setVoltage(speed);
+    m_left.set(speed);
   }
 
   public void RunSpeed(double speed, boolean reversed){
@@ -213,7 +221,7 @@ public void RunRightSideSpeed(double speed){
   }
 
   public void RunMiddle(double speed){
-    m_middle.setVoltage(speed);
+    m_middle.set(-speed);
   }
 
   public void StopRightSide(){
@@ -236,8 +244,10 @@ public void RunRightSideSpeed(double speed){
 
   @Override
   public void periodic() {
-    odometry.update(GetHeadingForDifferentialDriveOdometry(),
-    getRightEncoderDistance(),
-    getLeftEncoderDistance());
+   // odometry.update(GetHeadingForDifferentialDriveOdometry(),
+    //getRightEncoderDistance(),
+    //getLeftEncoderDistance());
+    SmartDashboard.putNumber("pitch", imu.getPitch());
+
   }
 }

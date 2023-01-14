@@ -15,8 +15,8 @@ Double Output;
 
   public ChargeStationBalance(DriveSubsystem m_drive) {
   this.m_drive = m_drive;
-  addRequirements(m_drive);
-  }
+
+}
 
   @Override
   public void initialize() {

@@ -34,7 +34,7 @@ public class TeleoperatedDrive extends CommandBase {
     ConfiguratedThrottle = (throttle.getAsDouble() * -1 + 1) / 2;
     // :( m_drivesubsystem.arcadeDrive(xspeed.getAsDouble() *  ConfiguratedThrottle, yrotation.getAsDouble() * ConfiguratedThrottle);
     m_drivesubsystem.hDrive(xspeed.getAsDouble() *  ConfiguratedThrottle, yrotation.getAsDouble() * ConfiguratedThrottle);
-
+    
   }
 
   @Override
