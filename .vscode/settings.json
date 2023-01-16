@@ -14,6 +14,8 @@
     "**/.factorypath": true,
     "**/*~": true
   },
+  "java.home": "C:/Users/Public/wpilib/2023/jdk",
+  "java.jdt.ls.java.home": "C:/Users/Public/wpilib/2023/jdk",
   "java.test.config": [
     {
       "name": "WPIlibUnitTests",
