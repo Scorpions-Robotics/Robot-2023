@@ -47,6 +47,13 @@ public static class controller{
     //---------------------------------------------------------------
   }
 
+    public static class Vision {
+    public static final double kCameraHeight = 0.0;
+    public static final double kTargetHeight = 0.0;
+    public static final double kCameraAngle = 0.0;
+
+    }
+
     public static class invert{
       //bunları da değiştir------------------------------------------------
         public static final boolean rightleaderinvert = true;
