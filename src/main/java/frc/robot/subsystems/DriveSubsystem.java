@@ -75,6 +75,8 @@ public class DriveSubsystem extends SubsystemBase {
     rightFront.setInverted(Constants.invert.rightleaderinvert);
     leftRear.setInverted(Constants.invert.leftrearinvert);
     rightRear.setInverted(Constants.invert.rightrearinvert);
+    middle1.setInverted(Constants.invert.middle1);
+    middle2.setInverted(Constants.invert.middle2);
 
     m_right.setInverted(Constants.invert.rightgroupinvert);
     m_left.setInverted(Constants.invert.leftgroupinvert);

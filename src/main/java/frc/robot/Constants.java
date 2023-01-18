@@ -55,7 +55,7 @@ public static class controller{
         public static final boolean leftrearinvert = true;
 
         public static final boolean middle1 = false;
-        public static final boolean middle2 = false;
+        public static final boolean middle2 = true;
       //----------------------------------------------------------------
         public static final boolean rightencoderreversedirection = true;
         public static final boolean leftencoderreversedirection = false;
