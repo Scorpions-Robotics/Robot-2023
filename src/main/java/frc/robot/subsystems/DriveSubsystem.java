@@ -11,8 +11,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.I2C;
+//import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
+//import edu.wpi.first.wpilibj.SerialPort;
 //import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -27,9 +29,8 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
  //imu --------------------------------
- AHRS imu = new AHRS(SerialPort.Port.kUSB);
+ AHRS imu = new AHRS(I2C.Port.kOnboard);
  //------------------------------------
-
  //Encoder-----------------------------
  
  /*private Encoder leftDriveEncoder =
@@ -249,6 +250,8 @@ public void RunRightSideSpeed(double speed){
    // odometry.update(GetHeadingForDifferentialDriveOdometry(),
     //getRightEncoderDistance(),
     //getLeftEncoderDistance());
+    SmartDashboard.putBoolean("Connection state", imu.isConnected());
+
     SmartDashboard.putNumber("pitch", imu.getPitch());
 
   }

@@ -34,15 +34,15 @@ Double Output;
     Output = Math.copySign(0.4, Output);
   }
 
-  if (Math.abs(Pitch) >= 6 && Math.abs(Pitch) <= 10 ) {
+  if (Math.abs(Pitch) >= 8 && Math.abs(Pitch) <= 12 ) {
     Output = Math.copySign(0.3, Output);
   }
 
-  if (Math.abs(Pitch) >= 4 && Math.abs(Pitch) <= 5) {
+  if (Math.abs(Pitch) >= 6 && Math.abs(Pitch) <= 7) {
     Output = Math.copySign(0.2, Output);
   }
   
-  if (Math.abs(Pitch) <= 3) {
+  if (Math.abs(Pitch) <= 5) {
   Output = Math.copySign(0, Output);
   }
 

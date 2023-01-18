@@ -16,8 +16,8 @@ JoystickButton button1 = new JoystickButton(joy, 1);
     m_drive.setDefaultCommand(
        new TeleoperatedDrive(
       m_drive,
-       () -> joy.getX(),
-       () -> joy.getY(),
+       () -> joy.getRawAxis(0),
+       () -> joy.getRawAxis(1),
        () -> joy.getThrottle()));
 
     configureBindings();
