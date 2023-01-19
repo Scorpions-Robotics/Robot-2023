@@ -8,19 +8,25 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.XboxSubsystem;
 
 public class TeleoperatedDrive extends CommandBase {
 
   DriveSubsystem m_drivesubsystem;
+  XboxSubsystem m_xboxSubsystem;
   DoubleSupplier xspeed;
   DoubleSupplier yrotation;
-  DoubleSupplier throttle;
-  double ConfiguratedThrottle;
-  public TeleoperatedDrive(DriveSubsystem m_drivesubsystem,DoubleSupplier xspeed,DoubleSupplier yrotation,DoubleSupplier throttle) {
+
+  public TeleoperatedDrive(
+  DriveSubsystem m_drivesubsystem,
+  XboxSubsystem m_xboxSubsystem,
+  DoubleSupplier xspeed,
+  DoubleSupplier yrotation) {
+
   this.m_drivesubsystem = m_drivesubsystem;
   this.xspeed = xspeed;
   this.yrotation = yrotation;
-  this.throttle = throttle;
+  this.m_xboxSubsystem = m_xboxSubsystem;
   addRequirements(m_drivesubsystem);
   }
 
@@ -31,9 +37,9 @@ public class TeleoperatedDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ConfiguratedThrottle = (throttle.getAsDouble() * -1 + 1) / 2;
+    //ConfiguratedThrottle = (throttle.getAsDouble() * -1 + 1) / 2;
     // :( m_drivesubsystem.arcadeDrive(xspeed.getAsDouble() *  ConfiguratedThrottle, yrotation.getAsDouble() * ConfiguratedThrottle);
-    m_drivesubsystem.hDrive(xspeed.getAsDouble() *  ConfiguratedThrottle, yrotation.getAsDouble() * ConfiguratedThrottle);
+    m_drivesubsystem.hDrive(xspeed.getAsDouble() *  m_xboxSubsystem.ThrottleValue, yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
     
   }
 

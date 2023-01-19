@@ -11,7 +11,12 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxRelativeEncoder;
+
 //import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.SerialPort;
@@ -47,6 +52,9 @@ public class DriveSubsystem extends SubsystemBase {
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
  );*/
+
+ RelativeEncoder encoder1;
+
  //---------------------------------------
 
  //Motor----------------------------------
@@ -54,8 +62,11 @@ public class DriveSubsystem extends SubsystemBase {
  private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
  private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
  private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
+ private CANSparkMax armmotor1 = new CANSparkMax(12, MotorType.kBrushless);
+
  private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
  private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
+
  //---------------------------------------
 
  //motorcontrollergroup
@@ -81,6 +92,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_right.setInverted(Constants.invert.rightgroupinvert);
     m_left.setInverted(Constants.invert.leftgroupinvert);
+
   }
 
   public void CoastMode() {
@@ -141,7 +153,9 @@ public class DriveSubsystem extends SubsystemBase {
 
 public double GetHeading(){
   //açı
-  return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+  //return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+
 }
 
 public double GetYaw(){
@@ -181,13 +195,16 @@ public void arcadeDrive(Double x, Double y){
   drive.arcadeDrive(x, y);
 }
 
-
-
 public void hDrive(Double x, Double y){
 
   RunSpeed(y, false);
   RunMiddle(x);
 
+}
+
+public void GetArmEncoderValue(){
+ encoder1 = armmotor1.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 42);
+  SmartDashboard.putNumber("arm encoder", encoder1.getPosition());
 }
 
 public void RunRightSideVolts(double volts){
