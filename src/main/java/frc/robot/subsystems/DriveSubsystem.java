@@ -62,7 +62,7 @@ public class DriveSubsystem extends SubsystemBase {
  private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
  private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
  private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
- private CANSparkMax armmotor1 = new CANSparkMax(12, MotorType.kBrushless);
+ //private CANSparkMax armmotor1 = new CANSparkMax(12, MotorType.kBrushless);
 
  private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
  private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
@@ -195,15 +195,39 @@ public void arcadeDrive(Double x, Double y){
   drive.arcadeDrive(x, y);
 }
 
-public void hDrive(Double x, Double y){
+public void RunSpeed(double speed){
+  m_right.set(-speed);
+  m_left.set(speed);
+}
 
-  RunSpeed(y, false);
-  RunMiddle(x);
+public void rotate(double speed){
+  m_right.set(speed);
+  m_left.set(speed);
 
 }
 
+
+public void RunMiddle(double speed){
+  m_middle.set(-speed);
+}
+
+public void hDrive(Double x, Double y, Double z){
+  RunSpeed(y);
+  RunMiddle(x);
+  if(z > 0.1){
+    rotate(z);
+  }
+  else if(z < 0.1 && z > -0.1){
+    RunSpeed(y);
+  }
+  else if(-0.1 > z){
+    rotate(z);
+
+  }
+}
+
 public void GetArmEncoderValue(){
- encoder1 = armmotor1.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 42);
+ //encoder1 = armmotor1.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 42);
   SmartDashboard.putNumber("arm encoder", encoder1.getPosition());
 }
 
@@ -226,22 +250,6 @@ public void RunRightSideSpeed(double speed){
   
   public void RunLeftSideSpeed(double speed){
     m_left.set(speed);
-  }
-
-  public void RunSpeed(double speed, boolean reversed){
-    if(reversed == true){
-      RunRightSideSpeed(speed * -1);
-      RunLeftSideSpeed(speed * -1);
-    }
-    else if(reversed == false){
-      RunRightSideSpeed(speed);
-      RunLeftSideSpeed(speed);
-    }
-
-  }
-
-  public void RunMiddle(double speed){
-    m_middle.set(-speed);
   }
 
   public void StopRightSide(){

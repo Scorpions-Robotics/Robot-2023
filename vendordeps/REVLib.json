@@ -1,7 +1,7 @@
 {
     "fileName": "REVLib.json",
     "name": "REVLib",
-    "version": "2023.1.1",
+    "version": "2023.0.0",
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "mavenUrls": [
         "https://maven.revrobotics.com/"
@@ -11,24 +11,24 @@
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "REVLib-java",
-            "version": "2023.1.1"
+            "version": "2023.0.0"
         }
     ],
     "jniDependencies": [
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "REVLib-driver",
-            "version": "2023.1.1",
+            "version": "2023.0.0",
             "skipInvalidPlatforms": true,
             "isJar": false,
             "validPlatforms": [
                 "windowsx86-64",
                 "windowsx86",
-                "linuxarm64",
+                "linuxaarch64bionic",
                 "linuxx86-64",
                 "linuxathena",
-                "linuxarm32",
-                "osxuniversal"
+                "linuxraspbian",
+                "osxx86-64"
             ]
         }
     ],
@@ -36,7 +36,7 @@
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "REVLib-cpp",
-            "version": "2023.1.1",
+            "version": "2023.0.0",
             "libName": "REVLib",
             "headerClassifier": "headers",
             "sharedLibrary": false,
@@ -44,17 +44,17 @@
             "binaryPlatforms": [
                 "windowsx86-64",
                 "windowsx86",
-                "linuxarm64",
+                "linuxaarch64bionic",
                 "linuxx86-64",
                 "linuxathena",
-                "linuxarm32",
-                "osxuniversal"
+                "linuxraspbian",
+                "osxx86-64"
             ]
         },
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "REVLib-driver",
-            "version": "2023.1.1",
+            "version": "2023.0.0",
             "libName": "REVLibDriver",
             "headerClassifier": "headers",
             "sharedLibrary": false,
@@ -62,11 +62,11 @@
             "binaryPlatforms": [
                 "windowsx86-64",
                 "windowsx86",
-                "linuxarm64",
+                "linuxaarch64bionic",
                 "linuxx86-64",
                 "linuxathena",
-                "linuxarm32",
-                "osxuniversal"
+                "linuxraspbian",
+                "osxx86-64"
             ]
         }
     ]

@@ -12,11 +12,11 @@ public static class controller{
       //bunları değiştir-----------------------
         public static final int kRightLeaderID = 6;
         public static final int kRightFollowerID = 10;
-        public static final int kLeftLeaderID = 11;
+        public static final int kLeftLeaderID = 12;
         public static final int kLeftFollowerID = 9;
 
-        public static final int kMiddle1 = 3;
-        public static final int kMiddle2 = 1;
+        public static final int kMiddle1 = 2;
+        public static final int kMiddle2 = 3;
         //--------------------------------------
       }
 
@@ -52,7 +52,7 @@ public static class controller{
         public static final boolean rightleaderinvert = true;
         public static final boolean leftleaderinvert = false;
         public static final boolean rightrearinvert = true;
-        public static final boolean leftrearinvert = true;
+        public static final boolean leftrearinvert = false;
 
         public static final boolean middle1 = false;
         public static final boolean middle2 = true;

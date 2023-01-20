@@ -29,8 +29,10 @@ JoystickButton button8 = new JoystickButton(joy, 8);
        new TeleoperatedDrive(
       m_drive,
       m_xboxSubsystem,
-       () -> joy.getRawAxis(0),
-       () -> joy.getRawAxis(1)
+       () -> joy.getRawAxis(4),
+       () -> joy.getRawAxis(5),
+       () -> joy.getRawAxis(0)
+
        ));
 
     configureBindings();
@@ -38,9 +40,9 @@ JoystickButton button8 = new JoystickButton(joy, 8);
 
   private void configureBindings() {
 
-button1.whileTrue(new ChargeStationBalance(m_drive));
-button2.whileTrue(new pidAngleTurn(m_drive,90));
-button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));
+//button1.whileTrue(new ChargeStationBalance(m_drive));
+//button2.whileTrue(new pidAngleTurn(m_drive,90));
+//button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));
 
 button7.whileTrue(new Throttle(false, m_xboxSubsystem));
 button8.whileTrue(new Throttle(true, m_xboxSubsystem));
