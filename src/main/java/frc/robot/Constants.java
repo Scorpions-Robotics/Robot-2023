@@ -48,10 +48,10 @@ public static class controller{
   }
 
     public static class Vision {
-    public static final double kCameraHeight = 0.0;
-    public static final double kTargetHeight = 0.0;
+    public static final double kCameraHeight = 33;
+    public static final double kTargetHeight = 59.0;
+    public static final double kPickupHeight = 36.0;
     public static final double kCameraAngle = 0.0;
-
     }
 
     public static class invert{
