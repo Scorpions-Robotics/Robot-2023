@@ -9,14 +9,14 @@ public class TurnToGivenAngle extends SequentialCommandGroup {
   DriveSubsystem m_drive;
   double angle;
 
-  public TurnToGivenAngle(DriveSubsystem m_drive, Double angle) {
+  public TurnToGivenAngle(DriveSubsystem m_drive, double angle) {
 
     this.m_drive = m_drive;
     this.angle = angle;
 
     addCommands(
 
-    new GyroReset(m_drive).andThen(
+    new GyroReset(m_drive).alongWith(
       new pidAngleTurn(m_drive,angle))
     );
 

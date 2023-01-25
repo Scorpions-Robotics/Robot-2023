@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class XboxSubsystem extends SubsystemBase {
 public double ThrottleValue = 1;
 public int mode;
+public boolean stabilmode = true;
 
 public XboxSubsystem() {}
 
@@ -32,6 +33,14 @@ public XboxSubsystem() {}
 ThrottleValue = 1;
   }
 
+public void turnonstabilmode(){
+
+  stabilmode = true;
+}
+public void turnoffstabilmode(){
+
+  stabilmode = false;
+}
 
 public void modeincrease(){
 if(ThrottleValue == 0.20){
@@ -58,26 +67,26 @@ else if(ThrottleValue == 0.40){
 public void modedecrease(){
 
   if(ThrottleValue == 1){
-    mode4();
-    }
+  mode4();
+  }
 
-    else if(ThrottleValue == 0.80){
-      mode3(); 
-      }
+  else if(ThrottleValue == 0.80){
+  mode3(); 
+  }
 
-      else if(ThrottleValue == 0.60){
-        mode2();
-        }
+  else if(ThrottleValue == 0.60){
+  mode2();
+  }
 
-        else if(ThrottleValue == 0.40){
-          mode1();
+  else if(ThrottleValue == 0.40){
+   mode1();
           }
           
-     else if(ThrottleValue == 0.20){
-      ThrottleValue = 0.20;
-      }
-}
-  
+  else if(ThrottleValue == 0.20){
+  ThrottleValue = 0.20;
+  }
+} 
+
   @Override
   public void periodic() {
 

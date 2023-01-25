@@ -13,29 +13,41 @@ public class pidAngleTurn extends PIDCommand {
 
   public pidAngleTurn(DriveSubsystem m_drive, double angle) {
     super(
-        new PIDController(1, 0, 0),
+        new PIDController(0.025, 0.001, 0.005),
         () -> m_drive.GetHeading(),
         () -> angle,
 
         output -> {
+
           if (m_drive.GetHeading() > angle) {
-            m_drive.arcadeDrive(Math.max(-output, -0.3),0);
+            m_drive.arcadeDrive(Math.min(-output, -0.45),0);
 
             //outputtaki "-"leri gözden geçir!
           } else if(angle > m_drive.GetHeading()) {
-            m_drive.arcadeDrive(Math.min(output, 0.3) ,0);
+            m_drive.arcadeDrive(Math.max(output, 0.3) ,0);
           }
 
           SmartDashboard.putNumber("output", -output);
           SmartDashboard.putNumber("angle", angle);
           SmartDashboard.putNumber("heading", m_drive.GetHeading());
-
+          
         });
-        //getController().setTolerance(1.5,1.5);
-  }
+        getController().setTolerance(1);
+      }
 
   @Override
   public boolean isFinished() {
-    return getController().atSetpoint();
+
+    /*Double setpoint = getController().getSetpoint();
+    Double mesurement = getController().set
+    if(pidAngleTurn.m_drive.GetHeading() > setpoint - 1 && setpoint < setpoint + 1){
+
+      return true;
+    }else{
+
+      return false;
+    }
+*/
+  return getController().atSetpoint();
   }
 }

@@ -14,8 +14,8 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
 
 //import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Encoder;
@@ -38,7 +38,7 @@ public class DriveSubsystem extends SubsystemBase {
  //------------------------------------
  //Encoder-----------------------------
  
- /*private Encoder leftDriveEncoder =
+ private Encoder leftDriveEncoder =
  new Encoder(
  Constants.ENCODERS.kLeftDriveEncoderChannelA,
  Constants.ENCODERS.kLeftDriveEncoderChannelB,
@@ -46,12 +46,13 @@ public class DriveSubsystem extends SubsystemBase {
  EncodingType.k4X
  );
 
+
  private Encoder rightDriveEncoder = new Encoder(
  Constants.ENCODERS.kRightDriveEncoderChannelA,
  Constants.ENCODERS.kRightDriveEncoderChannelB,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
- );*/
+ );
 
  RelativeEncoder encoder1;
 
@@ -127,8 +128,8 @@ public class DriveSubsystem extends SubsystemBase {
   
 
   public void ResetEncoders() {
-  //  leftDriveEncoder.reset();
-    //rightDriveEncoder.reset();
+   leftDriveEncoder.reset();
+    rightDriveEncoder.reset();
   
   }
 
@@ -278,6 +279,14 @@ public void RunRightSideSpeed(double speed){
     SmartDashboard.putBoolean("Connection state", imu.isConnected());
 
     SmartDashboard.putNumber("pitch", imu.getPitch());
+    SmartDashboard.putNumber("heading", GetHeading());
+
+    leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    SmartDashboard.putNumber("leftencoder", leftDriveEncoder.getDistance()* 2.54);
+
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    SmartDashboard.putNumber("rightencoder", rightDriveEncoder.getDistance()* 2.54);
+
 
   }
 }

@@ -22,8 +22,8 @@ public static class controller{
 
 
     public static class ENCODERS {
-    public static final int kLeftDriveEncoderChannelA = 4;
-    public static final int kLeftDriveEncoderChannelB = 5;
+    public static final int kLeftDriveEncoderChannelA = 8;
+    public static final int kLeftDriveEncoderChannelB = 9;
 
     public static final int kRightDriveEncoderChannelA = 6;
     public static final int kRightDriveEncoderChannelB = 7;
