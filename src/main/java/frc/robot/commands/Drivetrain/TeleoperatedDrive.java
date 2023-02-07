@@ -6,7 +6,9 @@ package frc.robot.commands.Drivetrain;
 
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commandgroups.TurnToGivenAngle;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
@@ -36,24 +38,60 @@ public class TeleoperatedDrive extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    double angle = m_drivesubsystem.GetHeading();
+    double neededangle = angle * -1;
+    
     //ConfiguratedThrottle = (throttle.getAsDouble() * -1 + 1) / 2;
     // :( m_drivesubsystem.arcadeDrive(xspeed.getAsDouble() *  ConfiguratedThrottle, yrotation.getAsDouble() * ConfiguratedThrottle);
+    
+    
+//if(m_xboxSubsystem.stabilmode == false){
+  m_drivesubsystem.hDrive(xspeed.getAsDouble() *  m_xboxSubsystem.ThrottleValue, 
+  yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+  -zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
+//}
 
-    m_drivesubsystem.hDrive(xspeed.getAsDouble() *  m_xboxSubsystem.ThrottleValue, 
-    yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
-    zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
 
 
+/* 
+if(m_xboxSubsystem.stabilmode == true){
+
+//if(Math.abs(zrotation.getAsDouble()) > 0.09){
+//m_drivesubsystem.ResetGyro();
+//}
+
+  m_drivesubsystem.hDrive(xspeed.getAsDouble() *  m_xboxSubsystem.ThrottleValue, 
+  yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+  -zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
 
 
+  if(yrotation.getAsDouble() < 0.1 && yrotation.getAsDouble() > -0.1 &&
+  xspeed.getAsDouble() > -0.1 && xspeed.getAsDouble() < 0.1){
+  new pidAngleTurn(m_drivesubsystem, neededangle);
+  m_drivesubsystem.a = neededangle;
+  m_drivesubsystem.duzelt = true;
 
-
-    //SmartDashboard.putNumber("axis5", yrotation.getAsDouble());
+  SmartDashboard.putBoolean("deneme", true);
+ }
+ 
+ else{
+  m_drivesubsystem.duzelt = false;
+  SmartDashboard.putBoolean("deneme", false);
+ }
+*/
+  SmartDashboard.putNumber("nummber", neededangle);
+  SmartDashboard.putNumber("xspeed", xspeed.getAsDouble());
+  SmartDashboard.putNumber("yrotation", yrotation.getAsDouble());
+  SmartDashboard.putNumber("zrotation", zrotation.getAsDouble());
+//}
   }
 
   @Override

@@ -17,7 +17,7 @@ public class TurnToGivenAngle extends SequentialCommandGroup {
     addCommands(
 
     new GyroReset(m_drive).alongWith(
-      new pidAngleTurn(m_drive,angle))
+    new pidAngleTurn(m_drive,angle))
     );
 
   }

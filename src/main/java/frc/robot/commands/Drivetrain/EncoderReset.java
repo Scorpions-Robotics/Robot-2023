@@ -15,9 +15,7 @@ public class EncoderReset extends CommandBase {
 
   @Override
   public void initialize() {
-
     m_drive.ResetEncoders();
-    
   }
 
   @Override

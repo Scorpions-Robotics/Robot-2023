@@ -7,6 +7,7 @@ package frc.robot.commands.Drivetrain;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class pidAngleTurn extends PIDCommand {
@@ -26,28 +27,24 @@ public class pidAngleTurn extends PIDCommand {
           } else if(angle > m_drive.GetHeading()) {
             m_drive.arcadeDrive(Math.max(output, 0.3) ,0);
           }
-
+          
           SmartDashboard.putNumber("output", -output);
           SmartDashboard.putNumber("angle", angle);
           SmartDashboard.putNumber("heading", m_drive.GetHeading());
-          
         });
-        getController().setTolerance(1);
       }
-
   @Override
   public boolean isFinished() {
 
     /*Double setpoint = getController().getSetpoint();
-    Double mesurement = getController().set
-    if(pidAngleTurn.m_drive.GetHeading() > setpoint - 1 && setpoint < setpoint + 1){
+    if(RobotContainer.m_drive.GetHeading() > setpoint - 1 && RobotContainer.m_drive.GetHeading() < setpoint + 1){
 
       return true;
     }else{
 
       return false;
-    }
-*/
-  return getController().atSetpoint();
+    }*/
+
+ return getController().atSetpoint();
   }
 }

@@ -8,30 +8,26 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class pidChargeStation extends PIDCommand {
-  /** Creates a new pidChargeStation. */
   public pidChargeStation(DriveSubsystem m_drive) {
     super(
-        // The controller that the command will use
         new PIDController(1, 0, 0),
-        // This should return the measurement
         () -> m_drive.GetPitch(),
-        // This should return the setpoint (can also be a constant)
         () -> 0,
-        // This uses the output
+
         output -> {
-
-
+          if (m_drive.GetPitch() > 0) {
+            m_drive.arcadeDrive(0,Math.min(-output, -0.45));
+            //outputtaki "-"leri gözden geçir!
+          }
+          else if (0 > m_drive.GetPitch()) {
+            m_drive.arcadeDrive(0,Math.max(output, 0.45));
+          }
 
         });
-    // Use addRequirements() here to declare subsystem dependencies.
-    // Configure additional PID options by calling `getController` here.
-  }
 
-  // Returns true when the command should end.
+  }
+  
   @Override
   public boolean isFinished() {
     return getController().atSetpoint();

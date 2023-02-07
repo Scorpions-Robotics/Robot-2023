@@ -16,13 +16,18 @@ public class StabilizeMode extends CommandBase {
 
   @Override
   public void initialize() {
-    if(mode){
-      m_xboxsubsystem.turnonstabilmode();
-      m_drive.ResetEncoders();
-    }
-    else{
-      m_xboxsubsystem.turnoffstabilmode();
-    }
+
+if(mode){
+
+m_xboxsubsystem.turnonstabilmode();
+m_drive.ResetGyro();
+
+}
+else{
+
+  m_xboxsubsystem.turnoffstabilmode();
+}
+
   }
 
   @Override

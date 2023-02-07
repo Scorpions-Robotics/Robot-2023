@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class XboxSubsystem extends SubsystemBase {
@@ -41,6 +42,18 @@ public void turnoffstabilmode(){
 
   stabilmode = false;
 }
+
+public void changestabilmode(){
+
+  if(stabilmode){
+    stabilmode = false;
+  }
+
+  else{
+    stabilmode = true;
+  }
+}
+
 
 public void modeincrease(){
 if(ThrottleValue == 0.20){
@@ -89,6 +102,8 @@ public void modedecrease(){
 
   @Override
   public void periodic() {
+
+    SmartDashboard.putBoolean("stabilizemode", stabilmode);
 
   }
 }

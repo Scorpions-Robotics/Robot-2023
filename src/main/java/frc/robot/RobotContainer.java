@@ -6,6 +6,7 @@ import frc.robot.commandgroups.TurnToGivenAngle;
 import frc.robot.commands.Drivetrain.EncoderReset;
 import frc.robot.commands.Drivetrain.GyroReset;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
+import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.commands.Joystick.Throttle;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
@@ -13,7 +14,7 @@ import frc.robot.subsystems.XboxSubsystem;
 public class RobotContainer {
 
 XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
-DriveSubsystem m_drive = new DriveSubsystem();
+public static DriveSubsystem m_drive = new DriveSubsystem();
 
 Joystick joy = new Joystick(Constants.controller.controller);
 JoystickButton button1 = new JoystickButton(joy, 1);
@@ -24,6 +25,9 @@ JoystickButton button6 = new JoystickButton(joy, 6);
 
 JoystickButton button7 = new JoystickButton(joy, 7);
 JoystickButton button8 = new JoystickButton(joy, 8);
+JoystickButton button9 = new JoystickButton(joy, 9);
+JoystickButton button10 = new JoystickButton(joy, 10);
+
 
   public RobotContainer() {
 
@@ -51,6 +55,9 @@ button4.whileTrue(new TurnToGivenAngle(m_drive,90));
 button6.whileTrue(new EncoderReset(m_drive));
 button7.whileTrue(new Throttle(false, m_xboxSubsystem));
 button8.whileTrue(new Throttle(true, m_xboxSubsystem));
+button9.whileTrue(new StabilizeMode(false,m_xboxSubsystem,m_drive));
+button10.whileTrue(new StabilizeMode(true,m_xboxSubsystem,m_drive));
+
 
   }
 

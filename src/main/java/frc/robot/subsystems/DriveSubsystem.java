@@ -14,10 +14,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-
 import com.revrobotics.RelativeEncoder;
-
-//import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.SerialPort;
 //import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -53,10 +50,11 @@ public class DriveSubsystem extends SubsystemBase {
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
  );
-
  RelativeEncoder encoder1;
 
  //---------------------------------------
+ public static Double a;
+ public static boolean duzelt = false;
 
  //Motor----------------------------------
  private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
@@ -84,6 +82,8 @@ public class DriveSubsystem extends SubsystemBase {
  //---------------------------------------
 
   public DriveSubsystem() {
+
+
     leftFront.setInverted(Constants.invert.leftleaderinvert);
     rightFront.setInverted(Constants.invert.rightleaderinvert);
     leftRear.setInverted(Constants.invert.leftrearinvert);
@@ -111,15 +111,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getLeftEncoderDistance() {
-   // leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-   // return leftDriveEncoder.getDistance() * 2.54;
-  return 1;
+   leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+   return leftDriveEncoder.getDistance() * 2.54;
+  //return 1;
   }
 
   public double getRightEncoderDistance() {
-   // rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    //return rightDriveEncoder.getDistance() * 2.54;
-  return 1;
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
   }
 
   public double getStraightDriveDistance() {
@@ -140,8 +140,8 @@ public class DriveSubsystem extends SubsystemBase {
 //acil kontrol
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-      1, 1 * -1);
-       // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
+      //1, 1 * -1);
+       leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -273,20 +273,17 @@ public void RunRightSideSpeed(double speed){
 
   @Override
   public void periodic() {
+    
    // odometry.update(GetHeadingForDifferentialDriveOdometry(),
     //getRightEncoderDistance(),
     //getLeftEncoderDistance());
-    SmartDashboard.putBoolean("Connection state", imu.isConnected());
 
+    SmartDashboard.putBoolean("Connection state", imu.isConnected());
     SmartDashboard.putNumber("pitch", imu.getPitch());
     SmartDashboard.putNumber("heading", GetHeading());
 
-    leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    SmartDashboard.putNumber("leftencoder", leftDriveEncoder.getDistance()* 2.54);
-
-    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    SmartDashboard.putNumber("rightencoder", rightDriveEncoder.getDistance()* 2.54);
-
+    SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
+    SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
 
   }
 }
