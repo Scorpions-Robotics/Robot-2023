@@ -57,6 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
  public static boolean duzelt = false;
 
  //Motor----------------------------------
+
  private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
  private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
  private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
@@ -69,9 +70,9 @@ public class DriveSubsystem extends SubsystemBase {
  //---------------------------------------
 
  //motorcontrollergroup
-         public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
-         public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
-         public MotorControllerGroup m_middle = new MotorControllerGroup(middle1, middle2);
+        public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
+        public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
+        public MotorControllerGroup m_middle = new MotorControllerGroup(middle1, middle2);
  //---------------------------------------
 
 
@@ -157,6 +158,11 @@ public double GetHeading(){
   //return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
     return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
 
+}
+
+public double GetHeadingForFastReturn(){
+  //açı
+  return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
 }
 
 public double GetYaw(){

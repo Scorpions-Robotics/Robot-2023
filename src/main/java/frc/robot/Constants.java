@@ -30,6 +30,12 @@ public static class controller{
   }
 
 
+
+  public static class Arm {
+    public static final int kRotateMotor = 2;
+  }
+
+
     public static class ODOMETRY {
     public static final double kRamseteB = 2.0;
     public static final double kRamseteZeta = 0.7;
