@@ -4,14 +4,39 @@
 
 package frc.robot.subsystems;
 
+import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonPipelineResult;
+import org.photonvision.PhotonUtils;
+import frc.robot.Constants.VisionConstants;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSubsystem extends SubsystemBase {
-  /** Creates a new VisionSubsystem. */
-  public VisionSubsystem() {}
+  private PhotonCamera m_camera;
+  private PhotonPipelineResult result;
+
+  public VisionSubsystem() {
+    m_camera = new PhotonCamera(VisionConstants.CameraName);
+  }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    result = m_camera.getLatestResult();
+  }
+
+  public double getTargetYaw() {
+    return result.getBestTarget().getYaw();
+  }
+
+  public double getDistance() {
+    return PhotonUtils.calculateDistanceToTargetMeters(
+        VisionConstants.CameraHeight,
+        VisionConstants.TargetHeight,
+        VisionConstants.CameraPitchRadians,
+        Units.degreesToRadians(result.getBestTarget().getPitch()));
+  }
+
+  public boolean hasTargets() {
+    return result.hasTargets();
   }
 }
