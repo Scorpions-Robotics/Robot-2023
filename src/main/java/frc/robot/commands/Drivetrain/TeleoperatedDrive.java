@@ -13,7 +13,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
 public class TeleoperatedDrive extends CommandBase {
-
+/*
   DriveSubsystem m_drivesubsystem;
   XboxSubsystem m_xboxSubsystem;
   DoubleSupplier xspeed;
@@ -87,6 +87,7 @@ if(m_xboxSubsystem.stabilmode == true){
   SmartDashboard.putBoolean("deneme", false);
  }
 */
+/* 
   SmartDashboard.putNumber("nummber", neededangle);
   SmartDashboard.putNumber("xspeed", xspeed.getAsDouble());
   SmartDashboard.putNumber("yrotation", yrotation.getAsDouble());
@@ -101,5 +102,7 @@ if(m_xboxSubsystem.stabilmode == true){
   @Override
   public boolean isFinished() {
     return false;
-  }
+  } */
 }
+
+

@@ -20,7 +20,7 @@ public class StabilizeMode extends CommandBase {
 if(mode){
 
 m_xboxsubsystem.turnonstabilmode();
-m_drive.ResetGyro();
+//m_drive.ResetGyro();
 
 }
 else{

@@ -15,19 +15,19 @@ public class Rotate_Axis_1 extends PIDCommand {
     super(
         new PIDController(1, 0, 0),
         // This should return the measurement
-        () -> m_arm.MapAxis1Encoder(),
+        () -> m_arm.GetOutputAngle(),
         // This should return the setpoint (can also be a constant)
         () -> degree,
         // This uses the output
         output -> {
 
 
-          if(degree > m_arm.MapAxis1Encoder()){
-              m_arm.Axis1MotorOutput(Math.min(output, 0.20));
+          if(degree > m_arm.GetOutputAngle()){
+              m_arm.Axis1MotorOutput(Math.min(-output, -0.20));
           }
 
-          else if(m_arm.MapAxis1Encoder() > degree){
-            m_arm.Axis1MotorOutput(Math.max(-output, -0.20));
+          else if(m_arm.GetOutputAngle() > degree){
+            m_arm.Axis1MotorOutput(Math.max(output, 0.20));
         }
 
 

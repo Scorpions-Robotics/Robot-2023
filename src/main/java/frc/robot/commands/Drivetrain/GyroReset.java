@@ -12,7 +12,7 @@ public class GyroReset extends CommandBase {
 
   @Override
   public void initialize() {
-    m_drive.ResetGyro();
+   // m_drive.ResetGyro();
   }
 
   @Override

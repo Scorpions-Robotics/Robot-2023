@@ -3,6 +3,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.TurnToGivenAngle;
+import frc.robot.commands.Arm.ResetAxis1Encoder;
+import frc.robot.commands.Arm.Rotate_Axis_1;
 import frc.robot.commands.Drivetrain.EncoderReset;
 import frc.robot.commands.Drivetrain.GyroReset;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
@@ -16,7 +18,7 @@ public class RobotContainer {
 
 XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
 public static DriveSubsystem m_drive = new DriveSubsystem();
-ArmSubsystem m_arm = new ArmSubsystem();
+public static ArmSubsystem m_arm = new ArmSubsystem();
 
 Joystick joy = new Joystick(Constants.controller.controller);
 JoystickButton button1 = new JoystickButton(joy, 1);
@@ -48,7 +50,9 @@ JoystickButton button10 = new JoystickButton(joy, 10);
 
   private void configureBindings() {
 
-//button1.whileTrue(new ChargeStationBalance(m_drive));
+button1.whileTrue(new Rotate_Axis_1(m_arm,90));
+button2.whileTrue(new ResetAxis1Encoder(m_arm));
+
 //button2.whileTrue(new pidAngleTurn(m_drive,90));
 //button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));
 //button2.whileTrue(new TurnToGivenAngle(m_drive,-90));

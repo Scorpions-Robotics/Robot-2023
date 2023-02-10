@@ -29,7 +29,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
-
+/* 
  //imu --------------------------------
  AHRS imu = new AHRS(I2C.Port.kOnboard);
  //------------------------------------
@@ -292,4 +292,5 @@ public void RunRightSideSpeed(double speed){
     SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
 
   }
+  */
 }
