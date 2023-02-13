@@ -1,6 +1,8 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.TurnToGivenAngle;
 import frc.robot.commands.Arm.ResetAxis1Encoder;
@@ -51,7 +53,9 @@ JoystickButton button10 = new JoystickButton(joy, 10);
   private void configureBindings() {
 
 button1.whileTrue(new Rotate_Axis_1(m_arm,90));
-button2.whileTrue(new ResetAxis1Encoder(m_arm));
+button2.onTrue(new ResetAxis1Encoder(m_arm));
+button3.onTrue(new InstantCommand(() -> m_arm.Axis1MotorCoastMode()));
+button4.onTrue(new InstantCommand(() -> m_arm.Axis1MotorBreakMode()));
 
 //button2.whileTrue(new pidAngleTurn(m_drive,90));
 //button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));

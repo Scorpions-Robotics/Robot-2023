@@ -19,6 +19,7 @@ public class ResetAxis1Encoder extends CommandBase {
   @Override
   public void initialize() {
     m_arm.Axis1EncoderReset();
+m_arm.resetGetOutputAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

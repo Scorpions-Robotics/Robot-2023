@@ -6,6 +6,7 @@ package frc.robot.commands.Arm;
 
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.ArmSubsystem;
 
@@ -13,22 +14,33 @@ public class Rotate_Axis_1 extends PIDCommand {
 
   public Rotate_Axis_1(ArmSubsystem m_arm,double degree) {
     super(
-        new PIDController(1, 0, 0),
+        new PIDController(0.008, 0.02, 0.0001),
         // This should return the measurement
-        () -> m_arm.GetOutputAngle(),
+        () -> -m_arm.getOutputAngle2,
         // This should return the setpoint (can also be a constant)
         () -> degree,
         // This uses the output
         output -> {
 
 
-          if(degree > m_arm.GetOutputAngle()){
-              m_arm.Axis1MotorOutput(Math.min(-output, -0.20));
-          }
+          if(degree > -m_arm.getOutputAngle2){
+              m_arm.Axis1MotorOutput(Math.max(-output, -0.20));
 
-          else if(m_arm.GetOutputAngle() > degree){
-            m_arm.Axis1MotorOutput(Math.max(output, 0.20));
-        }
+        SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
+        SmartDashboard.putNumber("Hedef", degree);
+        SmartDashboard.putNumber("Output", output);
+
+
+            }
+
+
+          else if(-m_arm.getOutputAngle2 > degree){
+            m_arm.Axis1MotorOutput(Math.min(output, 0.40));
+       
+            SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
+            SmartDashboard.putNumber("Hedef", degree);
+            SmartDashboard.putNumber("Output", output);
+          }
 
 
         });
@@ -36,6 +48,6 @@ public class Rotate_Axis_1 extends PIDCommand {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return getController().atSetpoint();
   }
 }
