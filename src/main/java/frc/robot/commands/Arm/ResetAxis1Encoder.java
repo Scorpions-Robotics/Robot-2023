@@ -18,13 +18,21 @@ public class ResetAxis1Encoder extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_arm.Axis1EncoderReset();
-m_arm.resetGetOutputAngle();
-  }
+
+}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_arm.Axis1EncoderReset();
+    m_arm.resetGetOutputAngle();
+    
+    m_arm.Axis2EncoderReset();
+    m_arm.resetAxis2GetOutputAngle(); 
+    
+    m_arm.Axis3EncoderReset();
+    m_arm.resetAxis3GetOutputAngle();  
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -33,6 +41,6 @@ m_arm.resetGetOutputAngle();
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

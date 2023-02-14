@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.TurnToGivenAngle;
 import frc.robot.commands.Arm.ResetAxis1Encoder;
 import frc.robot.commands.Arm.Rotate_Axis_1;
+import frc.robot.commands.Arm.Rotate_Axis_2;
+import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Drivetrain.EncoderReset;
 import frc.robot.commands.Drivetrain.GyroReset;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
@@ -27,8 +29,8 @@ JoystickButton button1 = new JoystickButton(joy, 1);
 JoystickButton button2 = new JoystickButton(joy, 2);
 JoystickButton button3 = new JoystickButton(joy, 3);
 JoystickButton button4 = new JoystickButton(joy, 4);
+JoystickButton button5 = new JoystickButton(joy, 5);
 JoystickButton button6 = new JoystickButton(joy, 6);
-
 JoystickButton button7 = new JoystickButton(joy, 7);
 JoystickButton button8 = new JoystickButton(joy, 8);
 JoystickButton button9 = new JoystickButton(joy, 9);
@@ -52,10 +54,17 @@ JoystickButton button10 = new JoystickButton(joy, 10);
 
   private void configureBindings() {
 
-button1.whileTrue(new Rotate_Axis_1(m_arm,90));
+button1.onTrue(new Rotate_Axis_2(m_arm,90));
 button2.onTrue(new ResetAxis1Encoder(m_arm));
 button3.onTrue(new InstantCommand(() -> m_arm.Axis1MotorCoastMode()));
-button4.onTrue(new InstantCommand(() -> m_arm.Axis1MotorBreakMode()));
+button3.onFalse(new InstantCommand(() -> m_arm.Axis1MotorBreakMode()));
+button4.onTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
+button4.onFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
+button5.onFalse(new InstantCommand(() -> m_arm.Axis3MotorBreakMode()));
+button5.onTrue(new InstantCommand(() -> m_arm.Axis3MotorCoastMode()));
+button6.onTrue(new Rotate_Axis_3(m_arm,180));
+button7.onTrue(new Rotate_Axis_1(m_arm,90));
+
 
 //button2.whileTrue(new pidAngleTurn(m_drive,90));
 //button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));

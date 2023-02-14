@@ -25,21 +25,13 @@ public class Rotate_Axis_1 extends PIDCommand {
 
           if(degree > -m_arm.getOutputAngle2){
               m_arm.Axis1MotorOutput(Math.max(-output, -0.20));
-
         SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
-        SmartDashboard.putNumber("Hedef", degree);
-        SmartDashboard.putNumber("Output", output);
-
-
             }
 
 
           else if(-m_arm.getOutputAngle2 > degree){
-            m_arm.Axis1MotorOutput(Math.min(output, 0.40));
-       
+            m_arm.Axis1MotorOutput(Math.min(output, 0.20));
             SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
-            SmartDashboard.putNumber("Hedef", degree);
-            SmartDashboard.putNumber("Output", output);
           }
 
 
