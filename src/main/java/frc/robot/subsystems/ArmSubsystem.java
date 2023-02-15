@@ -24,7 +24,7 @@ public static RelativeEncoder Axis3Encoder;
   public double getOutputAngle2;
   public double getOutputAngle_Axis2;
   public double getOutputAngle_Axis3;
-
+  public static double b;
   public ArmSubsystem() {
     Axis1Motor.setIdleMode(IdleMode.kBrake);
     Axis2Motor.setIdleMode(IdleMode.kBrake);
@@ -56,6 +56,7 @@ public static RelativeEncoder Axis3Encoder;
    modevalue3();
   modevalue2();
   modevalue();
+ // createSmartDashboardNumber("p",1);
   }
 
 public static double Axis1Angle(){
@@ -199,4 +200,10 @@ public static void Axis1MotorBreakMode(){
   
       }
 
+      public static double createSmartDashboardNumber(String key, double defValue) {
+        double value = SmartDashboard.getNumber(key, defValue);
+        SmartDashboard.putNumber(key, value);
+        return value;
+      }
+      
 }

@@ -62,7 +62,7 @@ button4.onTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
 button4.onFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
 button5.onFalse(new InstantCommand(() -> m_arm.Axis3MotorBreakMode()));
 button5.onTrue(new InstantCommand(() -> m_arm.Axis3MotorCoastMode()));
-button6.onTrue(new Rotate_Axis_3(m_arm,180));
+button6.onTrue(new Rotate_Axis_3(m_arm,-180));
 button7.onTrue(new Rotate_Axis_1(m_arm,90));
 
 
