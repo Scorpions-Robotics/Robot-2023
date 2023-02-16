@@ -11,8 +11,8 @@ public class Rotate_Axis_3 extends PIDCommand {
 
   public Rotate_Axis_3(ArmSubsystem m_arm,double degree) {
     super(
-         new PIDController(0.01, 0.0025, 0),
-
+         new PIDController(0.01, 0, 0),
+         //0.01, 0.0025, 0
         () -> -m_arm.getOutputAngle_Axis3,
         () -> degree,
         output -> {
@@ -45,7 +45,8 @@ public class Rotate_Axis_3 extends PIDCommand {
   public boolean isFinished() {
     //return getController().atSetpoint();
     Double setpoint = getController().getSetpoint();
-    if(Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) > setpoint - 2.5 && Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) < setpoint + 2.5){
+    if(Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) > Math.abs(setpoint) - 2.5 &&
+     Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) < Math.abs(setpoint) + 2.5){
 
       return true;
     }
@@ -53,5 +54,7 @@ public class Rotate_Axis_3 extends PIDCommand {
 
       return false;
     }
+    
+    //return false;
   }
 }
