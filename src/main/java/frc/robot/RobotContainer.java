@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.TurnToGivenAngle;
+import frc.robot.commandgroups.Autonomous.ArmMovement1;
 import frc.robot.commands.Arm.ResetAxis1Encoder;
 import frc.robot.commands.Arm.Rotate_Axis_1;
 import frc.robot.commands.Arm.Rotate_Axis_2;
@@ -63,7 +64,7 @@ button4.onFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
 button5.onFalse(new InstantCommand(() -> m_arm.Axis3MotorBreakMode()));
 button5.onTrue(new InstantCommand(() -> m_arm.Axis3MotorCoastMode()));
 button6.onTrue(new Rotate_Axis_3(m_arm,-180));
-button7.onTrue(new Rotate_Axis_1(m_arm,90));
+button7.onTrue(new ArmMovement1(m_arm));
 
 
 //button2.whileTrue(new pidAngleTurn(m_drive,90));
