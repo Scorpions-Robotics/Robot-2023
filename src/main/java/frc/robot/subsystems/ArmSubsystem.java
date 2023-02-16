@@ -79,7 +79,7 @@ public static double GetOutputAxis2(){
 
 
 public static double GetOutputAxis3(){
-  return Axis3Angle() * 10;
+  return Axis3Angle() * 9.7;
   //mapleme fonksiyonu AXİS3
 }
 
