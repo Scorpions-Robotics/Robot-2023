@@ -5,6 +5,8 @@
 package frc.robot.commands.Arm;
 
 
+import javax.sound.sampled.SourceDataLine;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
@@ -28,13 +30,13 @@ public class Rotate_Axis_1 extends PIDCommand {
 
           if(degree + 5 > -m_arm.getOutputAngle2){
               m_arm.Axis1MotorOutput(Math.max(-output, -0.20));
-        //SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
+        SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
             }
 
 
           else if(-m_arm.getOutputAngle2 > degree + 5){
             m_arm.Axis1MotorOutput(Math.min(output, 0.20));
-           // SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
+           SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
           }
 
 

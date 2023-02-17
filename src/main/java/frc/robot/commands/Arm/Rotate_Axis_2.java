@@ -8,7 +8,8 @@ public class Rotate_Axis_2 extends PIDCommand {
 
   public Rotate_Axis_2(ArmSubsystem m_arm,double degree) {
     super(
-        new PIDController(0.008, 0.02, 0.0001),
+        new PIDController(0.01, 0.0005, 0),
+        //.008, 0.02, 0.0001
         () -> -m_arm.getOutputAngle_Axis2,
         () -> degree,
         output -> {

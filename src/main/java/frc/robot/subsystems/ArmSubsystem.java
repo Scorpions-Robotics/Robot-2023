@@ -49,7 +49,7 @@ public static RelativeEncoder Axis3Encoder;
     getOutputAngle_Axis3 = GetOutputAxis3();
 
     SmartDashboard.putNumber("axis1 motor encoder", Axis1Angle());
-    SmartDashboard.putNumber("axis1 motor encoder edited", GetOutputAngle());
+    SmartDashboard.putNumber("axis1 motor encoder edited", Math.round(GetOutputAngle()));
     SmartDashboard.putNumber("axis2 motor encoder edited", getOutputAngle_Axis2);
    SmartDashboard.putNumber("axis3 motor encoder edited", getOutputAngle_Axis3);
 

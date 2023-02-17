@@ -55,7 +55,7 @@ JoystickButton button10 = new JoystickButton(joy, 10);
 
   private void configureBindings() {
 
-button1.onTrue(new Rotate_Axis_2(m_arm,90));
+button1.onTrue(new Rotate_Axis_1(m_arm,120));
 button2.onTrue(new ResetAxis1Encoder(m_arm));
 button3.onTrue(new InstantCommand(() -> m_arm.Axis1MotorCoastMode()));
 button3.onFalse(new InstantCommand(() -> m_arm.Axis1MotorBreakMode()));
