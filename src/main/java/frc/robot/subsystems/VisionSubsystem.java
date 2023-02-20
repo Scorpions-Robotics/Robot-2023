@@ -9,11 +9,15 @@ import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.PhotonUtils;
 import frc.robot.Constants.VisionConstants;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSubsystem extends SubsystemBase {
   private PhotonCamera m_camera;
   private PhotonPipelineResult result;
+  private double yaw;
+  private double distance;
+  private boolean target;
 
   public VisionSubsystem() {
     m_camera = new PhotonCamera(VisionConstants.CameraName);
@@ -22,7 +26,18 @@ public class VisionSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     result = m_camera.getLatestResult();
-  }
+
+    if(hasTargets()){
+      SmartDashboard.putBoolean("VarMisinYokMusun?", hasTargets());
+      SmartDashboard.putNumber("Yaw", getTargetYaw());
+      SmartDashboard.putNumber("Distance", getDistance());
+    }
+    else{
+      SmartDashboard.putNumber("Yaw", getTargetYaw());
+      SmartDashboard.putNumber("Distance", getDistance());
+      SmartDashboard.putBoolean("VarMisinYokMusun?", hasTargets());
+    }
+    }
 
   public double getTargetYaw() {
     return result.getBestTarget().getYaw();
