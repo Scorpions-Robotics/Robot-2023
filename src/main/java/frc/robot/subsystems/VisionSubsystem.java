@@ -28,14 +28,12 @@ public class VisionSubsystem extends SubsystemBase {
     result = m_camera.getLatestResult();
 
     if(hasTargets()){
-      SmartDashboard.putBoolean("VarMisinYokMusun?", hasTargets());
+      SmartDashboard.putBoolean("Target", hasTargets());
       SmartDashboard.putNumber("Yaw", getTargetYaw());
       SmartDashboard.putNumber("Distance", getDistance());
     }
     else{
-      SmartDashboard.putNumber("Yaw", getTargetYaw());
-      SmartDashboard.putNumber("Distance", getDistance());
-      SmartDashboard.putBoolean("VarMisinYokMusun?", hasTargets());
+      SmartDashboard.putBoolean("Target", hasTargets());
     }
     }
 
