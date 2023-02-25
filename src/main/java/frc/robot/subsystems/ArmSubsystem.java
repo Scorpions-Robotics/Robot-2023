@@ -166,6 +166,16 @@ public static void Axis1MotorBreakMode(){
       Axis3Motor.set(0);
       }
 
+      public void FreeMode(){
+        Axis1MotorStop();
+        Axis2MotorStop();
+        Axis3MotorStop();
+        Axis1MotorCoastMode();
+        Axis2MotorCoastMode();
+        Axis3MotorCoastMode();
+      }
+
+
   public void modevalue(){
     if(Axis1Motor.getIdleMode() == IdleMode.kBrake){
       SmartDashboard.putString("mode", "brake");
