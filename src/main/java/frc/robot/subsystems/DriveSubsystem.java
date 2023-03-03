@@ -39,30 +39,30 @@ public class DriveSubsystem extends SubsystemBase {
   
  private Encoder leftDriveEncoder =
  new Encoder(
- 0,
- 1,
+ Constants.ENCODERS.kLeftDriveEncoderChannelA,
+ Constants.ENCODERS.kLeftDriveEncoderChannelB,
  Constants.invert.leftencoderreversedirection,
  EncodingType.k4X
  );
 
 
  private Encoder rightDriveEncoder = new Encoder(
- 2,
- 3,
+ Constants.ENCODERS.kRightDriveEncoderChannelA,
+ Constants.ENCODERS.kRightDriveEncoderChannelB,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
  );
 
  private Encoder hDriveEncoder = new Encoder(
- 7,
- 6,
+ Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
+ Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
  );
 
  private Encoder hDriveEncoder2 = new Encoder(
-  5,
-  4,
+  Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
+  Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
   Constants.invert.rightencoderreversedirection,
   EncodingType.k4X
   );
@@ -74,23 +74,13 @@ public class DriveSubsystem extends SubsystemBase {
 
  //Motor----------------------------------
 
-/*  private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
- private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
- private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
- private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
- //private CANSparkMax armmotor1 = new CANSparkMax(12, MotorType.kBrushless);
+private WPI_VictorSPX rightFront = new WPI_VictorSPX(Constants.CAN.kRightLeaderID);
+private WPI_VictorSPX rightRear = new WPI_VictorSPX(Constants.CAN.kRightFollowerID);
+private WPI_VictorSPX leftFront = new WPI_VictorSPX(Constants.CAN.kLeftLeaderID);
+private WPI_VictorSPX leftRear = new WPI_VictorSPX(Constants.CAN.kLeftFollowerID);
 
- private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
- private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
-*/
-
-private WPI_VictorSPX rightFront = new WPI_VictorSPX(7);
-private WPI_VictorSPX rightRear = new WPI_VictorSPX(14);
-private WPI_VictorSPX leftFront = new WPI_VictorSPX(12);
-private WPI_VictorSPX leftRear = new WPI_VictorSPX(2);
-
-private WPI_VictorSPX middle1 = new WPI_VictorSPX(5);
-private WPI_VictorSPX middle2 = new WPI_VictorSPX(8);
+private WPI_VictorSPX middle1 = new WPI_VictorSPX(Constants.CAN.kMiddle1);
+private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
 
  //---------------------------------------
 

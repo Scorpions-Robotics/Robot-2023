@@ -10,23 +10,30 @@ public static class controller{
     public static class CAN {
 
       //bunları değiştir-----------------------
-        public static final int kRightLeaderID = 6;
-        public static final int kRightFollowerID = 10;
+        public static final int kRightLeaderID = 7;
+        public static final int kRightFollowerID = 14;
         public static final int kLeftLeaderID = 12;
-        public static final int kLeftFollowerID = 9;
+        public static final int kLeftFollowerID = 2;
 
-        public static final int kMiddle1 = 2;
-        public static final int kMiddle2 = 3;
+        public static final int kMiddle1 = 5;
+        public static final int kMiddle2 = 8;
         //--------------------------------------
+
       }
 
 
     public static class ENCODERS {
-    public static final int kLeftDriveEncoderChannelA = 8;
-    public static final int kLeftDriveEncoderChannelB = 9;
+    public static final int kLeftDriveEncoderChannelA = 0;
+    public static final int kLeftDriveEncoderChannelB = 1;
 
-    public static final int kRightDriveEncoderChannelA = 6;
-    public static final int kRightDriveEncoderChannelB = 7;
+    public static final int kRightDriveEncoderChannelA = 2;
+    public static final int kRightDriveEncoderChannelB = 3;
+
+    public static final int kMiddle1DriveEncoderChannelA = 7;
+    public static final int kMiddle1DriveEncoderChannelB = 6;
+
+    public static final int kMiddle2DriveEncoderChannelA = 5;
+    public static final int kMiddle2DriveEncoderChannelB = 4;
   }
 
 
