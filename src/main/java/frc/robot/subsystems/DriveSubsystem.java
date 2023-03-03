@@ -24,41 +24,57 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
-/* 
+
  //imu --------------------------------
  AHRS imu = new AHRS(I2C.Port.kOnboard);
  //------------------------------------
  //Encoder-----------------------------
- 
+  
  private Encoder leftDriveEncoder =
  new Encoder(
- Constants.ENCODERS.kLeftDriveEncoderChannelA,
- Constants.ENCODERS.kLeftDriveEncoderChannelB,
+ 0,
+ 1,
  Constants.invert.leftencoderreversedirection,
  EncodingType.k4X
  );
 
 
  private Encoder rightDriveEncoder = new Encoder(
- Constants.ENCODERS.kRightDriveEncoderChannelA,
- Constants.ENCODERS.kRightDriveEncoderChannelB,
+ 2,
+ 3,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
  );
- RelativeEncoder encoder1;
 
+ private Encoder hDriveEncoder = new Encoder(
+ 7,
+ 6,
+ Constants.invert.rightencoderreversedirection,
+ EncodingType.k4X
+ );
+
+ private Encoder hDriveEncoder2 = new Encoder(
+  5,
+  4,
+  Constants.invert.rightencoderreversedirection,
+  EncodingType.k4X
+  );
+
+ RelativeEncoder encoder1;
  //---------------------------------------
  public static Double a;
  public static boolean duzelt = false;
 
  //Motor----------------------------------
 
- private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
+/*  private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
  private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
  private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
  private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
@@ -66,6 +82,15 @@ public class DriveSubsystem extends SubsystemBase {
 
  private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
  private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
+*/
+
+private WPI_VictorSPX rightFront = new WPI_VictorSPX(7);
+private WPI_VictorSPX rightRear = new WPI_VictorSPX(14);
+private WPI_VictorSPX leftFront = new WPI_VictorSPX(12);
+private WPI_VictorSPX leftRear = new WPI_VictorSPX(2);
+
+private WPI_VictorSPX middle1 = new WPI_VictorSPX(5);
+private WPI_VictorSPX middle2 = new WPI_VictorSPX(8);
 
  //---------------------------------------
 
@@ -98,17 +123,17 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void CoastMode() {
-    rightFront.setIdleMode(IdleMode.kCoast);
-    rightRear.setIdleMode(IdleMode.kCoast);
-    leftFront.setIdleMode(IdleMode.kCoast);
-    leftRear.setIdleMode(IdleMode.kCoast);
+    rightFront.setNeutralMode(NeutralMode.Coast);
+    rightRear.setNeutralMode(NeutralMode.Coast);
+    leftFront.setNeutralMode(NeutralMode.Coast);
+    leftRear.setNeutralMode(NeutralMode.Coast);
   }
 
   public void BrakeMode() {
-    rightFront.setIdleMode(IdleMode.kBrake);
-    rightRear.setIdleMode(IdleMode.kBrake);
-    leftFront.setIdleMode(IdleMode.kBrake);
-    leftRear.setIdleMode(IdleMode.kBrake);
+    rightFront.setNeutralMode(NeutralMode.Brake);
+    rightRear.setNeutralMode(NeutralMode.Brake);
+    leftFront.setNeutralMode(NeutralMode.Brake);
+    leftRear.setNeutralMode(NeutralMode.Brake);
   }
 
   public double getLeftEncoderDistance() {
@@ -141,8 +166,8 @@ public class DriveSubsystem extends SubsystemBase {
 //acil kontrol
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(
-      //1, 1 * -1);
-       leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
+      1, 1 * -1);
+      // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -290,7 +315,15 @@ public void RunRightSideSpeed(double speed){
 
     SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
     SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
+    SmartDashboard.putNumber("h1encoder", hDriveEncoder.getDistance());
+    SmartDashboard.putNumber("h2encoder", hDriveEncoder2.getDistance());
+
+
+    SmartDashboard.putNumber("rightfront", rightFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("rightrear", rightRear.getMotorOutputVoltage());
+    SmartDashboard.putNumber("leftfront", leftFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("leftrear", leftRear.getMotorOutputVoltage());
+
 
   }
-  */
 }

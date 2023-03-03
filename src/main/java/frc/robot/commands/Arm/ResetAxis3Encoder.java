@@ -5,10 +5,9 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ArmSubsystem;
-
+//import frc.robot.subsystems.ArmSubsystem;
+/* 
 public class ResetAxis3Encoder extends CommandBase {
-  /** Creates a new ResetAxis3Encoder. */
   ArmSubsystem m_arm;
   public ResetAxis3Encoder(ArmSubsystem m_arm) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,3 +35,4 @@ public class ResetAxis3Encoder extends CommandBase {
     return true;
   }
 }
+*/

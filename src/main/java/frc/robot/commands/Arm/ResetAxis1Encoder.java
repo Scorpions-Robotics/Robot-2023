@@ -3,12 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.Arm;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ArmSubsystem;
+//import frc.robot.subsystems.ArmSubsystem;
 
-public class ResetAxis1Encoder extends CommandBase {
-  /** Creates a new ResetAxis1Encoder. */
+
+/*public class ResetAxis1Encoder extends CommandBase {
   ArmSubsystem m_arm;
   public ResetAxis1Encoder(ArmSubsystem m_arm) {
     this.m_arm = m_arm;
@@ -40,3 +39,5 @@ public class ResetAxis1Encoder extends CommandBase {
     return true;
   }
 }
+
+*/

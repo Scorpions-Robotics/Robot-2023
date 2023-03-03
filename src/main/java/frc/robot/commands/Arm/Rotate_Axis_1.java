@@ -11,9 +11,9 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ArmSubsystem;
+//import frc.robot.subsystems.ArmSubsystem;
 
-public class Rotate_Axis_1 extends PIDCommand {
+/*public class Rotate_Axis_1 extends PIDCommand {
 
   public Rotate_Axis_1(ArmSubsystem m_arm,double degree) {
     super(
@@ -46,7 +46,7 @@ public class Rotate_Axis_1 extends PIDCommand {
   @Override
   public boolean isFinished() {
     //return getController().atSetpoint();
-
+*/
    /*  Double setpoint = getController().getSetpoint();
     if(Math.abs(RobotContainer.m_arm.getOutputAngle2) > Math.abs(setpoint) - 2.5 &&
      Math.abs(RobotContainer.m_arm.getOutputAngle2) < Math.abs(setpoint) + 2.5){
@@ -59,6 +59,8 @@ public class Rotate_Axis_1 extends PIDCommand {
     }
 
 */
+/* 
 return false;
   }
 }
+*/

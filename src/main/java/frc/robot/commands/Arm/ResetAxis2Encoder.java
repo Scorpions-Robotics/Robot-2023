@@ -5,10 +5,9 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ArmSubsystem;
-
+//import frc.robot.subsystems.ArmSubsystem;
+/*
 public class ResetAxis2Encoder extends CommandBase {
-  /** Creates a new ResetAxis2Encoder. */
   ArmSubsystem m_arm;
   
   public ResetAxis2Encoder(ArmSubsystem m_arm) {
@@ -37,3 +36,4 @@ public class ResetAxis2Encoder extends CommandBase {
     return true;
   }
 }
+*/

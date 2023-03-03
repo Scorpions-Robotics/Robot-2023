@@ -7,7 +7,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/*
 public class ArmSubsystem extends SubsystemBase {
+
 //------------------------------------- AXIS1----------------------------------------------
   public static CANSparkMax Axis1Motor = new CANSparkMax(6, MotorType.kBrushless);
   public static RelativeEncoder Axis1Encoder;
@@ -98,12 +100,6 @@ public void resetAxis2GetOutputAngle(){
     getOutputAngle_Axis3 = 0;
     //reset axis 2 angle
     }
-
-/*public double MapAxis1Encoder(){
-  double Gearbox = 1/100;
-  return Axis1Angle() * Gearbox;
-  }
-*/
 
 public void Axis1MotorOutput(double value){
 Axis1Motor.set(value);
@@ -216,4 +212,6 @@ public static void Axis1MotorBreakMode(){
         return value;
       }
       
+      
 }
+ */
