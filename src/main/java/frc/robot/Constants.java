@@ -4,7 +4,7 @@ public final class Constants {
   
 public static class controller{
 //bunu değiştir-----------------------
-  public static final int controller = 1;
+  public static final int controller = 0;
   //----------------------------------
 }
     public static class CAN {
@@ -40,6 +40,15 @@ public static class controller{
 
   public static class Arm {
     public static final int kRotateMotor = 2;
+  }
+
+  public static class PID {
+    public static final int kP = 0;
+    public static final int kI = 0;
+    public static final int kD = 0;
+
+    public static final int POSITION_TOLERANCE = 0;
+    public static final int VELOCITY_TOLERANCE = 0;
   }
 
 

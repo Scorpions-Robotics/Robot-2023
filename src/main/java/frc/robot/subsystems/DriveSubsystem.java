@@ -317,8 +317,8 @@ public void RunRightSideSpeed(double speed){
 
     SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
     SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
-    SmartDashboard.putNumber("h1encoder", hDriveEncoder.getDistance());
-    SmartDashboard.putNumber("h2encoder", hDriveEncoder2.getDistance());
+    SmartDashboard.putNumber("h1encoder", getLeftHEncoderDistance());
+    SmartDashboard.putNumber("h2encoder", getRigthHEncoderDistance());
 
 
     SmartDashboard.putNumber("rightfront", rightFront.getMotorOutputVoltage());
