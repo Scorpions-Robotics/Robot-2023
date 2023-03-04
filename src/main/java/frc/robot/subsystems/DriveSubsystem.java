@@ -138,6 +138,18 @@ private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
   //return 1;
   }
 
+  public double getRigthHEncoderDistance() {
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
+  }
+
+  public double getLeftHEncoderDistance() {
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
+  }
+
   public double getStraightDriveDistance() {
     return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2;
   }
