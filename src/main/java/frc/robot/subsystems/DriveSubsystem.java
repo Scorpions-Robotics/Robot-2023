@@ -155,6 +155,10 @@ private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
   }
   
 
+  public double getHdriveStraightDriveDistance(){
+    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2;
+  }
+
   public void ResetEncoders() {
    leftDriveEncoder.reset();
     rightDriveEncoder.reset();
