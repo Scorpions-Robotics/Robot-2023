@@ -6,7 +6,7 @@ public final class Constants {
   
 public static class controller{
 //bunu değiştir-----------------------
-  public static final int controller = 0;
+  public static final int controller = 1;
   //----------------------------------
 }
     public static class CAN {
@@ -93,6 +93,9 @@ public static class controller{
 
         public static final boolean rightgroupinvert = true;
         public static final boolean leftgroupinvert = false;
+
+        public static final boolean hdriveencoder = true;
+        public static final boolean hdriveencoder2 = true;
 
         public static final boolean gyroinvert = true;
     } 

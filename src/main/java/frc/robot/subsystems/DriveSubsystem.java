@@ -56,14 +56,14 @@ public class DriveSubsystem extends SubsystemBase {
  private Encoder hDriveEncoder = new Encoder(
  Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
  Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
- Constants.invert.rightencoderreversedirection,
+ Constants.invert.hdriveencoder,
  EncodingType.k4X
  );
 
  private Encoder hDriveEncoder2 = new Encoder(
   Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
   Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
-  Constants.invert.rightencoderreversedirection,
+  Constants.invert.hdriveencoder2,
   EncodingType.k4X
   );
 
@@ -139,14 +139,14 @@ private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
   }
 
   public double getRigthHEncoderDistance() {
-    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    return rightDriveEncoder.getDistance() * 2.54;
+    hDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return hDriveEncoder.getDistance() * 2.54;
   //return 1;
   }
 
   public double getLeftHEncoderDistance() {
-    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    return rightDriveEncoder.getDistance() * 2.54;
+    hDriveEncoder2.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return hDriveEncoder2.getDistance() * 2.54;
   //return 1;
   }
 
@@ -162,7 +162,9 @@ private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
   public void ResetEncoders() {
    leftDriveEncoder.reset();
     rightDriveEncoder.reset();
-  
+    hDriveEncoder.reset();
+    hDriveEncoder2.reset();
+
   }
 
   public void arcadeDrive(double speed, double rotation) {
@@ -321,8 +323,8 @@ public void RunRightSideSpeed(double speed){
 
     SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
     SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
-    SmartDashboard.putNumber("h1encoder", getLeftHEncoderDistance());
-    SmartDashboard.putNumber("h2encoder", getRigthHEncoderDistance());
+    SmartDashboard.putNumber("h1encoder", getRigthHEncoderDistance());
+    SmartDashboard.putNumber("h2encoder", getLeftHEncoderDistance());
 
 
     SmartDashboard.putNumber("rightfront", rightFront.getMotorOutputVoltage());
