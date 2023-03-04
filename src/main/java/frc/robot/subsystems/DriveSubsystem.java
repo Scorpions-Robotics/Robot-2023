@@ -11,8 +11,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
-//import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import com.revrobotics.RelativeEncoder;
 //import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.SerialPort;
 //import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -22,7 +24,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -32,8 +36,8 @@ public class DriveSubsystem extends SubsystemBase {
  AHRS imu = new AHRS(I2C.Port.kOnboard);
  //------------------------------------
  //Encoder-----------------------------
- 
- /*private Encoder leftDriveEncoder =
+  
+ private Encoder leftDriveEncoder =
  new Encoder(
  Constants.ENCODERS.kLeftDriveEncoderChannelA,
  Constants.ENCODERS.kLeftDriveEncoderChannelB,
@@ -41,27 +45,49 @@ public class DriveSubsystem extends SubsystemBase {
  EncodingType.k4X
  );
 
+
  private Encoder rightDriveEncoder = new Encoder(
  Constants.ENCODERS.kRightDriveEncoderChannelA,
  Constants.ENCODERS.kRightDriveEncoderChannelB,
  Constants.invert.rightencoderreversedirection,
  EncodingType.k4X
- );*/
+ );
+
+ private Encoder hDriveEncoder = new Encoder(
+ Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
+ Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
+ Constants.invert.rightencoderreversedirection,
+ EncodingType.k4X
+ );
+
+ private Encoder hDriveEncoder2 = new Encoder(
+  Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
+  Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
+  Constants.invert.rightencoderreversedirection,
+  EncodingType.k4X
+  );
+
+ RelativeEncoder encoder1;
  //---------------------------------------
+ public static Double a;
+ public static boolean duzelt = false;
 
  //Motor----------------------------------
- private CANSparkMax rightFront = new CANSparkMax(Constants.CAN.kRightLeaderID, MotorType.kBrushed);
- private CANSparkMax rightRear = new CANSparkMax(Constants.CAN.kRightFollowerID, MotorType.kBrushed);
- private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
- private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
- private CANSparkMax middle1 = new CANSparkMax(Constants.CAN.kMiddle1, MotorType.kBrushed);
- private CANSparkMax middle2 = new CANSparkMax(Constants.CAN.kMiddle2, MotorType.kBrushed);
+
+private WPI_VictorSPX rightFront = new WPI_VictorSPX(Constants.CAN.kRightLeaderID);
+private WPI_VictorSPX rightRear = new WPI_VictorSPX(Constants.CAN.kRightFollowerID);
+private WPI_VictorSPX leftFront = new WPI_VictorSPX(Constants.CAN.kLeftLeaderID);
+private WPI_VictorSPX leftRear = new WPI_VictorSPX(Constants.CAN.kLeftFollowerID);
+
+private WPI_VictorSPX middle1 = new WPI_VictorSPX(Constants.CAN.kMiddle1);
+private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
+
  //---------------------------------------
 
  //motorcontrollergroup
-         public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
-         public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
-         public MotorControllerGroup m_middle = new MotorControllerGroup(middle1, middle2);
+        public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
+        public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
+        public MotorControllerGroup m_middle = new MotorControllerGroup(middle1, middle2);
  //---------------------------------------
 
 
@@ -72,6 +98,8 @@ public class DriveSubsystem extends SubsystemBase {
  //---------------------------------------
 
   public DriveSubsystem() {
+
+
     leftFront.setInverted(Constants.invert.leftleaderinvert);
     rightFront.setInverted(Constants.invert.rightleaderinvert);
     leftRear.setInverted(Constants.invert.leftrearinvert);
@@ -81,32 +109,45 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_right.setInverted(Constants.invert.rightgroupinvert);
     m_left.setInverted(Constants.invert.leftgroupinvert);
+
   }
 
   public void CoastMode() {
-    rightFront.setIdleMode(IdleMode.kCoast);
-    rightRear.setIdleMode(IdleMode.kCoast);
-    leftFront.setIdleMode(IdleMode.kCoast);
-    leftRear.setIdleMode(IdleMode.kCoast);
+    rightFront.setNeutralMode(NeutralMode.Coast);
+    rightRear.setNeutralMode(NeutralMode.Coast);
+    leftFront.setNeutralMode(NeutralMode.Coast);
+    leftRear.setNeutralMode(NeutralMode.Coast);
   }
 
   public void BrakeMode() {
-    rightFront.setIdleMode(IdleMode.kBrake);
-    rightRear.setIdleMode(IdleMode.kBrake);
-    leftFront.setIdleMode(IdleMode.kBrake);
-    leftRear.setIdleMode(IdleMode.kBrake);
+    rightFront.setNeutralMode(NeutralMode.Brake);
+    rightRear.setNeutralMode(NeutralMode.Brake);
+    leftFront.setNeutralMode(NeutralMode.Brake);
+    leftRear.setNeutralMode(NeutralMode.Brake);
   }
 
   public double getLeftEncoderDistance() {
-   // leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-   // return leftDriveEncoder.getDistance() * 2.54;
-  return 1;
+   leftDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+   return leftDriveEncoder.getDistance() * 2.54;
+  //return 1;
   }
 
   public double getRightEncoderDistance() {
-   // rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
-    //return rightDriveEncoder.getDistance() * 2.54;
-  return 1;
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
+  }
+
+  public double getRigthHEncoderDistance() {
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
+  }
+
+  public double getLeftHEncoderDistance() {
+    rightDriveEncoder.setDistancePerPulse(1.0 / 20.0 * Math.PI * 6 * (1 / 10.71));
+    return rightDriveEncoder.getDistance() * 2.54;
+  //return 1;
   }
 
   public double getStraightDriveDistance() {
@@ -114,9 +155,13 @@ public class DriveSubsystem extends SubsystemBase {
   }
   
 
+  public double getHdriveStraightDriveDistance(){
+    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2;
+  }
+
   public void ResetEncoders() {
-  //  leftDriveEncoder.reset();
-    //rightDriveEncoder.reset();
+   leftDriveEncoder.reset();
+    rightDriveEncoder.reset();
   
   }
 
@@ -128,7 +173,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(
       1, 1 * -1);
-       // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
+      // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -140,6 +185,13 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
 public double GetHeading(){
+  //açı
+  //return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+
+}
+
+public double GetHeadingForFastReturn(){
   //açı
   return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
 }
@@ -181,13 +233,40 @@ public void arcadeDrive(Double x, Double y){
   drive.arcadeDrive(x, y);
 }
 
+public void RunSpeed(double speed){
+  m_right.set(-speed);
+  m_left.set(speed);
+}
+
+public void rotate(double speed){
+  m_right.set(speed);
+  m_left.set(speed);
+
+}
 
 
-public void hDrive(Double x, Double y){
+public void RunMiddle(double speed){
+  m_middle.set(-speed);
+}
 
-  RunSpeed(y, false);
+public void hDrive(Double x, Double y, Double z){
+  RunSpeed(y);
   RunMiddle(x);
+  if(z > 0.1){
+    rotate(z);
+  }
+  else if(z < 0.1 && z > -0.1){
+    RunSpeed(y);
+  }
+  else if(-0.1 > z){
+    rotate(z);
 
+  }
+}
+
+public void GetArmEncoderValue(){
+ //encoder1 = armmotor1.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 42);
+  SmartDashboard.putNumber("arm encoder", encoder1.getPosition());
 }
 
 public void RunRightSideVolts(double volts){
@@ -211,22 +290,6 @@ public void RunRightSideSpeed(double speed){
     m_left.set(speed);
   }
 
-  public void RunSpeed(double speed, boolean reversed){
-    if(reversed == true){
-      RunRightSideSpeed(speed * -1);
-      RunLeftSideSpeed(speed * -1);
-    }
-    else if(reversed == false){
-      RunRightSideSpeed(speed);
-      RunLeftSideSpeed(speed);
-    }
-
-  }
-
-  public void RunMiddle(double speed){
-    m_middle.set(-speed);
-  }
-
   public void StopRightSide(){
     m_right.set(0);
   }
@@ -247,12 +310,26 @@ public void RunRightSideSpeed(double speed){
 
   @Override
   public void periodic() {
+    
    // odometry.update(GetHeadingForDifferentialDriveOdometry(),
     //getRightEncoderDistance(),
     //getLeftEncoderDistance());
-    SmartDashboard.putBoolean("Connection state", imu.isConnected());
 
+    SmartDashboard.putBoolean("Connection state", imu.isConnected());
     SmartDashboard.putNumber("pitch", imu.getPitch());
+    SmartDashboard.putNumber("heading", GetHeading());
+
+    SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
+    SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
+    SmartDashboard.putNumber("h1encoder", getLeftHEncoderDistance());
+    SmartDashboard.putNumber("h2encoder", getRigthHEncoderDistance());
+
+
+    SmartDashboard.putNumber("rightfront", rightFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("rightrear", rightRear.getMotorOutputVoltage());
+    SmartDashboard.putNumber("leftfront", leftFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("leftrear", leftRear.getMotorOutputVoltage());
+
 
   }
 }
