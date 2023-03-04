@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
+
 public final class Constants {
   
 public static class controller{
@@ -68,6 +70,13 @@ public static class controller{
     public static final double kA = 0.14701;
     //---------------------------------------------------------------
   }
+
+    public static class VisionConstants {
+    public static final String CameraName = "AprilTagCamera";
+    public static final double CameraHeight = 50.0;
+    public static final double TargetHeight = 59.0;
+    public static final double CameraPitchRadians = Units.degreesToRadians(0.0);
+    }
 
     public static class invert{
       //bunları da değiştir------------------------------------------------
