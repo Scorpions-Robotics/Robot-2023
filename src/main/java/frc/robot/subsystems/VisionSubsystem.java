@@ -29,8 +29,6 @@ public class VisionSubsystem extends SubsystemBase {
   private PhotonPoseEstimator m_estimator;
   public PhotonPipelineResult result;
   public AprilTagFieldLayout fieldlayout;
-  private double yaw;
-  private double distance;
 
   public VisionSubsystem() {
     try {
@@ -55,6 +53,12 @@ public class VisionSubsystem extends SubsystemBase {
     } else {
       SmartDashboard.putBoolean("Target", hasTargets());
     }
+  }
+
+  public Optional<EstimatedRobotPose>
+  getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
+    m_estimator.setReferencePose(prevEstimatedRobotPose);
+    return m_estimator.update();
   }
 
   public boolean hasTargets() { return result.hasTargets(); }
