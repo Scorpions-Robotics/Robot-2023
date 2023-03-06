@@ -36,11 +36,12 @@ public class VisionSubsystem extends SubsystemBase {
   public VisionSubsystem() {
     try {
       fieldlayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
+      m_camera = new PhotonCamera(VisionConstants.CameraName);
+      m_estimator = new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
+          m_camera, VisionConstants.robotToCam);
     } catch (IOException e) {
+      e.printStackTrace();
     }
-    m_camera = new PhotonCamera(VisionConstants.CameraName);
-    m_estimator = new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
-        m_camera, VisionConstants.robotToCam);
   }
 
   @Override
