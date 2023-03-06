@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants.PID;
 
-
 public class AutoStraightDrive extends PIDCommand {
   DriveSubsystem m_drive;
 
@@ -17,10 +16,11 @@ public class AutoStraightDrive extends PIDCommand {
         () -> reversed ? -meters * 100 : meters * 100,
         output -> {
           m_drive.arcadeDrive(0, -output);
-          if(hDrive){
-            SmartDashboard.putNumber("meters", m_drive.getStraightDriveDistance());}
-          else{
-            SmartDashboard.putNumber("meters", m_drive.gethDriveStraightDriveDistance());}
+          if (hDrive) {
+            SmartDashboard.putNumber("meters", m_drive.getStraightDriveDistance());
+          } else {
+            SmartDashboard.putNumber("meters", m_drive.gethDriveStraightDriveDistance());
+          }
           SmartDashboard.putNumber("setpoint", reversed ? -meters * 100 : meters * 100);
         });
     getController().setTolerance(4);

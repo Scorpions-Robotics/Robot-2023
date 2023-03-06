@@ -8,7 +8,8 @@ public class StabilizeMode extends CommandBase {
   Boolean mode;
   XboxSubsystem m_xboxsubsystem;
   DriveSubsystem m_drive;
-  public StabilizeMode(Boolean mode,XboxSubsystem m_xboxsubsystem, DriveSubsystem m_drive) {
+
+  public StabilizeMode(Boolean mode, XboxSubsystem m_xboxsubsystem, DriveSubsystem m_drive) {
     this.mode = mode;
     this.m_xboxsubsystem = m_xboxsubsystem;
     this.m_drive = m_drive;
@@ -17,16 +18,15 @@ public class StabilizeMode extends CommandBase {
   @Override
   public void initialize() {
 
-if(mode){
+    if (mode) {
 
-m_xboxsubsystem.turnonstabilmode();
-//m_drive.ResetGyro();
+      m_xboxsubsystem.turnonstabilmode();
+      // m_drive.ResetGyro();
 
-}
-else{
+    } else {
 
-  m_xboxsubsystem.turnoffstabilmode();
-}
+      m_xboxsubsystem.turnoffstabilmode();
+    }
 
   }
 
@@ -36,7 +36,8 @@ else{
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

@@ -39,9 +39,8 @@ public class VisionSubsystem extends SubsystemBase {
     } catch (IOException e) {
     }
     m_camera = new PhotonCamera(VisionConstants.CameraName);
-    m_estimator =
-        new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
-                                m_camera, VisionConstants.robotToCam);
+    m_estimator = new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
+        m_camera, VisionConstants.robotToCam);
   }
 
   @Override
@@ -49,7 +48,7 @@ public class VisionSubsystem extends SubsystemBase {
     result = m_camera.getLatestResult();
 
     if (hasTargets()) {
-      //  SmartDashboard.putBoolean("Target", hasTargets());
+      // SmartDashboard.putBoolean("Target", hasTargets());
       // SmartDashboard.putNumber("Yaw", getTargetYaw());
       // SmartDashboard.putNumber("Distance", getDistance());
       // SmartDashboard.putString("gimme", gimme());
@@ -58,11 +57,12 @@ public class VisionSubsystem extends SubsystemBase {
     }
   }
 
-  public Optional<EstimatedRobotPose>
-  getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
+  public Optional<EstimatedRobotPose> getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
     m_estimator.setReferencePose(prevEstimatedRobotPose);
     return m_estimator.update();
   }
 
-  public boolean hasTargets() { return result.hasTargets(); }
+  public boolean hasTargets() {
+    return result.hasTargets();
+  }
 }

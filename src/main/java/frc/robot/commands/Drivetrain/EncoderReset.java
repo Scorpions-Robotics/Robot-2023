@@ -9,6 +9,7 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class EncoderReset extends CommandBase {
   DriveSubsystem m_drive;
+
   public EncoderReset(DriveSubsystem m_drive) {
     this.m_drive = m_drive;
   }
@@ -19,10 +20,12 @@ public class EncoderReset extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

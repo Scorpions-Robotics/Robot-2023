@@ -8,22 +8,22 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.XboxSubsystem;
 
 public class Throttle extends CommandBase {
-boolean mode;
-XboxSubsystem m_xboxSubsystem;
+  boolean mode;
+  XboxSubsystem m_xboxSubsystem;
+
   public Throttle(boolean mode, XboxSubsystem m_xboxSubsystem) {
-this.mode = mode;
-this.m_xboxSubsystem = m_xboxSubsystem;
+    this.mode = mode;
+    this.m_xboxSubsystem = m_xboxSubsystem;
 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(mode == true){
+    if (mode == true) {
 
       m_xboxSubsystem.modeincrease();
-    }
-    else{
+    } else {
       m_xboxSubsystem.modedecrease();
 
     }
@@ -34,12 +34,12 @@ this.m_xboxSubsystem = m_xboxSubsystem;
   @Override
   public void execute() {
 
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
