@@ -33,8 +33,6 @@ public class VisionSubsystem extends SubsystemBase {
   private double distance;
 
   public VisionSubsystem() {
-
-    AprilTagFieldLayout fieldlayout;
     try {
       fieldlayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
     } catch (IOException e) {
@@ -47,7 +45,6 @@ public class VisionSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-
     result = m_camera.getLatestResult();
 
     if (hasTargets()) {
