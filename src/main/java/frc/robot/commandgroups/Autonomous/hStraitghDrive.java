@@ -7,18 +7,22 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class hStraitghDrive extends CommandBase {
   private final DriveSubsystem m_drive;
+
   private final PIDController pidControllerLeft = new PIDController(
           Constants.PID.kP,
           Constants.PID.kI,
           Constants.PID.kD);
+
   private final PIDController pidControllerRight = new PIDController(
           Constants.PID.kP,
           Constants.PID.kI,
           Constants.PID.kD);
+
   private final double POSITION_TOLERANCE = Constants.PID.POSITION_TOLERANCE;
   private final double VELOCITY_TOLERANCE = Constants.PID.VELOCITY_TOLERANCE;
 
   public hStraitghDrive(DriveSubsystem m_drive, double meters) {
+
     this.m_drive = m_drive;
     addRequirements(m_drive);
 
