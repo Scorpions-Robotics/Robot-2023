@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
@@ -16,11 +17,13 @@ import frc.robot.Constants.VisionConstants;
 import java.io.IOException;
 import java.lang.annotation.Target;
 import java.util.Locale;
+import java.util.Optional;
+
+import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
 import org.photonvision.PhotonUtils;
-import org.photonvision.RobotPoseEstimator;
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
@@ -37,7 +40,7 @@ public class VisionSubsystem extends SubsystemBase {
     }
     m_camera = new PhotonCamera(VisionConstants.CameraName);
     m_estimator =
-        new PhotonPoseEstimator(fieldlayout, PoseStrategy.AVERAGE_BEST_TARGETS,
+        new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
                                 m_camera, VisionConstants.robotToCam);
   }
 
@@ -46,7 +49,7 @@ public class VisionSubsystem extends SubsystemBase {
     result = m_camera.getLatestResult();
 
     if (hasTargets()) {
-      // SmartDashboard.putBoolean("Target", hasTargets());
+      //  SmartDashboard.putBoolean("Target", hasTargets());
       // SmartDashboard.putNumber("Yaw", getTargetYaw());
       // SmartDashboard.putNumber("Distance", getDistance());
       // SmartDashboard.putString("gimme", gimme());
