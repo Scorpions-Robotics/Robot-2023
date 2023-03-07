@@ -99,6 +99,13 @@ public class DriveSubsystem extends SubsystemBase {
     middle1.setInverted(Constants.invert.middle1);
     middle2.setInverted(Constants.invert.middle2);
 
+    leftFront.configOpenloopRamp(3, 20);
+    rightFront.configOpenloopRamp(3, 20);
+    leftRear.configOpenloopRamp(3, 20);
+    rightRear.configOpenloopRamp(3, 20);
+    middle1.configOpenloopRamp(3, 20);
+    middle2.configOpenloopRamp(3, 20);
+
     m_right.setInverted(Constants.invert.rightgroupinvert);
     m_left.setInverted(Constants.invert.leftgroupinvert);
 
