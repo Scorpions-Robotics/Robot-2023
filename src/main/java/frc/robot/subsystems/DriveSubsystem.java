@@ -301,6 +301,19 @@ public class DriveSubsystem extends SubsystemBase {
     StopLeftSide();
   }
 
+  public void stopHmotors(){
+
+    m_middle.set(0);
+  }
+
+  public void runHRightMotor(double speed){
+    middle1.set(speed);
+  }
+
+  public void runHLeftMotor(double speed){
+    middle2.set(speed);
+  }
+
   public void stopNbreak() {
     StopMotors();
     CoastMode();

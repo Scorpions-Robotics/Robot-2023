@@ -15,7 +15,9 @@ public class AutoStraightDrive extends PIDCommand {
         () -> hDrive ? m_drive.getStraightDriveDistance() : m_drive.getHdriveStraightDriveDistance(),
         () -> reversed ? -meters * 100 : meters * 100,
         output -> {
+
           m_drive.arcadeDrive(0, -output);
+
           if (hDrive) {
             SmartDashboard.putNumber("meters", m_drive.getStraightDriveDistance());
           } else {
@@ -23,6 +25,7 @@ public class AutoStraightDrive extends PIDCommand {
           }
           SmartDashboard.putNumber("setpoint", reversed ? -meters * 100 : meters * 100);
         });
+
     getController().setTolerance(4);
     this.m_drive = m_drive;
   }
