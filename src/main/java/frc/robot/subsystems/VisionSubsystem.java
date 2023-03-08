@@ -8,8 +8,10 @@ import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -32,16 +34,20 @@ public class VisionSubsystem extends SubsystemBase {
   private PhotonPoseEstimator m_estimator;
   public PhotonPipelineResult result;
   public AprilTagFieldLayout fieldlayout;
-
+  private Optional<EstimatedRobotPose> pose;
+  private Pose2d initialpose = new Pose2d(new Translation2d(0,0), new Rotation2d(0.0));
   public VisionSubsystem() {
     try {
       fieldlayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
       m_camera = new PhotonCamera(VisionConstants.CameraName);
       m_estimator = new PhotonPoseEstimator(fieldlayout, PoseStrategy.MULTI_TAG_PNP,
           m_camera, VisionConstants.robotToCam);
+      m_estimator.setMultiTagFallbackStrategy(PoseStrategy.AVERAGE_BEST_TARGETS);
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    pose = getEstimatedGlobalPose(initialpose);
   }
 
   @Override
@@ -49,13 +55,15 @@ public class VisionSubsystem extends SubsystemBase {
     result = m_camera.getLatestResult();
 
     if (hasTargets()) {
-      // SmartDashboard.putBoolean("Target", hasTargets());
-      // SmartDashboard.putNumber("Yaw", getTargetYaw());
-      // SmartDashboard.putNumber("Distance", getDistance());
-      // SmartDashboard.putString("gimme", gimme());
+      pose = getEstimatedGlobalPose(initialpose);
+
+      SmartDashboard.putString("pose to string", pose.toString());
+      SmartDashboard.putBoolean("allah", pose.getClass().isArray());
+
     } else {
       SmartDashboard.putBoolean("Target", hasTargets());
     }
+
   }
 
   public Optional<EstimatedRobotPose> getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
