@@ -35,6 +35,7 @@ public class VisionSubsystem extends SubsystemBase {
   public PhotonPipelineResult result;
   public AprilTagFieldLayout fieldlayout;
   private Optional<EstimatedRobotPose> pose;
+  private EstimatedRobotPose neredeyimben;
   private Pose2d initialpose = new Pose2d(new Translation2d(0,0), new Rotation2d(0.0));
   public VisionSubsystem() {
     try {
@@ -55,10 +56,11 @@ public class VisionSubsystem extends SubsystemBase {
     result = m_camera.getLatestResult();
 
     if (hasTargets()) {
-      pose = getEstimatedGlobalPose(initialpose);
+      pose = getEstimatedGlobalPose(neredeyimben.estimatedPose.toPose2d());
+      neredeyimben = pose.get();
 
-      SmartDashboard.putString("pose to string", pose.toString());
-      SmartDashboard.putBoolean("allah", pose.getClass().isArray());
+
+      SmartDashboard.putString("pose to string", neredeyimben.estimatedPose.toPose2d().toString());
 
     } else {
       SmartDashboard.putBoolean("Target", hasTargets());
