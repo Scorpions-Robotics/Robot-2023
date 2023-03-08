@@ -105,6 +105,7 @@ public class XboxSubsystem extends SubsystemBase {
   public void periodic() {
 
     SmartDashboard.putBoolean("stabilizemode", stabilmode);
+    SmartDashboard.putNumber("throttle", ThrottleValue);
 
   }
 }

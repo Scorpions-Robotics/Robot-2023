@@ -53,9 +53,11 @@ public class TeleoperatedDrive extends CommandBase {
     // yrotation.getAsDouble() * ConfiguratedThrottle);
 
     // if(m_xboxSubsystem.stabilmode == false){
-    m_drivesubsystem.hDrive(xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
-        -yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+
+    m_drivesubsystem.hDrive(-xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+        yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
         zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
+
     // }
 
     /*

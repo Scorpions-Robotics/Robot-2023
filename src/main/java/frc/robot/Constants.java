@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public final class Constants {
 
@@ -46,9 +47,9 @@ public final class Constants {
   }
 
   public static class PID {
-    public static final int kP = 0;
-    public static final int kI = 0;
-    public static final int kD = 0;
+    public static final double kP = 0.0165;
+    public static final double kI = 0;
+    public static final double kD = 0;
 
     public static final int POSITION_TOLERANCE = 0;
     public static final int VELOCITY_TOLERANCE = 0;
@@ -64,10 +65,10 @@ public final class Constants {
     public static final double kMaxAccelerationMetersPerSecondSquared = 1;
 
     // -odometry-------------------------------------------------------------
-    public static final double kP = 0; // 0.98212;
-    public static final double kS = 0.56711;
-    public static final double kV = 0.75556;
-    public static final double kA = 0.14701;
+    // public static final double kP = 0; // 0.98212;
+    // public static final double kS = 0.56711;
+    // public static final double kV = 0.75556;
+    // public static final double kA = 0.14701;
     // ---------------------------------------------------------------
   }
 

@@ -99,16 +99,17 @@ public class DriveSubsystem extends SubsystemBase {
     middle1.setInverted(Constants.invert.middle1);
     middle2.setInverted(Constants.invert.middle2);
 
-    leftFront.configOpenloopRamp(3, 20);
-    rightFront.configOpenloopRamp(3, 20);
-    leftRear.configOpenloopRamp(3, 20);
-    rightRear.configOpenloopRamp(3, 20);
-    middle1.configOpenloopRamp(3, 20);
-    middle2.configOpenloopRamp(3, 20);
+    leftFront.configOpenloopRamp(0.7, 20);
+    rightFront.configOpenloopRamp(0.7, 20);
+    leftRear.configOpenloopRamp(0.7, 20);
+    rightRear.configOpenloopRamp(0.7, 20);
+    middle1.configOpenloopRamp(0.3, 20);
+    middle2.configOpenloopRamp(0.3, 20);
 
     m_right.setInverted(Constants.invert.rightgroupinvert);
     m_left.setInverted(Constants.invert.leftgroupinvert);
 
+    BrakeMode();
   }
 
   public void CoastMode() {
@@ -123,6 +124,8 @@ public class DriveSubsystem extends SubsystemBase {
     rightRear.setNeutralMode(NeutralMode.Brake);
     leftFront.setNeutralMode(NeutralMode.Brake);
     leftRear.setNeutralMode(NeutralMode.Brake);
+    middle1.setNeutralMode(NeutralMode.Brake);
+    middle2.setNeutralMode(NeutralMode.Brake);
   }
 
   public double getLeftEncoderDistance() {
@@ -233,14 +236,24 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(x, y);
   }
 
-  public void RunSpeed(double speed) {
-    m_right.set(-speed);
-    m_left.set(speed);
+  public void RunSpeed(double speed, double rot) {
+    /*
+     * rightFront.set(speed);
+     * rightRear.set(speed);
+     * leftRear.set(-speed);
+     * leftFront.set(-speed);
+     */
+    // m_right.set(-speed);
+    // m_left.set(speed);
+
+    drive.arcadeDrive(rot, speed);
+
   }
 
   public void rotate(double speed) {
-    m_right.set(speed);
-    m_left.set(speed);
+    // m_right.set(speed);
+    // m_left.set(speed);
+    drive.tankDrive(speed, speed);
 
   }
 
@@ -249,15 +262,31 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void hDrive(Double x, Double y, Double z) {
-    RunSpeed(y);
-    RunMiddle(x);
-    if (z > 0.1) {
-      rotate(z);
-    } else if (z < 0.1 && z > -0.1) {
-      RunSpeed(y);
-    } else if (-0.1 > z) {
-      rotate(z);
 
+    RunSpeed(y, z);
+    RunMiddle(x);
+
+    if (y > -0.05 && y < 0.05) {
+
+      if (z > -0.05 && z < 0.05) {
+        SmartDashboard.putNumber("ramp rate", 0);
+        leftFront.configOpenloopRamp(0, 20);
+        rightFront.configOpenloopRamp(0, 20);
+        leftRear.configOpenloopRamp(0, 20);
+        rightRear.configOpenloopRamp(0, 20);
+      } else if (z < -0.05 || z > 0.05) {
+        leftFront.configOpenloopRamp(1.5, 20);
+        rightFront.configOpenloopRamp(1.5, 20);
+        leftRear.configOpenloopRamp(1.5, 20);
+        rightRear.configOpenloopRamp(1.5, 20);
+      }
+
+    } else if (y < -0.05 || y > 0.05) { // Limits ramp either way
+      SmartDashboard.putNumber("ramp rate", 0);
+      leftFront.configOpenloopRamp(1.5, 20);
+      rightFront.configOpenloopRamp(1.5, 20);
+      leftRear.configOpenloopRamp(1.5, 20);
+      rightRear.configOpenloopRamp(1.5, 20);
     }
   }
 
@@ -301,22 +330,58 @@ public class DriveSubsystem extends SubsystemBase {
     StopLeftSide();
   }
 
-  public void stopHmotors(){
+  public void stopHmotors() {
 
     m_middle.set(0);
   }
 
-  public void runHRightMotor(double speed){
+  public void runHRightMotor(double speed) {
     middle1.set(speed);
   }
 
-  public void runHLeftMotor(double speed){
+  public void runHLeftMotor(double speed) {
     middle2.set(speed);
   }
 
   public void stopNbreak() {
     StopMotors();
     CoastMode();
+  }
+
+  public void motor1() {
+
+    rightFront.set(1);
+
+  }
+
+  public void motor2() {
+
+    rightRear.set(1);
+
+  }
+
+  public void motor3() {
+
+    leftFront.set(1);
+
+  }
+
+  public void motor4() {
+
+    leftRear.set(1);
+
+  }
+
+  public void motor5() {
+
+    middle1.set(1);
+
+  }
+
+  public void motor6() {
+
+    middle2.set(1);
+
   }
 
   @Override

@@ -14,6 +14,7 @@ import frc.robot.commandgroups.TurnToGivenAngle;
 import frc.robot.commands.Drivetrain.EncoderReset;
 import frc.robot.commands.Drivetrain.GyroReset;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
+import frc.robot.commands.Drivetrain.trycommand;
 import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.commands.Joystick.Throttle;
 //import frc.robot.subsystems.ArmSubsystem;
@@ -77,6 +78,8 @@ public class RobotContainer {
     // button3.whileTrue(new GyroReset(m_drive));
     // button4.whileTrue(new TurnToGivenAngle(m_drive,90));
     button6.whileTrue(new EncoderReset(m_drive));
+    button1.whileTrue(new trycommand(m_drive));
+
     button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));
