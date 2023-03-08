@@ -197,7 +197,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double GetHeadingForFastReturn() {
     // açı
-    return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? 1.0 : -1.0);
   }
 
   public double GetYaw() {
