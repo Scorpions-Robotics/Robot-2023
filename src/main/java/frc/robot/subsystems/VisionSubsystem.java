@@ -34,9 +34,9 @@ public class VisionSubsystem extends SubsystemBase {
   private PhotonPoseEstimator m_estimator;
   public PhotonPipelineResult result;
   public AprilTagFieldLayout fieldlayout;
-  private Optional<EstimatedRobotPose> pose;
-  private EstimatedRobotPose neredeyimben;
-  private Pose2d initialpose = new Pose2d(new Translation2d(0,0), new Rotation2d(0.0));
+  public Optional<EstimatedRobotPose> pose;
+  private Pose2d initialpose = new Pose2d(new Translation2d(0, 0), new Rotation2d(0.0));
+
   public VisionSubsystem() {
     try {
       fieldlayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
@@ -55,12 +55,10 @@ public class VisionSubsystem extends SubsystemBase {
   public void periodic() {
     result = m_camera.getLatestResult();
 
+m_estimator.update(result);
+
     if (hasTargets()) {
-      pose = getEstimatedGlobalPose(neredeyimben.estimatedPose.toPose2d());
-      neredeyimben = pose.get();
-
-
-      SmartDashboard.putString("pose to string", neredeyimben.estimatedPose.toPose2d().toString());
+      SmartDashboard.putString("zart", pose.get().estimatedPose.toPose2d().toString());
 
     } else {
       SmartDashboard.putBoolean("Target", hasTargets());
