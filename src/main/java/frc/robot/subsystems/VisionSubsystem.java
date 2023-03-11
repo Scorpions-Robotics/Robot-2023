@@ -51,9 +51,10 @@ public class VisionSubsystem extends SubsystemBase {
     pose = getEstimatedGlobalPose(initialpose);
   }
 
+
   @Override
   public void periodic() {
-    if (hasTargets()) {
+     if (hasTargets()) {
       pose = getEstimatedGlobalPose(pose.get().estimatedPose.toPose2d());
       SmartDashboard.putString("zart", pose.get().estimatedPose.toPose2d().toString());
 
@@ -61,7 +62,8 @@ public class VisionSubsystem extends SubsystemBase {
       SmartDashboard.putBoolean("Target", hasTargets());
     }
 
-  }
+  
+}
 
   public Optional<EstimatedRobotPose> getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
     m_estimator.setReferencePose(prevEstimatedRobotPose);

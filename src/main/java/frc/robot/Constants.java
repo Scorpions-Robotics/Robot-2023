@@ -97,7 +97,7 @@ public final class Constants {
     public static final boolean rightgroupinvert = true;
     public static final boolean leftgroupinvert = false;
 
-    public static final boolean hdriveencoder = true;
+    public static final boolean hdriveencoder = false;
     public static final boolean hdriveencoder2 = true;
 
     public static final boolean gyroinvert = true;

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.TurnToGivenAngle;
+import frc.robot.commands.Autonomous.AutoStraightDrive;
 //import frc.robot.commandgroups.Autonomous.ArmMovement1;
 //import frc.robot.commands.Arm.ResetAxis1Encoder;
 //import frc.robot.commands.Arm.Rotate_Axis_1;
@@ -27,7 +28,7 @@ public class RobotContainer {
 
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
-  public static VisionSubsystem m_vision = new VisionSubsystem();
+ // public static VisionSubsystem m_vision = new VisionSubsystem();
 
   // public static ArmSubsystem m_arm = new ArmSubsystem();
 
@@ -82,8 +83,9 @@ public class RobotContainer {
 
 
     button6.whileTrue(new EncoderReset(m_drive));
-    button1.whileTrue(new trycommand(m_drive));
-    button9.whileTrue(new pidAngleTurn(m_drive, m_drive.GetHeadingForFastReturn()));
+    button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
+
+    button9.whileTrue(new pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));

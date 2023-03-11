@@ -157,7 +157,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getHdriveStraightDriveDistance() {
-    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2;
+    return (getLeftHEncoderDistance() + getRigthHEncoderDistance()) / 2;
   }
 
   public void ResetEncoders() {
@@ -197,7 +197,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double GetHeadingForFastReturn() {
     // açı
-    return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? 1.0 : -1.0);
+    return -Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? 1.0 : -1.0);
   }
 
   public double GetYaw() {
@@ -275,18 +275,18 @@ public class DriveSubsystem extends SubsystemBase {
         leftRear.configOpenloopRamp(0, 20);
         rightRear.configOpenloopRamp(0, 20);
       } else if (z < -0.05 || z > 0.05) {
-        leftFront.configOpenloopRamp(1.5, 20);
-        rightFront.configOpenloopRamp(1.5, 20);
-        leftRear.configOpenloopRamp(1.5, 20);
-        rightRear.configOpenloopRamp(1.5, 20);
+        leftFront.configOpenloopRamp(0.7, 20);
+        rightFront.configOpenloopRamp(0.7, 20);
+        leftRear.configOpenloopRamp(0.7, 20);
+        rightRear.configOpenloopRamp(0.7, 20);
       }
 
     } else if (y < -0.05 || y > 0.05) { // Limits ramp either way
       SmartDashboard.putNumber("ramp rate", 0);
-      leftFront.configOpenloopRamp(1.5, 20);
-      rightFront.configOpenloopRamp(1.5, 20);
-      leftRear.configOpenloopRamp(1.5, 20);
-      rightRear.configOpenloopRamp(1.5, 20);
+      leftFront.configOpenloopRamp(0.7, 20);
+      rightFront.configOpenloopRamp(0.7, 20);
+      leftRear.configOpenloopRamp(0.7, 20);
+      rightRear.configOpenloopRamp(0.7, 20);
     }
   }
 

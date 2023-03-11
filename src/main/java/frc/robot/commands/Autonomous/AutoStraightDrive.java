@@ -9,19 +9,22 @@ import frc.robot.Constants.PID;
 public class AutoStraightDrive extends PIDCommand {
   DriveSubsystem m_drive;
 
-  public AutoStraightDrive(DriveSubsystem m_drive, double meters, boolean reversed, boolean hDrive) {
+  public AutoStraightDrive(DriveSubsystem m_drive, double meters, boolean reversed, boolean straight) {
     super(
-        new PIDController(PID.kP, PID.kI, PID.kD),
-        () -> hDrive ? m_drive.getStraightDriveDistance() : m_drive.getHdriveStraightDriveDistance(),
+        new PIDController(0.16, 0, 0),
+        () -> straight ? m_drive.getStraightDriveDistance() : m_drive.getHdriveStraightDriveDistance(),
         () -> reversed ? -meters * 100 : meters * 100,
         output -> {
 
-          m_drive.arcadeDrive(0, -output);
 
-          if (hDrive) {
+          if (straight) {
             SmartDashboard.putNumber("meters", m_drive.getStraightDriveDistance());
+            m_drive.arcadeDrive(0, output);
+
           } else {
             SmartDashboard.putNumber("meters", m_drive.getHdriveStraightDriveDistance());
+            m_drive.RunMiddle(-output);
+
           }
           SmartDashboard.putNumber("setpoint", reversed ? -meters * 100 : meters * 100);
         });

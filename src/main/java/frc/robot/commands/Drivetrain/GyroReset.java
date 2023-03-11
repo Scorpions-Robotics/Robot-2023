@@ -13,11 +13,12 @@ public class GyroReset extends CommandBase {
 
   @Override
   public void initialize() {
-    // m_drive.ResetGyro();
   }
 
   @Override
   public void execute() {
+    m_drive.ResetGyro();
+
   }
 
   @Override
@@ -26,6 +27,6 @@ public class GyroReset extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
