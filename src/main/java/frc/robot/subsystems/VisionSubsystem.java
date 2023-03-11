@@ -53,11 +53,8 @@ public class VisionSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    result = m_camera.getLatestResult();
-
-m_estimator.update(result);
-
     if (hasTargets()) {
+      pose = getEstimatedGlobalPose(pose.get().estimatedPose.toPose2d());
       SmartDashboard.putString("zart", pose.get().estimatedPose.toPose2d().toString());
 
     } else {
