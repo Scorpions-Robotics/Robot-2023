@@ -19,8 +19,10 @@ import frc.robot.commands.Drivetrain.pidAngleTurn;
 import frc.robot.commands.Drivetrain.trycommand;
 import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.commands.Joystick.Throttle;
+import frc.robot.commands.Lift.TryLift;
 //import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
@@ -28,6 +30,7 @@ public class RobotContainer {
 
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
+  public LiftSubsystem m_lift = new LiftSubsystem();
  // public static VisionSubsystem m_vision = new VisionSubsystem();
 
   // public static ArmSubsystem m_arm = new ArmSubsystem();
@@ -82,10 +85,18 @@ public class RobotContainer {
 
 
 
-    button6.whileTrue(new EncoderReset(m_drive));
-    button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
+   // button6.whileTrue(new EncoderReset(m_drive));
+    //button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
+    //button10.whileTrue(new TryLift(m_lift, true));
+    button5.whileTrue(new TryLift(m_lift, true));
+    button6.whileTrue(new TryLift(m_lift, false));
+    button5.whileFalse(new InstantCommand(() -> m_lift.stop()));
+    button6.whileFalse(new InstantCommand(() -> m_lift.stop()));
 
-    button9.whileTrue(new pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
+
+
+
+    //button9.whileTrue(new pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));
