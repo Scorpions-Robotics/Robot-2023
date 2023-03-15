@@ -16,9 +16,9 @@ public class AutoHStraightDrive extends PIDCommand {
           m_drive.RunMiddle(-output);
         });
 
-        getController().setTolerance(3);
+    getController().setTolerance(3);
   }
-  
+
   @Override
   public boolean isFinished() {
     return getController().atSetpoint();

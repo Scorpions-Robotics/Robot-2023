@@ -8,30 +8,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LiftSubsystem extends SubsystemBase {
 
-  RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor = new CANSparkMax(6, MotorType.kBrushless);
+  RelativeEncoder liftEncoder;
+  public static CANSparkMax liftMotor = new CANSparkMax(6, MotorType.kBrushless);
 
   public LiftSubsystem() {
-
-    LiftMotor.setIdleMode(IdleMode.kBrake);
+    liftMotor.setIdleMode(IdleMode.kBrake);
   }
 
+  public void forward() {
+    liftMotor.set(0.4);
+  }
 
-public void forward(){
-LiftMotor.set(0.4);
-}
+  public void back() {
+    liftMotor.set(-0.4);
+  }
 
-public void back(){
-  LiftMotor.set(-0.4);
-}
-
-
-public void stop(){
-  LiftMotor.set(0);
-}
+  public void stop() {
+    liftMotor.set(0);
+  }
 
   @Override
   public void periodic() {
-
+    liftEncoder = liftMotor.getEncoder();
   }
 }

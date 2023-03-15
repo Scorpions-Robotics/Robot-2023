@@ -8,31 +8,32 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LiftSubsystem;
 
 public class TryLift extends CommandBase {
-    LiftSubsystem m_lift;
-    boolean mode;
+  LiftSubsystem m_lift;
+  boolean mode;
+
   public TryLift(LiftSubsystem m_lift, boolean mode) {
     this.m_lift = m_lift;
     this.mode = mode;
-}
+  }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
-if(mode){
-  m_lift.forward();
-} else{
+    if (mode) {
+      m_lift.forward();
+    } else {
 
-m_lift.back();
-}
-
-
+      m_lift.back();
+    }
 
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

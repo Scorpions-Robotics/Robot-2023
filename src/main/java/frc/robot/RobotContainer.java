@@ -31,7 +31,7 @@ public class RobotContainer {
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public LiftSubsystem m_lift = new LiftSubsystem();
- // public static VisionSubsystem m_vision = new VisionSubsystem();
+  // public static VisionSubsystem m_vision = new VisionSubsystem();
 
   // public static ArmSubsystem m_arm = new ArmSubsystem();
 
@@ -83,20 +83,16 @@ public class RobotContainer {
     // button3.whileTrue(new GyroReset(m_drive));
     // button4.whileTrue(new TurnToGivenAngle(m_drive,90));
 
-
-
-   // button6.whileTrue(new EncoderReset(m_drive));
-    //button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
-    //button10.whileTrue(new TryLift(m_lift, true));
+    // button6.whileTrue(new EncoderReset(m_drive));
+    // button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
+    // button10.whileTrue(new TryLift(m_lift, true));
     button5.whileTrue(new TryLift(m_lift, true));
     button6.whileTrue(new TryLift(m_lift, false));
     button5.whileFalse(new InstantCommand(() -> m_lift.stop()));
     button6.whileFalse(new InstantCommand(() -> m_lift.stop()));
 
-
-
-
-    //button9.whileTrue(new pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
+    // button9.whileTrue(new
+    // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));

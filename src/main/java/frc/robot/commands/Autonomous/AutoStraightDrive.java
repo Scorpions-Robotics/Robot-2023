@@ -16,7 +16,6 @@ public class AutoStraightDrive extends PIDCommand {
         () -> reversed ? -meters * 100 : meters * 100,
         output -> {
 
-
           if (straight) {
             SmartDashboard.putNumber("meters", m_drive.getStraightDriveDistance());
             m_drive.arcadeDrive(0, output);
