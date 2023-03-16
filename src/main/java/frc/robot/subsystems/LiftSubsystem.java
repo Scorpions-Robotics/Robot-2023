@@ -14,7 +14,6 @@ public class LiftSubsystem extends SubsystemBase {
   public static CANSparkMax LiftMotor = new CANSparkMax(6, MotorType.kBrushless);
 
   public LiftSubsystem() {
-
     LiftMotor.setIdleMode(IdleMode.kBrake);
     LiftEncoder = LiftMotor.getEncoder();
   }
@@ -27,6 +26,14 @@ public class LiftSubsystem extends SubsystemBase {
     return LiftEncoder.getPosition() * 10;
   }
 
+  public void reset() {
+    LiftEncoder.setPosition(0);
+  }
+
+  public void setMotor(double option) {
+    LiftMotor.set(option);
+  }
+
   public void forward() {
     LiftMotor.set(0.4);
   }
@@ -37,18 +44,12 @@ public class LiftSubsystem extends SubsystemBase {
 
   public void stop() {
     LiftMotor.set(0);
-  }
 
-  public void reset() {
-    LiftEncoder.setPosition(0);
-  }
-
-  public void setMotor(double option) {
-    LiftMotor.set(option);
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putNumber("nummmmber", getRawEncoderOutput());
+    LiftEncoder = LiftMotor.getEncoder();
   }
 }

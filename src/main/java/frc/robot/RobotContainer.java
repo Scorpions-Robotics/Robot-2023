@@ -32,7 +32,6 @@ public class RobotContainer {
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public LiftSubsystem m_lift = new LiftSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
-
   // public static ArmSubsystem m_arm = new ArmSubsystem();
 
   Joystick joy = new Joystick(Constants.controller.controller);
