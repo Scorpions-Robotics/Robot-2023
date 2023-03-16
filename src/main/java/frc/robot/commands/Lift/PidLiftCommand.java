@@ -17,12 +17,12 @@ public class PidLiftCommand extends PIDCommand {
           } else if (position > m_lift.getEditedEncoderOutput()) {
             m_lift.setMotor(Math.min(output, 0.4));
           }
-
         });
+    getController().setTolerance(3);
   }
 
   @Override
   public boolean isFinished() {
-    return false;
+    return getController().atSetpoint();
   }
 }
