@@ -12,11 +12,11 @@ public class AutoStraightDrive2 extends PIDCommand {
         () -> m_drive.getStraightDriveDistance(),
         () -> meters * 100,
 
-  output -> {
-    m_drive.arcadeDrive(0, output);
-});
+        output -> {
+          m_drive.arcadeDrive(0, output);
+        });
 
-getController().setTolerance(3);
+    getController().setTolerance(3);
   }
 
   @Override

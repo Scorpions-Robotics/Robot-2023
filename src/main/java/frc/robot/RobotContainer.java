@@ -19,7 +19,7 @@ import frc.robot.commands.Drivetrain.pidAngleTurn;
 import frc.robot.commands.Drivetrain.trycommand;
 import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.commands.Joystick.Throttle;
-import frc.robot.commands.Lift.TryLift;
+import frc.robot.commands.Lift.ManualLift;
 //import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
@@ -31,7 +31,7 @@ public class RobotContainer {
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public LiftSubsystem m_lift = new LiftSubsystem();
- // public static VisionSubsystem m_vision = new VisionSubsystem();
+  // public static VisionSubsystem m_vision = new VisionSubsystem();
 
   // public static ArmSubsystem m_arm = new ArmSubsystem();
 
@@ -55,10 +55,7 @@ public class RobotContainer {
             m_xboxSubsystem,
             () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(5),
-            () -> joy.getRawAxis(0)
-
-        ));
-
+            () -> joy.getRawAxis(0)));
     configureBindings();
   }
 
@@ -76,32 +73,24 @@ public class RobotContainer {
      * button6.onTrue(new Rotate_Axis_3(m_arm,-180));
      * button7.onTrue(new ArmMovement1(m_arm));
      */
-
     // button2.whileTrue(new pidAngleTurn(m_drive,90));
     // button4.whileTrue(new InstantCommand(() -> m_drive.ResetGyro()));
     // button2.whileTrue(new TurnToGivenAngle(m_drive,-90));
     // button3.whileTrue(new GyroReset(m_drive));
     // button4.whileTrue(new TurnToGivenAngle(m_drive,90));
-
-
-
-   // button6.whileTrue(new EncoderReset(m_drive));
-    //button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
-    //button10.whileTrue(new TryLift(m_lift, true));
-    button5.whileTrue(new TryLift(m_lift, true));
-    button6.whileTrue(new TryLift(m_lift, false));
+    // button6.whileTrue(new EncoderReset(m_drive));
+    // button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
+    // button10.whileTrue(new TryLift(m_lift, true));
+    button5.whileTrue(new ManualLift(m_lift, true));
+    button6.whileTrue(new ManualLift(m_lift, false));
     button5.whileFalse(new InstantCommand(() -> m_lift.stop()));
     button6.whileFalse(new InstantCommand(() -> m_lift.stop()));
-
-
-
-
-    //button9.whileTrue(new pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
+    // button9.whileTrue(new
+    // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));
     // button10.whileTrue(new StabilizeMode(true,m_xboxSubsystem,m_drive));
-
   }
 
   public Command getAutonomousCommand() {

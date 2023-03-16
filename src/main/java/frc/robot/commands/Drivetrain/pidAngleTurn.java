@@ -13,44 +13,43 @@ import frc.robot.subsystems.DriveSubsystem;
 public class pidAngleTurn extends PIDCommand {
 
   public pidAngleTurn(DriveSubsystem m_drive, double angle) {
- super(
-  new PIDController(0.025, 0.001, 0.005),
-  () -> m_drive.GetHeading(),
-  () -> angle,
-  
-  output -> {
-  
-  if (m_drive.GetHeading() > angle) {
-  m_drive.arcadeDrive(Math.min(-output, -0.45),0);
-  
-  //outputtaki "-"leri gözden geçir!
-  } else if(angle > m_drive.GetHeading()) {
-  m_drive.arcadeDrive(Math.max(output, 0.3) ,0);
- }
- 
-  SmartDashboard.putNumber("output", -output);
-  SmartDashboard.putNumber("angle", angle);
-  SmartDashboard.putNumber("heading", m_drive.GetHeading());
-  });
- }
+    super(
+        new PIDController(0.025, 0.001, 0.005),
+        () -> m_drive.GetHeading(),
+        () -> angle,
+
+        output -> {
+
+          if (m_drive.GetHeading() > angle) {
+            m_drive.arcadeDrive(Math.min(-output, -0.45), 0);
+
+            // outputtaki "-"leri gözden geçir!
+          } else if (angle > m_drive.GetHeading()) {
+            m_drive.arcadeDrive(Math.max(output, 0.3), 0);
+          }
+
+          SmartDashboard.putNumber("output", -output);
+          SmartDashboard.putNumber("angle", angle);
+          SmartDashboard.putNumber("heading", m_drive.GetHeading());
+        });
+  }
 
   @Override
   public boolean isFinished() {
 
-  Double setpoint = getController().getSetpoint();
-  if(RobotContainer.m_drive.GetHeading() > setpoint - 1 &&
-  RobotContainer.m_drive.GetHeading() < setpoint + 1){
- 
-  return true;
- }
+    Double setpoint = getController().getSetpoint();
+    if (RobotContainer.m_drive.GetHeading() > setpoint - 1 &&
+        RobotContainer.m_drive.GetHeading() < setpoint + 1) {
 
- else{
-  
-  return false;
+      return true;
+    }
+
+    else {
+
+      return false;
+
+    }
+    // return getController().atSetpoint();
 
   }
-// return getController().atSetpoint();
-
 }
-}
- 

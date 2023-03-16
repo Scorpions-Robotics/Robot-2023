@@ -4,6 +4,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LiftSubsystem extends SubsystemBase {
@@ -14,24 +16,39 @@ public class LiftSubsystem extends SubsystemBase {
   public LiftSubsystem() {
 
     LiftMotor.setIdleMode(IdleMode.kBrake);
+    LiftEncoder = LiftMotor.getEncoder();
   }
 
+  public double getRawEncoderOutput() {
+    return LiftEncoder.getPosition();
+  }
 
-public void forward(){
-LiftMotor.set(0.4);
-}
+  public double getEditedEncoderOutput() {
+    return LiftEncoder.getPosition() * 10;
+  }
 
-public void back(){
-  LiftMotor.set(-0.4);
-}
+  public void forward() {
+    LiftMotor.set(0.4);
+  }
 
+  public void back() {
+    LiftMotor.set(-0.4);
+  }
 
-public void stop(){
-  LiftMotor.set(0);
-}
+  public void stop() {
+    LiftMotor.set(0);
+  }
+
+  public void reset() {
+    LiftEncoder.setPosition(0);
+  }
+
+  public void setMotor(double option) {
+    LiftMotor.set(option);
+  }
 
   @Override
   public void periodic() {
-
+    SmartDashboard.putNumber("nummmmber", getRawEncoderOutput());
   }
 }
