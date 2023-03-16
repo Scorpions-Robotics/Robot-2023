@@ -4,30 +4,25 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.RelativeEncoder;
+// import edu.wpi.first.wpilibj.Encoder;
+// import edu.wpi.first.wpilibj.SerialPort;
+// import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import com.revrobotics.RelativeEncoder;
-//import edu.wpi.first.wpilibj.Encoder;
-//import edu.wpi.first.wpilibj.SerialPort;
-//import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.kauailabs.navx.frc.AHRS;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
@@ -37,29 +32,33 @@ public class DriveSubsystem extends SubsystemBase {
   // ------------------------------------
   // Encoder-----------------------------
 
-  private Encoder leftDriveEncoder = new Encoder(
-      Constants.ENCODERS.kLeftDriveEncoderChannelA,
-      Constants.ENCODERS.kLeftDriveEncoderChannelB,
-      Constants.invert.leftencoderreversedirection,
-      EncodingType.k4X);
+  private Encoder leftDriveEncoder =
+      new Encoder(
+          Constants.ENCODERS.kLeftDriveEncoderChannelA,
+          Constants.ENCODERS.kLeftDriveEncoderChannelB,
+          Constants.invert.leftencoderreversedirection,
+          EncodingType.k4X);
 
-  private Encoder rightDriveEncoder = new Encoder(
-      Constants.ENCODERS.kRightDriveEncoderChannelA,
-      Constants.ENCODERS.kRightDriveEncoderChannelB,
-      Constants.invert.rightencoderreversedirection,
-      EncodingType.k4X);
+  private Encoder rightDriveEncoder =
+      new Encoder(
+          Constants.ENCODERS.kRightDriveEncoderChannelA,
+          Constants.ENCODERS.kRightDriveEncoderChannelB,
+          Constants.invert.rightencoderreversedirection,
+          EncodingType.k4X);
 
-  private Encoder hDriveEncoder = new Encoder(
-      Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
-      Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
-      Constants.invert.hdriveencoder,
-      EncodingType.k4X);
+  private Encoder hDriveEncoder =
+      new Encoder(
+          Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
+          Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
+          Constants.invert.hdriveencoder,
+          EncodingType.k4X);
 
-  private Encoder hDriveEncoder2 = new Encoder(
-      Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
-      Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
-      Constants.invert.hdriveencoder2,
-      EncodingType.k4X);
+  private Encoder hDriveEncoder2 =
+      new Encoder(
+          Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
+          Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
+          Constants.invert.hdriveencoder2,
+          EncodingType.k4X);
 
   RelativeEncoder encoder1;
   // ---------------------------------------
@@ -87,7 +86,8 @@ public class DriveSubsystem extends SubsystemBase {
   // DifferentialDriveClass
   private DifferentialDrive drive = new DifferentialDrive(m_right, m_left);
   public DifferentialDriveOdometry odometry;
-  public DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
+  public DifferentialDriveKinematics kinematics =
+      new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
   // ---------------------------------------
 
   public DriveSubsystem() {
@@ -165,7 +165,6 @@ public class DriveSubsystem extends SubsystemBase {
     rightDriveEncoder.reset();
     hDriveEncoder.reset();
     hDriveEncoder2.reset();
-
   }
 
   public void arcadeDrive(double speed, double rotation) {
@@ -174,8 +173,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // acil kontrol
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds(
-        1, 1 * -1);
+    return new DifferentialDriveWheelSpeeds(1, 1 * -1);
     // leftDriveEncoder.getRate(), rightDriveEncoder.getRate() * -1);
   }
 
@@ -192,7 +190,6 @@ public class DriveSubsystem extends SubsystemBase {
     // return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert
     // ? -1.0 : 1.0);
     return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
-
   }
 
   public double GetHeadingForFastReturn() {
@@ -213,7 +210,6 @@ public class DriveSubsystem extends SubsystemBase {
   public double GetPitch() {
     // burun aşağı-burun yukarısı
     return Math.IEEEremainder(imu.getPitch(), 180) * (Constants.invert.gyroinvert ? -1.0 : 1.0);
-
   }
 
   public void ResetGyro() {
@@ -222,14 +218,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void ResetOdometry() {
     ResetEncoders();
-    odometry.resetPosition(GetHeadingForDifferentialDriveOdometry(),
+    odometry.resetPosition(
+        GetHeadingForDifferentialDriveOdometry(),
         getLeftEncoderDistance(),
         getRightEncoderDistance(),
         odometry.getPoseMeters());
   }
 
   public Rotation2d GetHeadingForDifferentialDriveOdometry() {
-    return Rotation2d.fromDegrees(Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0));
+    return Rotation2d.fromDegrees(
+        Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert ? -1.0 : 1.0));
   }
 
   public void arcadeDrive(Double x, Double y) {
@@ -247,14 +245,12 @@ public class DriveSubsystem extends SubsystemBase {
     // m_left.set(speed);
 
     drive.arcadeDrive(rot, speed);
-
   }
 
   public void rotate(double speed) {
     // m_right.set(speed);
     // m_left.set(speed);
     drive.tankDrive(speed, speed);
-
   }
 
   public void RunMiddle(double speed) {
@@ -351,37 +347,31 @@ public class DriveSubsystem extends SubsystemBase {
   public void motor1() {
 
     rightFront.set(1);
-
   }
 
   public void motor2() {
 
     rightRear.set(1);
-
   }
 
   public void motor3() {
 
     leftFront.set(1);
-
   }
 
   public void motor4() {
 
     leftRear.set(1);
-
   }
 
   public void motor5() {
 
     middle1.set(1);
-
   }
 
   public void motor6() {
 
     middle2.set(1);
-
   }
 
   @Override
@@ -404,6 +394,5 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("rightrear", rightRear.getMotorOutputVoltage());
     SmartDashboard.putNumber("leftfront", leftFront.getMotorOutputVoltage());
     SmartDashboard.putNumber("leftrear", leftRear.getMotorOutputVoltage());
-
   }
 }

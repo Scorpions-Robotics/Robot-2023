@@ -11,7 +11,6 @@ public class AutoStraightDrive2 extends PIDCommand {
         new PIDController(0.16, 0, 0),
         () -> m_drive.getStraightDriveDistance(),
         () -> meters * 100,
-
         output -> {
           m_drive.arcadeDrive(0, output);
         });

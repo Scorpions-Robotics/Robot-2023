@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class i2cSubsystem extends SubsystemBase {
   /** Creates a new i2cSubsystem. */
-  public i2cSubsystem() {
-  }
+  public i2cSubsystem() {}
 
   @Override
   public void periodic() {

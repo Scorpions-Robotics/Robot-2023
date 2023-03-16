@@ -3,28 +3,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commandgroups.TurnToGivenAngle;
-import frc.robot.commands.Autonomous.AutoStraightDrive;
-//import frc.robot.commandgroups.Autonomous.ArmMovement1;
-//import frc.robot.commands.Arm.ResetAxis1Encoder;
-//import frc.robot.commands.Arm.Rotate_Axis_1;
-//import frc.robot.commands.Arm.Rotate_Axis_2;
-//import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Drivetrain.EncoderReset;
-import frc.robot.commands.Drivetrain.GyroReset;
+// import frc.robot.commandgroups.Autonomous.ArmMovement1;
+// import frc.robot.commands.Arm.ResetAxis1Encoder;
+// import frc.robot.commands.Arm.Rotate_Axis_1;
+// import frc.robot.commands.Arm.Rotate_Axis_2;
+// import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
-import frc.robot.commands.Drivetrain.pidAngleTurn;
-import frc.robot.commands.Drivetrain.trycommand;
-import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.commands.Joystick.Throttle;
 import frc.robot.commands.Lift.ManualLift;
-//import frc.robot.subsystems.ArmSubsystem;
+// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
 
 public class RobotContainer {
 

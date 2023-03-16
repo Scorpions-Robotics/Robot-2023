@@ -25,8 +25,7 @@ public class PidLiftModeCommand extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
@@ -38,8 +37,7 @@ public class PidLiftModeCommand extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   @Override
   public boolean isFinished() {

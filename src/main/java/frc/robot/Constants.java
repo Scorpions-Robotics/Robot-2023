@@ -1,10 +1,9 @@
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
-import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.DriverStation;
 
 public final class Constants {
 
@@ -77,8 +76,8 @@ public final class Constants {
     public static final double CameraHeight = 0.845;
     public static final double TargetHeight = 0.56;
     public static final double CameraPitchRadians = Units.degreesToRadians(0.0);
-    public static final Transform3d robotToCam = new Transform3d(new Translation3d(0.51, 0.0, 0.845),
-        new Rotation3d(0, 0, 0));
+    public static final Transform3d robotToCam =
+        new Transform3d(new Translation3d(0.51, 0.0, 0.845), new Rotation3d(0, 0, 0));
   }
 
   public static class invert {
@@ -102,5 +101,4 @@ public final class Constants {
 
     public static final boolean gyroinvert = true;
   }
-
 }

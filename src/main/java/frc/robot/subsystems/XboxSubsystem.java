@@ -12,8 +12,7 @@ public class XboxSubsystem extends SubsystemBase {
   public int mode;
   public boolean stabilmode = true;
 
-  public XboxSubsystem() {
-  }
+  public XboxSubsystem() {}
 
   public void mode1() {
     ThrottleValue = 0.20;
@@ -49,9 +48,7 @@ public class XboxSubsystem extends SubsystemBase {
 
     if (stabilmode) {
       stabilmode = false;
-    }
-
-    else {
+    } else {
       stabilmode = true;
     }
   }
@@ -59,21 +56,13 @@ public class XboxSubsystem extends SubsystemBase {
   public void modeincrease() {
     if (ThrottleValue == 0.20) {
       mode2();
-    }
-
-    else if (ThrottleValue == 0.40) {
+    } else if (ThrottleValue == 0.40) {
       mode3();
-    }
-
-    else if (ThrottleValue == 0.60) {
+    } else if (ThrottleValue == 0.60) {
       mode4();
-    }
-
-    else if (ThrottleValue == 0.80) {
+    } else if (ThrottleValue == 0.80) {
       mode5();
-    }
-
-    else if (ThrottleValue == 1) {
+    } else if (ThrottleValue == 1) {
       ThrottleValue = 1;
     }
   }
@@ -82,21 +71,13 @@ public class XboxSubsystem extends SubsystemBase {
 
     if (ThrottleValue == 1) {
       mode4();
-    }
-
-    else if (ThrottleValue == 0.80) {
+    } else if (ThrottleValue == 0.80) {
       mode3();
-    }
-
-    else if (ThrottleValue == 0.60) {
+    } else if (ThrottleValue == 0.60) {
       mode2();
-    }
-
-    else if (ThrottleValue == 0.40) {
+    } else if (ThrottleValue == 0.40) {
       mode1();
-    }
-
-    else if (ThrottleValue == 0.20) {
+    } else if (ThrottleValue == 0.20) {
       ThrottleValue = 0.20;
     }
   }
@@ -106,6 +87,5 @@ public class XboxSubsystem extends SubsystemBase {
 
     SmartDashboard.putBoolean("stabilizemode", stabilmode);
     SmartDashboard.putNumber("throttle", ThrottleValue);
-
   }
 }

@@ -17,9 +17,7 @@ public class pidAngleTurn extends PIDCommand {
         new PIDController(0.025, 0.001, 0.005),
         () -> m_drive.GetHeading(),
         () -> angle,
-
         output -> {
-
           if (m_drive.GetHeading() > angle) {
             m_drive.arcadeDrive(Math.min(-output, -0.45), 0);
 
@@ -38,16 +36,13 @@ public class pidAngleTurn extends PIDCommand {
   public boolean isFinished() {
 
     Double setpoint = getController().getSetpoint();
-    if (RobotContainer.m_drive.GetHeading() > setpoint - 1 &&
-        RobotContainer.m_drive.GetHeading() < setpoint + 1) {
+    if (RobotContainer.m_drive.GetHeading() > setpoint - 1
+        && RobotContainer.m_drive.GetHeading() < setpoint + 1) {
 
       return true;
-    }
-
-    else {
+    } else {
 
       return false;
-
     }
     // return getController().atSetpoint();
 

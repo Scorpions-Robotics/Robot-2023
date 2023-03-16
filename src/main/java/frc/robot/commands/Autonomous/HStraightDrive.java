@@ -8,15 +8,11 @@ import frc.robot.subsystems.DriveSubsystem;
 public class HStraightDrive extends CommandBase {
   private final DriveSubsystem m_drive;
 
-  private final PIDController pidControllerLeft = new PIDController(
-      Constants.PID.kP,
-      Constants.PID.kI,
-      Constants.PID.kD);
+  private final PIDController pidControllerLeft =
+      new PIDController(Constants.PID.kP, Constants.PID.kI, Constants.PID.kD);
 
-  private final PIDController pidControllerRight = new PIDController(
-      Constants.PID.kP,
-      Constants.PID.kI,
-      Constants.PID.kD);
+  private final PIDController pidControllerRight =
+      new PIDController(Constants.PID.kP, Constants.PID.kI, Constants.PID.kD);
 
   private final double POSITION_TOLERANCE = Constants.PID.POSITION_TOLERANCE;
   private final double VELOCITY_TOLERANCE = Constants.PID.VELOCITY_TOLERANCE;
@@ -34,8 +30,7 @@ public class HStraightDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
