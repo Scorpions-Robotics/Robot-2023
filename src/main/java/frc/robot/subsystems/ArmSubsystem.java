@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ArmSubsystem extends SubsystemBase {
 
@@ -18,13 +19,13 @@ public class ArmSubsystem extends SubsystemBase {
     // ---------------------------------------------------------------------------
     // -------------------------------------
     // AXIS2----------------------------------------------
-    public static CANSparkMax Axis2Motor = new CANSparkMax(3,
+    public static CANSparkMax Axis2Motor = new CANSparkMax(9,
             MotorType.kBrushless);
     public static RelativeEncoder Axis2Encoder;
     // ---------------------------------------------------------------------------
     // -------------------------------------
     // AXIS2----------------------------------------------
-    public static CANSparkMax Axis3Motor = new CANSparkMax(2,
+    public static CANSparkMax Axis3Motor = new CANSparkMax(10,
             MotorType.kBrushless);
     public static RelativeEncoder Axis3Encoder;
     // ---------------------------------------------------------------------------

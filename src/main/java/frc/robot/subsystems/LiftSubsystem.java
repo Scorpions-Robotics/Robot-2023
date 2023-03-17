@@ -43,8 +43,8 @@ public class LiftSubsystem extends SubsystemBase {
   public void pidSetMotor(double option) {
     if (option > 0.25) {
       LiftMotor.set(0.25);
-    } else if (option < -0.3) {
-      LiftMotor.set(-0.3);
+    } else if (option < -0.565) {
+      LiftMotor.set(-0.565);
     } else {
       LiftMotor.set(option);
     }
