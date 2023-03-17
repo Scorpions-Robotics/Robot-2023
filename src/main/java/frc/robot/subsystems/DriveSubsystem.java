@@ -221,6 +221,18 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(x, y);
   }
 
+  public void gyroDrive(Double x) {
+    double gyrovalue = GetHeading();
+    if (gyrovalue > 10) {
+      gyrovalue = 10;
+    } else if (gyrovalue < -10) {
+      gyrovalue = -10;
+    }
+    // if(gyrovalue * ()){
+    // }
+    double xvalue = (x * 0.9) + (gyrovalue * 0.01);
+  }
+
   public void RunSpeed(double speed, double rot) {
     /*
      * rightFront.set(speed);
