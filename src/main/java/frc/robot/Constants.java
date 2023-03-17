@@ -14,7 +14,7 @@ public final class Constants {
   }
 
   public static class liftValue {
-    public static final double level1 = 10;
+    public static final double level1 = 50;
     public static final double level2 = 200;
     public static final double level3 = 300;
   }
