@@ -4,44 +4,43 @@
 
 package frc.robot.commands.Arm;
 
-// import frc.robot.subsystems.ArmSubsystem;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.ArmSubsystem;
 
-/*
- * public class ResetAxis1Encoder extends CommandBase {
- * ArmSubsystem m_arm;
- * public ResetAxis1Encoder(ArmSubsystem m_arm) {
- * this.m_arm = m_arm;
- * // Use addRequirements() here to declare subsystem dependencies.
- * }
- *
- * // Called when the command is initially scheduled.
- *
- * @Override
- * public void initialize() {
- *
- * }
- *
- * // Called every time the scheduler runs while the command is scheduled.
- *
- * @Override
- * public void execute() {
- * m_arm.Axis1EncoderReset();
- * m_arm.resetGetOutputAngle();
- *
- *
- * }
- *
- * // Called once the command ends or is interrupted.
- *
- * @Override
- * public void end(boolean interrupted) {}
- *
- * // Returns true when the command should end.
- *
- * @Override
- * public boolean isFinished() {
- * return true;
- * }
- * }
- *
- */
+public class ResetAxis1Encoder extends CommandBase {
+    ArmSubsystem m_arm;
+
+    public ResetAxis1Encoder(ArmSubsystem m_arm) {
+        this.m_arm = m_arm;
+        // Use addRequirements() here to declare subsystem dependencies.
+    }
+
+    // Called when the command is initially scheduled.
+
+    @Override
+    public void initialize() {
+
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+
+    @Override
+    public void execute() {
+        m_arm.Axis1EncoderReset();
+        m_arm.resetGetOutputAngle();
+
+    }
+
+    // Called once the command ends or is interrupted.
+
+    @Override
+    public void end(boolean interrupted) {
+    }
+
+    // Returns true when the command should end.
+
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
+}

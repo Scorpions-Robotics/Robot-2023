@@ -9,12 +9,12 @@ public final class Constants {
 
   public static class controller {
     // bunu değiştir-----------------------
-    public static final int controller = 0;
+    public static final int controller = 1;
     // ----------------------------------
   }
 
   public static class liftValue {
-    public static final double level1 = 100;
+    public static final double level1 = 10;
     public static final double level2 = 200;
     public static final double level3 = 300;
   }
