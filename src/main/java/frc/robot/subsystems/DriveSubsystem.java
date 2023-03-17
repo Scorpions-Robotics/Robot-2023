@@ -1,16 +1,9 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.RelativeEncoder;
-// import edu.wpi.first.wpilibj.Encoder;
-// import edu.wpi.first.wpilibj.SerialPort;
-// import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -25,40 +18,35 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
-  /** Creates a new DriveSubsystem. */
 
   // imu --------------------------------
   AHRS imu = new AHRS(I2C.Port.kOnboard);
   // ------------------------------------
   // Encoder-----------------------------
 
-  private Encoder leftDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kLeftDriveEncoderChannelA,
-          Constants.ENCODERS.kLeftDriveEncoderChannelB,
-          Constants.invert.leftencoderreversedirection,
-          EncodingType.k4X);
+  private Encoder leftDriveEncoder = new Encoder(
+      Constants.ENCODERS.kLeftDriveEncoderChannelA,
+      Constants.ENCODERS.kLeftDriveEncoderChannelB,
+      Constants.invert.leftencoderreversedirection,
+      EncodingType.k4X);
 
-  private Encoder rightDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kRightDriveEncoderChannelA,
-          Constants.ENCODERS.kRightDriveEncoderChannelB,
-          Constants.invert.rightencoderreversedirection,
-          EncodingType.k4X);
+  private Encoder rightDriveEncoder = new Encoder(
+      Constants.ENCODERS.kRightDriveEncoderChannelA,
+      Constants.ENCODERS.kRightDriveEncoderChannelB,
+      Constants.invert.rightencoderreversedirection,
+      EncodingType.k4X);
 
-  private Encoder hDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
-          Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
-          Constants.invert.hdriveencoder,
-          EncodingType.k4X);
+  private Encoder hDriveEncoder = new Encoder(
+      Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
+      Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
+      Constants.invert.hdriveencoder,
+      EncodingType.k4X);
 
-  private Encoder hDriveEncoder2 =
-      new Encoder(
-          Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
-          Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
-          Constants.invert.hdriveencoder2,
-          EncodingType.k4X);
+  private Encoder hDriveEncoder2 = new Encoder(
+      Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
+      Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
+      Constants.invert.hdriveencoder2,
+      EncodingType.k4X);
 
   RelativeEncoder encoder1;
   // ---------------------------------------
@@ -86,8 +74,7 @@ public class DriveSubsystem extends SubsystemBase {
   // DifferentialDriveClass
   private DifferentialDrive drive = new DifferentialDrive(m_right, m_left);
   public DifferentialDriveOdometry odometry;
-  public DifferentialDriveKinematics kinematics =
-      new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
+  public DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
   // ---------------------------------------
 
   public DriveSubsystem() {
