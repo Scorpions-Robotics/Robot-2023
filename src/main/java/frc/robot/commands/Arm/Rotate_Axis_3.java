@@ -10,7 +10,7 @@ public class Rotate_Axis_3 extends PIDCommand {
 
     public Rotate_Axis_3(ArmSubsystem m_arm, double degree) {
         super(
-                new PIDController(0.01, 0, 0),
+                new PIDController(0.00415, 0, 0),
                 // 0.01, 0.0025, 0
                 () -> -m_arm.getOutputAngle_Axis3,
                 () -> degree,

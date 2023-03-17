@@ -10,7 +10,7 @@ import frc.robot.Constants;
 
 public class LiftSubsystem extends SubsystemBase {
 
-  RelativeEncoder LiftEncoder;
+  public RelativeEncoder LiftEncoder;
   public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
 
   public LiftSubsystem() {
