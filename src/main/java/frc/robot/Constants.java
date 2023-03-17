@@ -13,6 +13,12 @@ public final class Constants {
     // ----------------------------------
   }
 
+  public static class liftValue {
+    public static final double level1 = 100;
+    public static final double level2 = 200;
+    public static final double level3 = 300;
+  }
+
   public static class CAN {
 
     // bunları değiştir-----------------------

@@ -13,7 +13,7 @@ import frc.robot.commands.Drivetrain.TeleoperatedDrive;
 import frc.robot.commands.Joystick.Throttle;
 import frc.robot.commands.Lift.ManualLift;
 import frc.robot.commands.Lift.PidLiftCommand;
-import frc.robot.commands.Lift.PidLiftTest;
+import frc.robot.commands.Lift.PidLiftModeChanger;
 import frc.robot.commands.Lift.ResetLiftEncoder;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -50,9 +50,7 @@ public class RobotContainer {
             () -> joy.getRawAxis(5),
             () -> joy.getRawAxis(0)));
     configureBindings();
-
-    m_lift.setDefaultCommand(new PidLiftTest(m_lift, m_xboxSubsystem, false));
-
+    m_lift.setDefaultCommand(new PidLiftModeChanger(m_lift, () -> m_xboxSubsystem.getLiftValue()));
   }
 
   private void configureBindings() {
