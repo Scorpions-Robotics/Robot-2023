@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drivetrain.TeleoperatedDrive;
 import frc.robot.commands.Joystick.Throttle;
 import frc.robot.commands.Lift.ManualLift;
+import frc.robot.commands.Lift.PidLiftCommand;
+import frc.robot.commands.Lift.PidLiftTest;
+import frc.robot.commands.Lift.ResetLiftEncoder;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
@@ -47,6 +50,9 @@ public class RobotContainer {
             () -> joy.getRawAxis(5),
             () -> joy.getRawAxis(0)));
     configureBindings();
+
+    m_lift.setDefaultCommand(new PidLiftTest(m_lift, m_xboxSubsystem, false));
+
   }
 
   private void configureBindings() {
@@ -77,8 +83,15 @@ public class RobotContainer {
     button6.whileFalse(new InstantCommand(() -> m_lift.stop()));
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
-    button7.whileTrue(new Throttle(false, m_xboxSubsystem));
-    button8.whileTrue(new Throttle(true, m_xboxSubsystem));
+    // button10.whileTrue(new PidLiftTest(m_lift, 350, false));
+    // button9.whileTrue(new ResetLiftEncoder(m_lift));
+    // button10.whileFalse(new PidLiftTest(m_lift, 0, true));
+    button9.whileTrue(new ResetLiftEncoder(m_lift));
+    button7.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift3()));
+    button8.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift2()));
+    button10.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift1()));
+    // button7.whileTrue(new Throttle(false, m_xboxSubsystem));
+    // button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));
     // button10.whileTrue(new StabilizeMode(true,m_xboxSubsystem,m_drive));
   }

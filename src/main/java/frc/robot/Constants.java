@@ -9,7 +9,7 @@ public final class Constants {
 
   public static class controller {
     // bunu değiştir-----------------------
-    public static final int controller = 1;
+    public static final int controller = 0;
     // ----------------------------------
   }
 
@@ -19,11 +19,16 @@ public final class Constants {
     public static final int kRightLeaderID = 7;
     public static final int kRightFollowerID = 14;
     public static final int kLeftLeaderID = 12;
-    public static final int kLeftFollowerID = 2;
+    public static final int kLeftFollowerID = 8;
 
     public static final int kMiddle1 = 5;
-    public static final int kMiddle2 = 8;
+    public static final int kMiddle2 = 2;
     // --------------------------------------
+
+    public static final int kArmDown = 6;
+    public static final int kArmMiddle = 9;
+    public static final int kArmUp = 10;
+    public static final int kLiftMotor = 12;
 
   }
 
@@ -76,8 +81,8 @@ public final class Constants {
     public static final double CameraHeight = 0.845;
     public static final double TargetHeight = 0.56;
     public static final double CameraPitchRadians = Units.degreesToRadians(0.0);
-    public static final Transform3d robotToCam =
-        new Transform3d(new Translation3d(0.51, 0.0, 0.845), new Rotation3d(0, 0, 0));
+    public static final Transform3d robotToCam = new Transform3d(new Translation3d(0.51, 0.0, 0.845),
+        new Rotation3d(0, 0, 0));
   }
 
   public static class invert {
@@ -87,8 +92,8 @@ public final class Constants {
     public static final boolean rightrearinvert = true;
     public static final boolean leftrearinvert = false;
 
-    public static final boolean middle1 = false;
-    public static final boolean middle2 = true;
+    public static final boolean middle1 = true;
+    public static final boolean middle2 = false;
     // ----------------------------------------------------------------
     public static final boolean rightencoderreversedirection = true;
     public static final boolean leftencoderreversedirection = false;

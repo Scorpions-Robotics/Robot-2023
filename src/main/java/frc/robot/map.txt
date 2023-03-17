@@ -3,3 +3,8 @@ ID 12 SPARKMAX                        ID 7 SPARKMAX
             ID _5_SPARKMAX    ID_8_SPARKMAX
 
 ID 2 SPARKMAX                            ID 14 SPARKMAX
+
+alt 6
+orta 9
+üst 10
+lift 12

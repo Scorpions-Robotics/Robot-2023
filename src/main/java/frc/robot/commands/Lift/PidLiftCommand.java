@@ -13,12 +13,12 @@ public class PidLiftCommand extends PIDCommand {
         () -> position,
         output -> {
           if (m_lift.getEditedEncoderOutput() > position) {
-            m_lift.setMotor(Math.max(-output, -0.4));
+            m_lift.setMotor(Math.max(-output, -0.3));
           } else if (position > m_lift.getEditedEncoderOutput()) {
-            m_lift.setMotor(Math.min(output, 0.4));
+            m_lift.setMotor(Math.min(output, 0.3));
           }
         });
-    getController().setTolerance(3);
+    getController().setTolerance(10);
   }
 
   @Override

@@ -6,11 +6,12 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class LiftSubsystem extends SubsystemBase {
 
   RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor = new CANSparkMax(6, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
 
   public LiftSubsystem() {
     LiftMotor.setIdleMode(IdleMode.kBrake);
@@ -18,11 +19,11 @@ public class LiftSubsystem extends SubsystemBase {
   }
 
   public double getRawEncoderOutput() {
-    return LiftEncoder.getPosition();
+    return LiftEncoder.getPosition() * -1;
   }
 
   public double getEditedEncoderOutput() {
-    return LiftEncoder.getPosition() * 10;
+    return LiftEncoder.getPosition() * -10;
   }
 
   public void reset() {
@@ -30,15 +31,31 @@ public class LiftSubsystem extends SubsystemBase {
   }
 
   public void setMotor(double option) {
-    LiftMotor.set(option);
+    if (option > 0.25) {
+      LiftMotor.set(0.25);
+    } else if (option < -0.25) {
+      LiftMotor.set(-0.25);
+    } else {
+      LiftMotor.set(option);
+    }
+  }
+
+  public void pidSetMotor(double option) {
+    if (option > 0.3) {
+      LiftMotor.set(0.3);
+    } else if (option < -0.3) {
+      LiftMotor.set(-0.3);
+    } else {
+      LiftMotor.set(option);
+    }
   }
 
   public void forward() {
-    LiftMotor.set(0.4);
+    setMotor(0.4);
   }
 
   public void back() {
-    LiftMotor.set(-0.4);
+    setMotor(-0.4);
   }
 
   public void stop() {
@@ -48,6 +65,7 @@ public class LiftSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("nummmmber", getRawEncoderOutput());
+    SmartDashboard.putNumber("edited", getEditedEncoderOutput());
     LiftEncoder = LiftMotor.getEncoder();
   }
 }
