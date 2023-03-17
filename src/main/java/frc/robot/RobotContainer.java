@@ -25,7 +25,7 @@ public class RobotContainer {
 
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
-  public LiftSubsystem m_lift = new LiftSubsystem();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
   // public static ArmSubsystem m_arm = new ArmSubsystem();
