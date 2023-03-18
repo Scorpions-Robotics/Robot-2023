@@ -1,11 +1,10 @@
 package frc.robot.commands.Lift;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.LiftSubsystem;
+import java.util.function.DoubleSupplier;
 
 public class PidLiftModeChanger extends PIDCommand {
 

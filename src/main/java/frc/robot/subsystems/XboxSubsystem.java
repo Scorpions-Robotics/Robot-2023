@@ -10,8 +10,7 @@ public class XboxSubsystem extends SubsystemBase {
   public int mode;
   public boolean stabilmode = true;
 
-  public XboxSubsystem() {
-  }
+  public XboxSubsystem() {}
 
   public void mode1() {
     ThrottleValue = 0.20;
