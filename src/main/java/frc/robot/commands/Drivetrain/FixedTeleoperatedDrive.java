@@ -14,7 +14,6 @@ public class FixedTeleoperatedDrive extends CommandBase {
   DoubleSupplier yrotation;
   DoubleSupplier zrotation;
   DoubleSupplier heading;
-  double zgyro;
 
   public FixedTeleoperatedDrive(
       DriveSubsystem m_drivesubsystem,
@@ -33,7 +32,6 @@ public class FixedTeleoperatedDrive extends CommandBase {
 
   @Override
   public void initialize() {
-    zgyro = 0;
   }
 
   @Override
@@ -47,11 +45,11 @@ public class FixedTeleoperatedDrive extends CommandBase {
     }
 
     double X = -(xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
-    double rightSpeed = X + gyrovalue * 0.008;
-    double leftSpeed = X - gyrovalue * 0.008;
+    double rightSpeed = X + gyrovalue * 0.02;
+    double leftSpeed = X - gyrovalue * 0.02;
     double Y = (yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
-    double hDriveFront = Y - gyrovalue * 0.03;
-    double hDriveBack = Y + gyrovalue * 0.03;
+    double hDriveFront = Y - gyrovalue * 0.04;
+    double hDriveBack = Y + gyrovalue * 0.04;
     SmartDashboard.putNumber("rightSS", rightSpeed);
     SmartDashboard.putNumber("leftSS", leftSpeed);
     SmartDashboard.putNumber("hDriveFSS", hDriveFront);
@@ -60,7 +58,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
     m_drivesubsystem.RunTogether(rightSpeed + zrotation.getAsDouble(), -leftSpeed + zrotation.getAsDouble(),
         hDriveFront, hDriveBack);
 
-    if (Math.abs(zrotation.getAsDouble()) > 0.10) {
+    if (Math.abs(zrotation.getAsDouble()) > 0.015) {
       gyrovalue = 0;
     }
 

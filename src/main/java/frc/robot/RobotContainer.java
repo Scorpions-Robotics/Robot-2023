@@ -18,6 +18,7 @@ import frc.robot.commands.Drivetrain.TeleoperatedDrive;
 import frc.robot.commands.Lift.PidLiftModeChanger;
 import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
@@ -83,10 +84,11 @@ public class RobotContainer {
     // button6.whileTrue(new EncoderReset(m_drive));
     // button10.whileTrue(new AutoStraightDrive(m_drive, 1,true , false));
     // button10.whileTrue(new TryLift(m_lift, true));
-    button1.whileTrue(new Rotate_Axis_2(m_arm, -20));
-    button2.whileTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
-    button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
-    button3.whileTrue(new ResetAxis2Encoder(m_arm));
+    // button1.whileTrue(new Rotate_Axis_2(m_arm, -20));
+    // button2.whileTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
+    // button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
+    // button3.whileTrue(new ResetAxis2Encoder(m_arm));
+    button1.onTrue(new AutoGyroDrive(m_drive, 1, 0.5));
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));
