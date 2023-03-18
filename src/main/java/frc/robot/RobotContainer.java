@@ -50,8 +50,8 @@ public class RobotContainer {
         new FixedTeleoperatedDrive(
             m_drive,
             m_xboxSubsystem,
-            () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(5),
+            () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(0)));
     configureBindings();
 
