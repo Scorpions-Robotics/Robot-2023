@@ -399,5 +399,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("rightrear", rightRear.getMotorOutputVoltage());
     SmartDashboard.putNumber("leftfront", leftFront.getMotorOutputVoltage());
     SmartDashboard.putNumber("leftrear", leftRear.getMotorOutputVoltage());
+    SmartDashboard.putNumber("asad2", getStraightDriveDistance());
+
   }
 }

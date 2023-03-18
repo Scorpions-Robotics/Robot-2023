@@ -51,7 +51,7 @@ public class RobotContainer {
         new FixedTeleoperatedDrive(
             m_drive,
             m_xboxSubsystem,
-            () -> joy.getRawAxis(5),
+            () -> -joy.getRawAxis(5),
             () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(0)));
     configureBindings();
@@ -88,7 +88,7 @@ public class RobotContainer {
     // button2.whileTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
     // button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
     // button3.whileTrue(new ResetAxis2Encoder(m_arm));
-    button1.onTrue(new AutoGyroDrive(m_drive, 1, 0.5));
+    button1.whileTrue(new AutoGyroDrive(m_drive));
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));

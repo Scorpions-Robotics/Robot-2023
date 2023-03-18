@@ -9,7 +9,7 @@ public final class Constants {
 
   public static class controller {
     // bunu değiştir-----------------------
-    public static final int controller = 0;
+    public static final int controller = 1;
     // ----------------------------------
   }
 
