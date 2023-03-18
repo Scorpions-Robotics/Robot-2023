@@ -11,8 +11,7 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
 
   public RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor =
-      new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
 
   public LiftSubsystem() {
     LiftMotor.setIdleMode(IdleMode.kBrake);
@@ -44,8 +43,8 @@ public class LiftSubsystem extends SubsystemBase {
   public void pidSetMotor(double option) {
     if (option > 0.25) {
       LiftMotor.set(0.25);
-    } else if (option < -0.565) {
-      LiftMotor.set(-0.565);
+    } else if (option < -0.6) {
+      LiftMotor.set(-0.6);
     } else {
       LiftMotor.set(option);
     }

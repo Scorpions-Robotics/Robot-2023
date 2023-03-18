@@ -6,15 +6,16 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 import java.util.function.DoubleSupplier;
 
-public class TeleoperatedDrive extends CommandBase {
+public class FixedTeleoperatedDrive extends CommandBase {
 
   DriveSubsystem m_drivesubsystem;
   XboxSubsystem m_xboxSubsystem;
   DoubleSupplier xspeed;
   DoubleSupplier yrotation;
   DoubleSupplier zrotation;
+  DoubleSupplier heading;
 
-  public TeleoperatedDrive(
+  public FixedTeleoperatedDrive(
       DriveSubsystem m_drivesubsystem,
       XboxSubsystem m_xboxSubsystem,
       DoubleSupplier xspeed,
@@ -36,19 +37,61 @@ public class TeleoperatedDrive extends CommandBase {
   @Override
   public void execute() {
 
-    double angle = m_drivesubsystem.GetHeading();
-    double neededangle = angle * -1;
+    double gyrovalue = m_drivesubsystem.GetHeading();
+    if (gyrovalue > 10) {
+      gyrovalue = 10;
+    } else if (gyrovalue < -10) {
+      gyrovalue = -10;
+    }
 
+    double X = -(xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
+    double rightSpeed = X + gyrovalue * 0.005;
+    double leftSpeed = X - gyrovalue * 0.005;
+    double Y = (yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
+    double hDriveFront = Y - gyrovalue * 0.005;
+    double hDriveBack = Y + gyrovalue * 0.005;
+
+    SmartDashboard.putNumber("rightSS", rightSpeed);
+    SmartDashboard.putNumber("leftSS", leftSpeed);
+    SmartDashboard.putNumber("hDriveFSS", hDriveFront);
+    SmartDashboard.putNumber("hDriveBSS", hDriveBack);
+
+    m_drivesubsystem.RunTogether(rightSpeed, -leftSpeed, hDriveFront, hDriveBack);
+
+    // if (X > 0.1) {
+    // m_drivesubsystem.RunTogether(-rightSpeed, leftSpeed);
+    // // m_drivesubsystem.hDrive(X, Y, (zrotation.getAsDouble() *
+    // // m_xboxSubsystem.ThrottleValue));
+    // } else if (X < -0.1) {
+    // m_drivesubsystem.RunTogether(-rightSpeed, leftSpeed);
+    // // m_drivesubsystem.hDrive(X, Y, (zrotation.getAsDouble() *
+    // // m_xboxSubsystem.ThrottleValue));
+    // } else if (X > 0.1) {
+    // m_drivesubsystem.RunTogether(-rightSpeed, leftSpeed);
+    // // m_drivesubsystem.hDrive(X, Y, (zrotation.getAsDouble() *
+    // // m_xboxSubsystem.ThrottleValue));
+    // } else if (Y > 0.1) {
+    // m_drivesubsystem.RunTogether(-rightSpeed, leftSpeed);
+    // // m_drivesubsystem.hDrive(X, Y, (zrotation.getAsDouble() *
+    // // m_xboxSubsystem.ThrottleValue));
+    // } else if (Y < -0.1) {
+    // m_drivesubsystem.RunTogether(-rightSpeed, -leftSpeed);
+    // // m_drivesubsystem.hDrive(X, Y, (zrotation.getAsDouble() *
+    // // m_xboxSubsystem.ThrottleValue));
+    // }
+
+    SmartDashboard.putNumber("XDegeri", X);
+    SmartDashboard.putNumber("YDegeri", Y);
     // ConfiguratedThrottle = (throttle.getAsDouble() * -1 + 1) / 2;
     // :( m_drivesubsystem.arcadeDrive(xspeed.getAsDouble() * ConfiguratedThrottle,
     // yrotation.getAsDouble() * ConfiguratedThrottle);
 
     // if(m_xboxSubsystem.stabilmode == false){
 
-    m_drivesubsystem.hDrive(
-        -xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
-        yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
-        zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
+    // m_drivesubsystem.hDrive(
+    // xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+    // -yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
+    // zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
 
     // }
 
@@ -79,7 +122,7 @@ public class TeleoperatedDrive extends CommandBase {
      * }
      */
 
-    SmartDashboard.putNumber("nummber", neededangle);
+    SmartDashboard.putNumber("nummber", m_drivesubsystem.GetHeading());
     SmartDashboard.putNumber("xspeed", xspeed.getAsDouble());
     SmartDashboard.putNumber("yrotation", yrotation.getAsDouble());
     SmartDashboard.putNumber("zrotation", zrotation.getAsDouble());

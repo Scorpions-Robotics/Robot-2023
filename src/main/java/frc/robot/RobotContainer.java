@@ -1,11 +1,14 @@
 package frc.robot;
 
+import org.ejml.data.FMatrixIterator;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Arm.ResetAxis2Encoder;
 import frc.robot.commands.Arm.Rotate_Axis_2;
+import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
@@ -44,14 +47,18 @@ public class RobotContainer {
   public RobotContainer() {
 
     m_drive.setDefaultCommand(
-        new TeleoperatedDrive(
+        new FixedTeleoperatedDrive(
             m_drive,
             m_xboxSubsystem,
             () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(5),
             () -> joy.getRawAxis(0)));
     configureBindings();
-    m_lift.setDefaultCommand(new PidLiftModeChanger(m_lift, () -> m_xboxSubsystem.getLiftValue()));
+
+    // m_lift.setDefaultCommand(
+    // new PidLiftModeChanger(
+    // m_lift,
+    // () -> m_xboxSubsystem.getLiftValue()));
   }
 
   private void configureBindings() {

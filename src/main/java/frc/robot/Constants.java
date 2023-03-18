@@ -9,7 +9,7 @@ public final class Constants {
 
   public static class controller {
     // bunu değiştir-----------------------
-    public static final int controller = 1;
+    public static final int controller = 0;
     // ----------------------------------
   }
 
@@ -86,8 +86,8 @@ public final class Constants {
     public static final double CameraHeight = 0.845;
     public static final double TargetHeight = 0.56;
     public static final double CameraPitchRadians = Units.degreesToRadians(0.0);
-    public static final Transform3d robotToCam =
-        new Transform3d(new Translation3d(0.51, 0.0, 0.845), new Rotation3d(0, 0, 0));
+    public static final Transform3d robotToCam = new Transform3d(new Translation3d(0.51, 0.0, 0.845),
+        new Rotation3d(0, 0, 0));
   }
 
   public static class invert {
