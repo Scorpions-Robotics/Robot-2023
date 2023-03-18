@@ -51,7 +51,7 @@ public class DriveSubsystem extends SubsystemBase {
   RelativeEncoder encoder1;
   // ---------------------------------------
   public static boolean duzelt = false;
-
+  public boolean fixed;
   // Motor----------------------------------
 
   private WPI_VictorSPX rightFront = new WPI_VictorSPX(Constants.CAN.kRightLeaderID);
@@ -96,6 +96,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_left.setInverted(Constants.invert.leftgroupinvert);
 
     BrakeMode();
+    fixed = true;
   }
 
   public void CoastMode() {
@@ -316,6 +317,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void RunLeftSideSpeed(double speed) {
     m_left.set(speed);
+  }
+
+  public void fixer() {
+    fixed = true;
   }
 
   public void StopRightSide() {

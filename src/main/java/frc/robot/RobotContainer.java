@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Arm.ResetAxis2Encoder;
 import frc.robot.commands.Arm.Rotate_Axis_2;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
+import frc.robot.commands.Drivetrain.Fixer;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
@@ -54,6 +55,7 @@ public class RobotContainer {
             () -> -joy.getRawAxis(5),
             () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(0)));
+
     configureBindings();
 
     // m_lift.setDefaultCommand(
@@ -89,6 +91,8 @@ public class RobotContainer {
     // button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
     // button3.whileTrue(new ResetAxis2Encoder(m_arm));
     button1.whileTrue(new AutoGyroDrive(m_drive));
+    button2.whileTrue(new Fixer(m_drive));
+
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));
