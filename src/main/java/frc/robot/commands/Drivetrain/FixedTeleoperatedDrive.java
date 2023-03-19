@@ -35,8 +35,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
@@ -64,14 +63,16 @@ public class FixedTeleoperatedDrive extends CommandBase {
       if (Math.abs(zrotation.getAsDouble()) > 0.015) {
         m_drivesubsystem.fixed = false;
       }
-      m_drivesubsystem.RunTogether(rightSpeed + zrotation.getAsDouble(), -leftSpeed + zrotation.getAsDouble(),
-          hDriveFront, hDriveBack);
+      m_drivesubsystem.RunTogether(
+          rightSpeed + zrotation.getAsDouble(),
+          -leftSpeed + zrotation.getAsDouble(),
+          hDriveFront,
+          hDriveBack);
     }
 
     if (!m_drivesubsystem.fixed) {
 
       m_drivesubsystem.hDrive(
-
           -yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
           -xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
           zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
@@ -151,8 +152,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   @Override
   public boolean isFinished() {

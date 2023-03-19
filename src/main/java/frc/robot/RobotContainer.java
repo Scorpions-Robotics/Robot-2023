@@ -1,13 +1,11 @@
 package frc.robot;
 
-import org.ejml.data.FMatrixIterator;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.Arm.ResetAxis2Encoder;
-import frc.robot.commands.Arm.Rotate_Axis_2;
+import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
+// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
@@ -15,12 +13,8 @@ import frc.robot.commands.Drivetrain.Fixer;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
 // import frc.robot.commands.Arm.Rotate_Axis_2;
 // import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Drivetrain.TeleoperatedDrive;
-import frc.robot.commands.Lift.PidLiftModeChanger;
 import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
-// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;

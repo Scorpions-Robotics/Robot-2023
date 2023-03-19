@@ -10,10 +10,8 @@ public class AutoHStraightDrive extends PIDCommand {
   public AutoHStraightDrive(DriveSubsystem m_drive, double meters) {
     super(
         new PIDController(0.16, 0, 0),
-
         () -> m_drive.getHdriveStraightDriveDistance(),
         () -> meters * 100,
-
         output -> {
           double Y = output * 0.9;
           double hDriveFront = Y - m_drive.GetHeading() * 0.02;

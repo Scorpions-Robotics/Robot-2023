@@ -23,7 +23,6 @@ public class AutoStraightDrive2 extends PIDCommand {
         });
 
     getController().setTolerance(3);
-
   }
 
   @Override
