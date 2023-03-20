@@ -18,6 +18,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
   public double hDriveBack;
   public double X;
   public double Y;
+  public double gyrovalue;
 
   public FixedTeleoperatedDrive(
       DriveSubsystem m_drivesubsystem,
@@ -35,14 +36,21 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
 
     if (m_drivesubsystem.fixed) {
 
-      double gyrovalue = m_drivesubsystem.GetHeading();
+      if (Math.abs(m_drivesubsystem.GetHeading()) < 180) {
+        gyrovalue = m_drivesubsystem.GetHeading();
+
+      } else if (Math.abs(m_drivesubsystem.GetHeading()) > 180) {
+        gyrovalue = m_drivesubsystem.GetHeadingForFastReturn();
+      }
+
       if (gyrovalue > 10) {
         gyrovalue = 10;
       } else if (gyrovalue < -10) {
@@ -152,7 +160,8 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

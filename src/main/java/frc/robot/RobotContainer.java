@@ -27,8 +27,7 @@ public class RobotContainer {
   public static ArmSubsystem m_arm = new ArmSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
   // public static ArmSubsystem m_arm = new ArmSubsystem();
-
-  Joystick joy = new Joystick(Constants.controller.controller);
+  Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
   JoystickButton button1 = new JoystickButton(joy, 1);
   JoystickButton button2 = new JoystickButton(joy, 2);
   JoystickButton button3 = new JoystickButton(joy, 3);
