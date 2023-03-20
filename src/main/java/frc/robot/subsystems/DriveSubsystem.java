@@ -404,15 +404,5 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("pitch", imu.getPitch());
     SmartDashboard.putNumber("heading", GetHeading());
 
-    SmartDashboard.putNumber("leftencoder", getLeftEncoderDistance());
-    SmartDashboard.putNumber("rightencoder", getRightEncoderDistance());
-    SmartDashboard.putNumber("h1encoder", getRigthHEncoderDistance());
-    SmartDashboard.putNumber("h2encoder", getLeftHEncoderDistance());
-
-    SmartDashboard.putNumber("rightfront", rightFront.getMotorOutputVoltage());
-    SmartDashboard.putNumber("rightrear", rightRear.getMotorOutputVoltage());
-    SmartDashboard.putNumber("leftfront", leftFront.getMotorOutputVoltage());
-    SmartDashboard.putNumber("leftrear", leftRear.getMotorOutputVoltage());
-    SmartDashboard.putNumber("asad2", getStraightDriveDistance());
   }
 }

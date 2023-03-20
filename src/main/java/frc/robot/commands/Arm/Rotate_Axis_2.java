@@ -1,6 +1,7 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.ArmSubsystem;
 
@@ -13,6 +14,8 @@ public class Rotate_Axis_2 extends PIDCommand {
         () -> -m_arm.getOutputAngle_Axis2,
         () -> degree,
         output -> {
+          SmartDashboard.putNumber("errerererer", -m_arm.getOutputAngle_Axis2);
+
           if (degree > m_arm.getOutputAngle_Axis2) {
             m_arm.Axis2MotorOutput(Math.min(-output, 0.20));
           } else if (m_arm.getOutputAngle_Axis2 > degree) {

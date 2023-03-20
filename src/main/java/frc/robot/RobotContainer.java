@@ -1,10 +1,13 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commandgroups.coastall;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
+import frc.robot.commandgroups.Autonomous.blue;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
@@ -51,11 +54,12 @@ public class RobotContainer {
 
     configureBindings();
 
-    // m_lift.setDefaultCommand(
-    // new PidLiftModeChanger(
-    // m_lift,
-    // () -> m_xboxSubsystem.getLiftValue()));
-  }
+    /*
+     * m_lift.setDefaultCommand(
+     * new PidLiftModeChanger(
+     * m_lift,
+     * () -> m_xboxSubsystem.getLiftValue()));
+     */}
 
   private void configureBindings() {
     // button1.whileTrue(new ChargeStationBalance(m_drive));
@@ -85,6 +89,8 @@ public class RobotContainer {
     // button3.whileTrue(new ResetAxis2Encoder(m_arm));
     button1.whileTrue(new AutoGyroDrive(m_drive));
     button2.whileTrue(new Fixer(m_drive));
+    button3.whileTrue(new blue(m_lift, m_arm, m_drive));
+    button4.whileTrue(new coastall(m_arm, m_lift));
 
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
@@ -101,7 +107,28 @@ public class RobotContainer {
     // button10.whileTrue(new StabilizeMode(true,m_xboxSubsystem,m_drive));
   }
 
-  public Command getAutonomousCommand() {
-    return null;
+  public Command getAutonomousCommand(int mode) {
+    String alliance = DriverStation.getAlliance().toString();
+
+    if (alliance == "Blue") {
+      switch (mode) {
+        case 1:
+          return new blue(m_lift, m_arm, m_drive);
+        case 2:
+          return null;
+
+        default:
+          return new blue(m_lift, m_arm, m_drive);
+      }
+    } else {
+      switch (mode) {
+        case 1:
+          return new blue(m_lift, m_arm, m_drive);
+        case 2:
+          return null;
+        default:
+          return new blue(m_lift, m_arm, m_drive);
+      }
+    }
   }
 }

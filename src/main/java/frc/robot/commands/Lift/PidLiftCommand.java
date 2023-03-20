@@ -1,28 +1,33 @@
 package frc.robot.commands.Lift;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.LiftSubsystem;
+import java.util.function.DoubleSupplier;
 
 public class PidLiftCommand extends PIDCommand {
 
-  public PidLiftCommand(LiftSubsystem m_lift, double position) {
+  public boolean stop;
+
+  public PidLiftCommand(LiftSubsystem m_lift, DoubleSupplier position) {
     super(
-        new PIDController(0.016, 0, 0),
+        new PIDController(0.0567, 0.01, 0),
         () -> m_lift.getEditedEncoderOutput(),
-        () -> position,
+        () -> position.getAsDouble(),
         output -> {
-          if (m_lift.getEditedEncoderOutput() > position) {
-            m_lift.setMotor(Math.max(-output, -0.3));
-          } else if (position > m_lift.getEditedEncoderOutput()) {
-            m_lift.setMotor(Math.min(output, 0.3));
-          }
+          m_lift.pidSetMotor(output * -0.75);
+          SmartDashboard.putNumber("liftEncoder", m_lift.getEditedEncoderOutput());
+          SmartDashboard.putNumber("liftEncoder", position.getAsDouble());
         });
-    getController().setTolerance(10);
+    getController().setTolerance(3);
+
+    addRequirements(m_lift);
   }
 
   @Override
   public boolean isFinished() {
+    // return false;
     return getController().atSetpoint();
   }
 }
