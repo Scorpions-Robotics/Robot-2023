@@ -71,6 +71,11 @@ public class ArmSubsystem extends SubsystemBase {
     return Axis2Encoder.getPosition();
   }
 
+  public void alert() {
+    SmartDashboard.putString("recep", "tayyip");
+
+  }
+
   public static double Axis3Angle() {
     return Axis3Encoder.getPosition();
   }

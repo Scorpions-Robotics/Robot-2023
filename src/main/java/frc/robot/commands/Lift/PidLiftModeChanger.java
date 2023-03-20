@@ -21,7 +21,6 @@ public class PidLiftModeChanger extends PIDCommand {
           SmartDashboard.putNumber("liftEncoder", position.getAsDouble());
         });
     getController().setTolerance(3);
-
     addRequirements(m_lift);
   }
 

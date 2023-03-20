@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
         Constants.Joysticks.panel_port = i;
       }
     }
+
     m_robotContainer = new RobotContainer();
     // m_robotContainer.m_drive.BrakeMode();
   }
@@ -88,8 +89,8 @@ public class Robot extends TimedRobot {
     // }
     // }
 
-    m_robotContainer.m_lift.reset();
-    m_robotContainer.m_drive.ResetGyro();
+    // m_robotContainer.m_lift.reset();
+    // m_robotContainer.m_drive.ResetGyro();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

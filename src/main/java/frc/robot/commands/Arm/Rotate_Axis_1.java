@@ -3,7 +3,6 @@ package frc.robot.commands.Arm;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class Rotate_Axis_1 extends PIDCommand {
@@ -24,21 +23,25 @@ public class Rotate_Axis_1 extends PIDCommand {
             m_arm.Axis1MotorOutput(Math.min(output, 0.20));
             SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
           }
+
         });
   }
 
   @Override
   public boolean isFinished() {
     // return getController().atSetpoint();
-
-    Double setpoint = getController().getSetpoint();
-    if (Math.abs(RobotContainer.m_arm.getOutputAngle2) > Math.abs(setpoint) - 2.5
-        && Math.abs(RobotContainer.m_arm.getOutputAngle2) < Math.abs(setpoint) + 2.5) {
-
-      return true;
-    } else {
-
-      return false;
-    }
+    /*
+     * Double setpoint = getController().getSetpoint();
+     * if (Math.abs(RobotContainer.m_arm.getOutputAngle2) > Math.abs(setpoint) - 2.5
+     * && Math.abs(RobotContainer.m_arm.getOutputAngle2) < Math.abs(setpoint) + 2.5)
+     * {
+     * 
+     * return true;
+     * } else {
+     * 
+     * return false;
+     * }
+     */
+    return false;
   }
 }

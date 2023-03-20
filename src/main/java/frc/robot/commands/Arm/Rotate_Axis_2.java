@@ -28,6 +28,7 @@ public class Rotate_Axis_2 extends PIDCommand {
 
   @Override
   public boolean isFinished() {
-    return getController().atSetpoint();
+    // return getController().atSetpoint();
+    return false;
   }
 }

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.coastall;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
+import frc.robot.commands.Arm.Rotate_Axis_3;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
@@ -21,6 +22,7 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
+import frc.robot.commandgroups.ArmModeChanger;
 
 public class RobotContainer {
 
@@ -61,7 +63,13 @@ public class RobotContainer {
      * new PidLiftModeChanger(
      * m_lift,
      * () -> m_xboxSubsystem.getLiftValue()));
-     */}
+     * 
+     */
+
+    m_arm.setDefaultCommand(
+        new ArmModeChanger(m_arm, m_xboxSubsystem));
+
+  }
 
   private void configureBindings() {
     // button1.whileTrue(new ChargeStationBalance(m_drive));
@@ -89,20 +97,30 @@ public class RobotContainer {
     // button2.whileTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
     // button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
     // button3.whileTrue(new ResetAxis2Encoder(m_arm));
-    button1.whileTrue(new AutoGyroDrive(m_drive));
-    button2.whileTrue(new Fixer(m_drive));
-    button3.whileTrue(new blue(m_lift, m_arm, m_drive));
-    button4.whileTrue(new coastall(m_arm, m_lift));
-
+    /*
+     * button1.whileTrue(new AutoGyroDrive(m_drive));
+     * button2.whileTrue(new Fixer(m_drive));
+     * button3.whileTrue(new blue(m_lift, m_arm, m_drive));
+     * button4.whileTrue(new coastall(m_arm, m_lift));
+     */
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));
     // button9.whileTrue(new ResetLiftEncoder(m_lift));
     // button10.whileFalse(new PidLiftTest(m_lift, 0, true));
-    button9.whileTrue(new ResetLiftEncoder(m_lift));
-    button7.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift3()));
-    button8.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift2()));
-    button10.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeLift1()));
+    // button1.whileTrue(new Rotate)
+    button2.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(1)));
+
+    button3.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(2)));
+
+    button4.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(3)));
+
+    button5.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(4)));
+
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     // button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));

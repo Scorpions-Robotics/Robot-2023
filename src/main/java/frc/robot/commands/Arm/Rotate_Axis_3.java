@@ -30,22 +30,31 @@ public class Rotate_Axis_3 extends PIDCommand {
             SmartDashboard.putNumber("derece", degree);
             SmartDashboard.putNumber("-m_arm.getOutputAngle_Axis3", -m_arm.getOutputAngle_Axis3);
           }
+          SmartDashboard.putNumber("degreeeeeeeeeeeeeee", degree);
+
         });
+
   }
 
   @Override
   public boolean isFinished() {
     // return getController().atSetpoint();
-    Double setpoint = getController().getSetpoint();
-    if (Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) > Math.abs(setpoint) - 2.5
-        && Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) < Math.abs(setpoint) + 2.5) {
-
-      return true;
-    } else {
-
-      return false;
-    }
-
-    // return false;
+    /*
+     * Double setpoint = getController().getSetpoint();
+     * if (Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) > Math.abs(setpoint)
+     * - 2.5
+     * && Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) < Math.abs(setpoint) +
+     * 2.5) {
+     * 
+     * return true;
+     * } else {
+     * 
+     * return false;
+     * }
+     * 
+     * // return false;
+     * 
+     */
+    return false;
   }
 }
