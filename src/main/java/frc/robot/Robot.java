@@ -79,14 +79,14 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
 
-    for (int i = 0; i < 6; i++) {
-      if (DriverStation.getJoystickIsXbox(i)) {
-        Constants.Joysticks.xbox_port = i;
-      }
-      if (DriverStation.getJoystickName(i) == "Arduino") {
-        Constants.Joysticks.panel_port = i;
-      }
-    }
+    // for (int i = 0; i < 6; i++) {
+    // if (DriverStation.getJoystickIsXbox(i)) {
+    // Constants.Joysticks.xbox_port = i;
+    // }
+    // if (DriverStation.getJoystickName(i) == "Arduino") {
+    // Constants.Joysticks.panel_port = i;
+    // }
+    // }
 
     m_robotContainer.m_lift.reset();
     m_robotContainer.m_drive.ResetGyro();
