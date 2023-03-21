@@ -73,7 +73,6 @@ public class ArmSubsystem extends SubsystemBase {
 
   public void alert() {
     SmartDashboard.putString("recep", "tayyip");
-
   }
 
   public static double Axis3Angle() {

@@ -10,10 +10,6 @@ import frc.robot.subsystems.LiftSubsystem;
 public class blue extends SequentialCommandGroup {
   public blue(LiftSubsystem m_lift, ArmSubsystem m_arm, DriveSubsystem m_drive) {
 
-    addCommands(
-
-        new PidLiftCommand(m_lift, () -> 500)
-            .alongWith(new Rotate_Axis_2(m_arm, -150)));
-
+    addCommands(new PidLiftCommand(m_lift, () -> 500).alongWith(new Rotate_Axis_2(m_arm, -150)));
   }
 }
