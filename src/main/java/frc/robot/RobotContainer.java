@@ -5,24 +5,19 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commandgroups.coastall;
-import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
+import frc.robot.commandgroups.ArmModeChanger;
 import frc.robot.commandgroups.Autonomous.blue;
-import frc.robot.commands.Arm.Rotate_Axis_3;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
-import frc.robot.commands.Drivetrain.Fixer;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
 // import frc.robot.commands.Arm.Rotate_Axis_2;
 // import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
-import frc.robot.commandgroups.ArmModeChanger;
 
 public class RobotContainer {
 
@@ -63,12 +58,10 @@ public class RobotContainer {
      * new PidLiftModeChanger(
      * m_lift,
      * () -> m_xboxSubsystem.getLiftValue()));
-     * 
+     *
      */
 
-    m_arm.setDefaultCommand(
-        new ArmModeChanger(m_arm, m_xboxSubsystem));
-
+    m_arm.setDefaultCommand(new ArmModeChanger(m_arm, m_xboxSubsystem));
   }
 
   private void configureBindings() {
@@ -109,17 +102,13 @@ public class RobotContainer {
     // button9.whileTrue(new ResetLiftEncoder(m_lift));
     // button10.whileFalse(new PidLiftTest(m_lift, 0, true));
     // button1.whileTrue(new Rotate)
-    button2.whileTrue(new InstantCommand(
-        () -> m_xboxSubsystem.changeAxisValue(1)));
+    button2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(1)));
 
-    button3.whileTrue(new InstantCommand(
-        () -> m_xboxSubsystem.changeAxisValue(2)));
+    button3.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(2)));
 
-    button4.whileTrue(new InstantCommand(
-        () -> m_xboxSubsystem.changeAxisValue(3)));
+    button4.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(3)));
 
-    button5.whileTrue(new InstantCommand(
-        () -> m_xboxSubsystem.changeAxisValue(4)));
+    button5.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(4)));
 
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     // button8.whileTrue(new Throttle(true, m_xboxSubsystem));

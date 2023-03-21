@@ -23,7 +23,6 @@ public class Rotate_Axis_1 extends PIDCommand {
             m_arm.Axis1MotorOutput(Math.min(output, 0.20));
             SmartDashboard.putNumber("GetOutputAngle", -m_arm.getOutputAngle2);
           }
-
         });
   }
 
@@ -35,10 +34,10 @@ public class Rotate_Axis_1 extends PIDCommand {
      * if (Math.abs(RobotContainer.m_arm.getOutputAngle2) > Math.abs(setpoint) - 2.5
      * && Math.abs(RobotContainer.m_arm.getOutputAngle2) < Math.abs(setpoint) + 2.5)
      * {
-     * 
+     *
      * return true;
      * } else {
-     * 
+     *
      * return false;
      * }
      */

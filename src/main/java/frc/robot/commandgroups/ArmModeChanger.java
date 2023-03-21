@@ -1,8 +1,5 @@
 package frc.robot.commandgroups;
 
-import java.util.function.DoubleSupplier;
-
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Arm.Rotate_Axis_1;
 import frc.robot.commands.Arm.Rotate_Axis_2;

@@ -3,7 +3,6 @@ package frc.robot.commands.Arm;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class Rotate_Axis_3 extends PIDCommand {
@@ -31,9 +30,7 @@ public class Rotate_Axis_3 extends PIDCommand {
             SmartDashboard.putNumber("-m_arm.getOutputAngle_Axis3", -m_arm.getOutputAngle_Axis3);
           }
           SmartDashboard.putNumber("degreeeeeeeeeeeeeee", degree);
-
         });
-
   }
 
   @Override
@@ -45,15 +42,15 @@ public class Rotate_Axis_3 extends PIDCommand {
      * - 2.5
      * && Math.abs(RobotContainer.m_arm.getOutputAngle_Axis3) < Math.abs(setpoint) +
      * 2.5) {
-     * 
+     *
      * return true;
      * } else {
-     * 
+     *
      * return false;
      * }
-     * 
+     *
      * // return false;
-     * 
+     *
      */
     return false;
   }

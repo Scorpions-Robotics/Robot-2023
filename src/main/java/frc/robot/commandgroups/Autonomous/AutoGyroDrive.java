@@ -13,10 +13,9 @@ import frc.robot.subsystems.DriveSubsystem;
 public class AutoGyroDrive extends SequentialCommandGroup {
   public AutoGyroDrive(DriveSubsystem m_drive) {
 
-    addCommands(new EncoderReset(m_drive)
-        .andThen(new AutoStraightDrive2(m_drive, 1))
-        .alongWith(new AutoHStraightDrive(m_drive, 1))
-
-    );
+    addCommands(
+        new EncoderReset(m_drive)
+            .andThen(new AutoStraightDrive2(m_drive, 1))
+            .alongWith(new AutoHStraightDrive(m_drive, 1)));
   }
 }
