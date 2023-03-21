@@ -18,6 +18,8 @@ public class coastall extends SequentialCommandGroup {
 
     addCommands(
         new InstantCommand(() -> m_arm.Axis2MotorCoastMode())
+            .alongWith(new InstantCommand(() -> m_arm.Axis3MotorCoastMode()))
+            .alongWith(new InstantCommand(() -> m_arm.Axis1MotorCoastMode()))
             .alongWith(new InstantCommand(() -> m_lift.coastmode())));
 
   }

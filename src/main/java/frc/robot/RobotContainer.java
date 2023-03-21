@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.coastall;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
+import frc.robot.commands.Arm.ArmModeChanger2;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
@@ -58,16 +59,9 @@ public class RobotContainer {
 
     configureBindings();
 
-    /*
-     * m_lift.setDefaultCommand(
-     * new PidLiftModeChanger(
-     * m_lift,
-     * () -> m_xboxSubsystem.getLiftValue()));
-     * 
-     */
-
-    m_arm.setDefaultCommand(
-        new ArmModeChanger(m_arm, m_xboxSubsystem));
+    m_arm.setDefaultCommand(new PidLiftModeChanger(
+        m_lift,
+        () -> m_xboxSubsystem.getLiftValue()));
 
   }
 
@@ -121,6 +115,7 @@ public class RobotContainer {
     button5.whileTrue(new InstantCommand(
         () -> m_xboxSubsystem.changeAxisValue(4)));
 
+    // button1.whileTrue(new ArmModeChanger2(m_arm, m_xboxSubsystem));
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));
     // button8.whileTrue(new Throttle(true, m_xboxSubsystem));
     // button9.whileTrue(new RotateAxis1(m_arm));

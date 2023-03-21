@@ -9,8 +9,7 @@ public final class Constants {
 
   public static class Joysticks {
     // bunu değiştir-----------------------
-    public static int xbox_port = 0;
-    public static int panel_port = 1;
+    public static int xbox_port = 1;
     // ----------------------------------
   }
 

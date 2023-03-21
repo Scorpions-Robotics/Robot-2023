@@ -134,9 +134,7 @@ public class XboxSubsystem extends SubsystemBase {
       axis2Value = 30;
       axis3Value = 30;
 
-    }
-
-    else if (mode == 4) {
+    } else if (mode == 4) {
       axis1Value = 50;
       axis2Value = 50;
       axis3Value = 50;

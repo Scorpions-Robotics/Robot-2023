@@ -1,6 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,15 +18,6 @@ public class Robot extends TimedRobot {
     auto_chooser.addOption("otonom36", 2);
 
     SmartDashboard.putData(auto_chooser);
-
-    for (int i = 0; i < 6; i++) {
-      if (DriverStation.getJoystickIsXbox(i)) {
-        Constants.Joysticks.xbox_port = i;
-      }
-      if (DriverStation.getJoystickName(i) == "Arduino") {
-        Constants.Joysticks.panel_port = i;
-      }
-    }
 
     m_robotContainer = new RobotContainer();
     // m_robotContainer.m_drive.BrakeMode();

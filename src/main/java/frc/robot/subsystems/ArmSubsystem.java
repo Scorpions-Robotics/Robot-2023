@@ -116,15 +116,15 @@ public class ArmSubsystem extends SubsystemBase {
     Axis3Motor.set(value);
   }
 
-  public static void Axis1MotorBreakMode() {
+  public void Axis1MotorBreakMode() {
     Axis1Motor.setIdleMode(IdleMode.kBrake);
   }
 
-  public static void Axis2MotorBreakMode() {
+  public void Axis2MotorBreakMode() {
     Axis2Motor.setIdleMode(IdleMode.kBrake);
   }
 
-  public static void Axis3MotorBreakMode() {
+  public void Axis3MotorBreakMode() {
     Axis3Motor.setIdleMode(IdleMode.kBrake);
   }
 
@@ -132,7 +132,7 @@ public class ArmSubsystem extends SubsystemBase {
     Axis1Motor.setIdleMode(IdleMode.kCoast);
   }
 
-  public static void Axis2MotorCoastMode() {
+  public void Axis2MotorCoastMode() {
     Axis2Motor.setIdleMode(IdleMode.kCoast);
   }
 
