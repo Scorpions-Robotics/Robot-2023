@@ -1,8 +1,11 @@
 package frc.robot.commandgroups;
 
+import org.ejml.sparse.csc.linsol.qr.LinearSolverQrLeftLooking_DSCC;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Arm.ArmModeChanger3;
 import frc.robot.commands.Lift.PidLiftCommand;
+import frc.robot.commands.Lift.PidLiftModeChanger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;

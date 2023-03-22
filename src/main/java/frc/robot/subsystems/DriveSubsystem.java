@@ -51,7 +51,7 @@ public class DriveSubsystem extends SubsystemBase {
   RelativeEncoder encoder1;
   // ---------------------------------------
   public static boolean duzelt = false;
-  public boolean fixed;
+  public boolean fixed = true;
   // Motor----------------------------------
 
   private WPI_VictorSPX rightFront = new WPI_VictorSPX(Constants.CAN.kRightLeaderID);
@@ -308,42 +308,9 @@ public class DriveSubsystem extends SubsystemBase {
   public void RunTogether(double right, double left, double hDriveFront, double hDriveBack) {
     // m_right.set(right);
     // m_left.set(left);
-
-    // if ((Math.abs(hDriveBack) < 0.005)) {
-    // hDriveBack = 0;
-    // }
-
-    // if ((Math.abs(hDriveFront) < 0.005)) {
-    // hDriveFront = 0;
-    // }
-
     drive.tankDrive(left, right);
     middle1.set(hDriveFront);
     middle2.set(hDriveBack);
-
-    if ((left > -0.05 && left < 0.05) && (right > -0.05 && right < 0.05)) {
-
-      if ((hDriveBack > -0.05 && hDriveBack < 0.05) && (hDriveFront > -0.05 && hDriveFront < 0.05)) {
-        leftFront.configOpenloopRamp(0, 20);
-        rightFront.configOpenloopRamp(0, 20);
-        leftRear.configOpenloopRamp(0, 20);
-        rightRear.configOpenloopRamp(0, 20);
-      } else if ((hDriveBack < -0.05 || hDriveBack > 0.05) || (hDriveFront < -0.05 || hDriveFront > 0.05)) {
-        leftFront.configOpenloopRamp(0.9, 20);
-        rightFront.configOpenloopRamp(0.9, 20);
-        leftRear.configOpenloopRamp(0.9, 20);
-        rightRear.configOpenloopRamp(0.9, 20);
-      }
-
-    } else if ((hDriveBack < -0.05 || hDriveBack > 0.05) || (hDriveFront < -0.05 || hDriveFront > 0.05)) { // Limits
-                                                                                                           // ramp
-                                                                                                           // either way
-      leftFront.configOpenloopRamp(0.9, 20);
-      rightFront.configOpenloopRamp(0.9, 20);
-      leftRear.configOpenloopRamp(0.9, 20);
-      rightRear.configOpenloopRamp(0.9, 20);
-    }
-
   }
 
   public void RunStraightForCrossDrive(double right, double left) {
@@ -431,7 +398,7 @@ public class DriveSubsystem extends SubsystemBase {
     // getRightEncoderDistance(),
     // getLeftEncoderDistance());
 
-    SmartDashboard.putNumber("pitch", imu.getRoll());
+    SmartDashboard.putNumber("pitch", imu.getPitch());
     SmartDashboard.putNumber("heading", GetHeading());
   }
 }

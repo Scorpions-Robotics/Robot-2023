@@ -136,7 +136,7 @@ public class ArmSubsystem extends SubsystemBase {
     Axis3Motor.setIdleMode(IdleMode.kBrake);
   }
 
-  public void Axis1MotorCoastMode() {
+  public static void Axis1MotorCoastMode() {
     Axis1Motor.setIdleMode(IdleMode.kCoast);
   }
 
@@ -144,7 +144,7 @@ public class ArmSubsystem extends SubsystemBase {
     Axis2Motor.setIdleMode(IdleMode.kCoast);
   }
 
-  public void Axis3MotorCoastMode() {
+  public static void Axis3MotorCoastMode() {
     Axis3Motor.setIdleMode(IdleMode.kCoast);
   }
 

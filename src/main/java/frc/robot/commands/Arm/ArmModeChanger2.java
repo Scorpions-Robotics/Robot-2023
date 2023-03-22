@@ -60,7 +60,7 @@ public class ArmModeChanger2 extends CommandBase {
     if (axis1 + 5 > -m_arm.getOutputAngle2) {
       m_arm.Axis1MotorOutput(Math.max(-motor1output, -0.20));
     } else if (-m_arm.getOutputAngle2 > axis1 + 5) {
-      m_arm.Axis1MotorOutput(Math.min(-motor1output, 0.20));
+      m_arm.Axis1MotorOutput(Math.min(motor1output, 0.20));
     }
 
     if (axis2 > m_arm.getOutputAngle_Axis2) {
@@ -75,6 +75,7 @@ public class ArmModeChanger2 extends CommandBase {
     } else if (m_arm.getOutputAngle_Axis3 > axis3) {
       m_arm.Axis3MotorOutput(Math.min(-motor3output, 0.25));
     }
+
   }
 
   @Override

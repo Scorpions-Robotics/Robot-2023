@@ -2,34 +2,47 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commandgroups.coastall;
 import frc.robot.commandgroups.level1;
 import frc.robot.commandgroups.level2;
 import frc.robot.commandgroups.level3;
-import frc.robot.commandgroups.level4;
 import frc.robot.commandgroups.resetall;
+import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
+import frc.robot.commands.Arm.ArmModeChanger2;
+import frc.robot.commands.Arm.ArmModeChanger3;
+import frc.robot.commands.Arm.ResetAxis1Encoder;
+import frc.robot.commands.Arm.Rotate_Axis_1;
+import frc.robot.commands.Arm.Rotate_Axis_2;
+import frc.robot.commands.Arm.Rotate_Axis_3;
+import frc.robot.commands.Arm.testAxis1;
+// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
-import frc.robot.commands.Drivetrain.pidChargeStation;
+// import frc.robot.commandgroups.Autonomous.ArmMovement1;
+// import frc.robot.commands.Arm.ResetAxis1Encoder;
+// import frc.robot.commands.Arm.Rotate_Axis_1;
+// import frc.robot.commands.Arm.Rotate_Axis_2;
+// import frc.robot.commands.Arm.Rotate_Axis_3;
+import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
-import frc.robot.subsystems.LEDSubsystem;
+import frc.robot.commandgroups.ArmModeChanger;
 
 public class RobotContainer {
 
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
-  LEDSubsystem m_led = new LEDSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
-  public LiftSubsystem m_lift = new LiftSubsystem();
-  public ArmSubsystem m_arm = new ArmSubsystem();
-  // public GripperSubsystem m_grip = new GripperSubsystem();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
+  public static ArmSubsystem m_arm = new ArmSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
+  // public static ArmSubsystem m_arm = new ArmSubsystem();
 
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
@@ -57,25 +70,25 @@ public class RobotContainer {
     configureBindings();
 
     /*
-     * m_lift.setDefaultCommand(
      * new PidLiftModeChanger(
      * m_lift,
      * () -> m_xboxSubsystem.getLiftValue()));
-     *
+     * 
      */
-
-    // m_arm.setDefaultCommand(new ArmModeChanger(m_arm, m_xboxSubsystem));
+    /*
+     * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
+     * m_xboxSubsystem));
+     */
   }
 
   private void configureBindings() {
     button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
     button3.whileTrue(new level1(m_arm, m_lift, m_xboxSubsystem));
-    button4.whileTrue(new level4(m_arm, m_lift, m_xboxSubsystem));
-    // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
-    button1.whileTrue(new pidChargeStation(m_drive));
-    // button1.whileTrue(new resetall(m_arm));
+    button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
 
+    // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
+    button1.whileTrue(new resetall(m_arm));
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
@@ -109,7 +122,7 @@ public class RobotContainer {
      * button3.whileTrue(new blue(m_lift, m_arm, m_drive));
      * button4.whileTrue(new coastall(m_arm, m_lift));
      */
-    button7.whileTrue(new Fixer(m_drive));
+    button10.whileTrue(new Fixer(m_drive));
     button9.whileTrue(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     button9.whileFalse(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     // button9.whileTrue(new
@@ -118,16 +131,17 @@ public class RobotContainer {
     // button9.whileTrue(new ResetLiftEncoder(m_lift));
     // button10.whileFalse(new PidLiftTest(m_lift, 0, true));
     // button1.whileTrue(new Rotate)
-    button2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(1)));
+    button2.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(1)));
 
-    button3.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(2)));
+    button3.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(2)));
 
-    button4.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(3)));
+    button4.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(3)));
 
-    button5.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(4)));
-
-    // button9.whileTrue(new LEDCommand(m_led));
-    // button9.whileFalse(new InstantCommand(() -> m_led.setAll(Color.kRed)));
+    button5.whileTrue(new InstantCommand(
+        () -> m_xboxSubsystem.changeAxisValue(4)));
 
     // button1.whileTrue(new ArmModeChanger2(m_arm, m_xboxSubsystem));
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));

@@ -1,7 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private static RobotContainer m_robotContainer;
+  private RobotContainer m_robotContainer;
   public static SendableChooser<Integer> auto_chooser = new SendableChooser<>();
 
   @Override
@@ -18,15 +16,6 @@ public class Robot extends TimedRobot {
     auto_chooser.setDefaultOption("otonom31", 1);
     auto_chooser.addOption("otonom31", 1);
     auto_chooser.addOption("otonom36", 2);
-
-    // PWM port 9
-    // Must be a PWM header, not MXP or DIO
-
-    // Reuse buffer
-    // Default to a length of 60, start empty output
-    // Length is expensive to set, so only set it once, then just update data
-
-    // Set the data
 
     SmartDashboard.putData(auto_chooser);
 
@@ -75,7 +64,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    m_robotContainer.m_lift.reset();
+    RobotContainer.m_lift.reset();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand(auto_chooser.getSelected());
   }
 
@@ -95,6 +84,8 @@ public class Robot extends TimedRobot {
     // }
     // }
     m_robotContainer.m_lift.brakemod();
+    m_robotContainer.m_arm.Axis2MotorBreakMode();
+    m_robotContainer.m_arm.Axis1MotorBreakMode();
     // m_robotContainer.m_lift.reset();
     // m_robotContainer.m_drive.ResetGyro();
     if (m_autonomousCommand != null) {
@@ -102,12 +93,6 @@ public class Robot extends TimedRobot {
     }
     m_robotContainer.m_arm.Axis2MotorBreakMode();
     m_robotContainer.m_arm.Axis1MotorBreakMode();
-    m_robotContainer.m_drive.ResetGyro();
-    m_robotContainer.m_drive.ResetEncoders();
-    m_robotContainer.m_arm.Axis1EncoderReset();
-    m_robotContainer.m_arm.Axis2EncoderReset();
-    m_robotContainer.m_arm.Axis3EncoderReset();
-    m_robotContainer.m_lift.reset();
   }
 
   @Override
