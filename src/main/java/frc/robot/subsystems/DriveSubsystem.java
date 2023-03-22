@@ -308,6 +308,15 @@ public class DriveSubsystem extends SubsystemBase {
   public void RunTogether(double right, double left, double hDriveFront, double hDriveBack) {
     // m_right.set(right);
     // m_left.set(left);
+
+    // if ((Math.abs(hDriveBack) < 0.005)) {
+    // hDriveBack = 0;
+    // }
+
+    // if ((Math.abs(hDriveFront) < 0.005)) {
+    // hDriveFront = 0;
+    // }
+
     drive.tankDrive(left, right);
     middle1.set(hDriveFront);
     middle2.set(hDriveBack);

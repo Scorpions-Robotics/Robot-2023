@@ -109,7 +109,7 @@ public class RobotContainer {
      * button3.whileTrue(new blue(m_lift, m_arm, m_drive));
      * button4.whileTrue(new coastall(m_arm, m_lift));
      */
-    button10.whileTrue(new Fixer(m_drive));
+    button7.whileTrue(new Fixer(m_drive));
     button9.whileTrue(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     button9.whileFalse(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     // button9.whileTrue(new
