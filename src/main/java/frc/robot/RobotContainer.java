@@ -16,16 +16,19 @@ import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Drivetrain.pidChargeStation;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 
 public class RobotContainer {
 
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
-  // LEDSubsystem m_led = new LEDSubsystem();
+  LEDSubsystem m_led = new LEDSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public LiftSubsystem m_lift = new LiftSubsystem();
   public ArmSubsystem m_arm = new ArmSubsystem();
+  // public GripperSubsystem m_grip = new GripperSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
 
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);

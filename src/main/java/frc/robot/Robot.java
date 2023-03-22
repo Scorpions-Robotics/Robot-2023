@@ -12,24 +12,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private static RobotContainer m_robotContainer;
   public static SendableChooser<Integer> auto_chooser = new SendableChooser<>();
-  public AddressableLED m_led;
-  public AddressableLEDBuffer m_ledBuffer;
-  public int m_rainbowFirstPixelHue = 60;
-
-  public void rainbow() {
-    // For every pixel
-    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-      // Calculate the hue - hue is easier for rainbows because the color
-      // shape is a circle so only one value needs to precess
-      final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
-      // Set the value
-      m_ledBuffer.setHSV(i, hue, 255, 128);
-    }
-    // Increase by to make the rainbow "move"
-    m_rainbowFirstPixelHue += 3;
-    // Check bounds
-    m_rainbowFirstPixelHue %= 180;
-  }
 
   @Override
   public void robotInit() {
@@ -39,17 +21,12 @@ public class Robot extends TimedRobot {
 
     // PWM port 9
     // Must be a PWM header, not MXP or DIO
-    m_led = new AddressableLED(9);
 
     // Reuse buffer
     // Default to a length of 60, start empty output
     // Length is expensive to set, so only set it once, then just update data
-    m_ledBuffer = new AddressableLEDBuffer(240);
-    m_led.setLength(m_ledBuffer.getLength());
 
     // Set the data
-    m_led.setData(m_ledBuffer);
-    m_led.start();
 
     SmartDashboard.putData(auto_chooser);
 
@@ -60,8 +37,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    rainbow();
-    m_led.setData(m_ledBuffer);
   }
 
   @Override
