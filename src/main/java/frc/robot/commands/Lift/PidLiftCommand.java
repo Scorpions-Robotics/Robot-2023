@@ -16,7 +16,7 @@ public class PidLiftCommand extends PIDCommand {
         () -> m_lift.getEditedEncoderOutput(),
         () -> position.getAsDouble(),
         output -> {
-          m_lift.pidSetMotor(output * -0.75);
+          m_lift.pidSetMotor(output * -0.15);
           SmartDashboard.putNumber("liftEncoder", m_lift.getEditedEncoderOutput());
           SmartDashboard.putNumber("liftEncoder", position.getAsDouble());
         });

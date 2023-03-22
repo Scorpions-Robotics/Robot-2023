@@ -31,12 +31,20 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     // m_robotContainer.m_arm.Axis1MotorStop();
+    m_robotContainer.m_lift.coastmode();
+    m_robotContainer.m_arm.Axis2MotorCoastMode();
+    m_robotContainer.m_arm.Axis1MotorCoastMode();
+
   }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
+  /**
+   * This autonomous runs the autonomous command selected by your
+   * {@link RobotContainer} class.
+   */
   @Override
   public void autonomousInit() {
     m_robotContainer.m_drive.ResetGyro();
@@ -45,10 +53,12 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_arm.Axis2EncoderReset();
     m_robotContainer.m_arm.Axis3EncoderReset();
     m_robotContainer.m_lift.reset();
+
     m_robotContainer.m_lift.brakemod();
-    m_robotContainer.m_arm.Axis1MotorBreakMode();
-    m_robotContainer.m_arm.Axis2MotorBreakMode();
-    m_robotContainer.m_arm.Axis3MotorBreakMode();
+    // robotContainer.m_lift.brakemod();
+    // m_robotContainer.m_arm.Axis1MotorBreakMode();
+    // m_robotContainer.m_arm.Axis2MotorBreakMode();
+    // m_robotContainer.m_arm.Axis3MotorBreakMode();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -59,7 +69,8 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+  }
 
   @Override
   public void teleopInit() {
@@ -72,16 +83,21 @@ public class Robot extends TimedRobot {
     // Constants.Joysticks.panel_port = i;
     // }
     // }
-
+    m_robotContainer.m_lift.brakemod();
+    m_robotContainer.m_arm.Axis2MotorBreakMode();
+    m_robotContainer.m_arm.Axis1MotorBreakMode();
     // m_robotContainer.m_lift.reset();
     // m_robotContainer.m_drive.ResetGyro();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_robotContainer.m_arm.Axis2MotorBreakMode();
+    m_robotContainer.m_arm.Axis1MotorBreakMode();
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+  }
 
   @Override
   public void testInit() {
@@ -89,11 +105,14 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 
   @Override
-  public void simulationInit() {}
+  public void simulationInit() {
+  }
 
   @Override
-  public void simulationPeriodic() {}
+  public void simulationPeriodic() {
+  }
 }

@@ -24,33 +24,29 @@ public class DriveSubsystem extends SubsystemBase {
   // ------------------------------------
   // Encoder-----------------------------
 
-  private Encoder leftDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kLeftDriveEncoderChannelA,
-          Constants.ENCODERS.kLeftDriveEncoderChannelB,
-          Constants.invert.leftencoderreversedirection,
-          EncodingType.k4X);
+  private Encoder leftDriveEncoder = new Encoder(
+      Constants.ENCODERS.kLeftDriveEncoderChannelA,
+      Constants.ENCODERS.kLeftDriveEncoderChannelB,
+      Constants.invert.leftencoderreversedirection,
+      EncodingType.k4X);
 
-  private Encoder rightDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kRightDriveEncoderChannelA,
-          Constants.ENCODERS.kRightDriveEncoderChannelB,
-          Constants.invert.rightencoderreversedirection,
-          EncodingType.k4X);
+  private Encoder rightDriveEncoder = new Encoder(
+      Constants.ENCODERS.kRightDriveEncoderChannelA,
+      Constants.ENCODERS.kRightDriveEncoderChannelB,
+      Constants.invert.rightencoderreversedirection,
+      EncodingType.k4X);
 
-  private Encoder hDriveEncoder =
-      new Encoder(
-          Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
-          Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
-          Constants.invert.hdriveencoder,
-          EncodingType.k4X);
+  private Encoder hDriveEncoder = new Encoder(
+      Constants.ENCODERS.kMiddle1DriveEncoderChannelA,
+      Constants.ENCODERS.kMiddle1DriveEncoderChannelB,
+      Constants.invert.hdriveencoder,
+      EncodingType.k4X);
 
-  private Encoder hDriveEncoder2 =
-      new Encoder(
-          Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
-          Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
-          Constants.invert.hdriveencoder2,
-          EncodingType.k4X);
+  private Encoder hDriveEncoder2 = new Encoder(
+      Constants.ENCODERS.kMiddle2DriveEncoderChannelA,
+      Constants.ENCODERS.kMiddle2DriveEncoderChannelB,
+      Constants.invert.hdriveencoder2,
+      EncodingType.k4X);
 
   RelativeEncoder encoder1;
   // ---------------------------------------
@@ -77,8 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
   // DifferentialDriveClass
   private DifferentialDrive drive = new DifferentialDrive(m_right, m_left);
   public DifferentialDriveOdometry odometry;
-  public DifferentialDriveKinematics kinematics =
-      new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
+  public DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.ODOMETRY.kTrackwidthMeters);
   // ---------------------------------------
 
   public DriveSubsystem() {
@@ -268,7 +263,6 @@ public class DriveSubsystem extends SubsystemBase {
     if (y > -0.05 && y < 0.05) {
 
       if (z > -0.05 && z < 0.05) {
-        SmartDashboard.putNumber("ramp rate", 0);
         leftFront.configOpenloopRamp(0, 20);
         rightFront.configOpenloopRamp(0, 20);
         leftRear.configOpenloopRamp(0, 20);
@@ -292,7 +286,6 @@ public class DriveSubsystem extends SubsystemBase {
   public void GetArmEncoderValue() {
     // encoder1 = armmotor1.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,
     // 42);
-    SmartDashboard.putNumber("arm encoder", encoder1.getPosition());
   }
 
   public void RunRightSideVolts(double volts) {
@@ -405,7 +398,6 @@ public class DriveSubsystem extends SubsystemBase {
     // getRightEncoderDistance(),
     // getLeftEncoderDistance());
 
-    SmartDashboard.putBoolean("Connection state", imu.isConnected());
     SmartDashboard.putNumber("pitch", imu.getPitch());
     SmartDashboard.putNumber("heading", GetHeading());
   }

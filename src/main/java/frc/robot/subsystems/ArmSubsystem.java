@@ -31,9 +31,9 @@ public class ArmSubsystem extends SubsystemBase {
   public static double b;
 
   public ArmSubsystem() {
-    Axis1Motor.setIdleMode(IdleMode.kBrake);
-    Axis2Motor.setIdleMode(IdleMode.kBrake);
-    Axis3Motor.setIdleMode(IdleMode.kBrake);
+    // Axis1Motor.setIdleMode(IdleMode.kBrake);
+    // Axis2Motor.setIdleMode(IdleMode.kBrake);
+    // Axis3Motor.setIdleMode(IdleMode.kBrake);
   }
 
   public double GetOutputAngle() {
@@ -52,15 +52,14 @@ public class ArmSubsystem extends SubsystemBase {
     getOutputAngle_Axis2 = GetOutputAxis2();
     getOutputAngle_Axis3 = GetOutputAxis3();
 
-    SmartDashboard.putNumber("axis1 motor encoder", Axis1Angle());
-    SmartDashboard.putNumber("axis1 motor encoder edited", Math.round(GetOutputAngle()));
-    SmartDashboard.putNumber("axis2 motor encoder edited", getOutputAngle_Axis2);
-    SmartDashboard.putNumber("axis3 motor encoder edited", getOutputAngle_Axis3);
-
     modevalue3();
     modevalue2();
     modevalue();
-    // createSmartDashboardNumber("p",1);
+
+    SmartDashboard.putNumber("1. axis", getOutputAngle2);
+    SmartDashboard.putNumber("2. axis", getOutputAngle_Axis2);
+    SmartDashboard.putNumber("3. axis", getOutputAngle_Axis3);
+
   }
 
   public static double Axis1Angle() {
@@ -105,6 +104,16 @@ public class ArmSubsystem extends SubsystemBase {
 
   public void Axis1MotorOutput(double value) {
     Axis1Motor.set(value);
+  }
+
+  public void editedAxis1MotorOutput(double value) {
+    if (value > 0.25) {
+      Axis1Motor.set(0.25);
+    } else if (value < -0.25) {
+      Axis1Motor.set(-0.25);
+    } else {
+      Axis1Motor.set(value);
+    }
   }
 
   public void Axis2MotorOutput(double value) {
@@ -174,37 +183,26 @@ public class ArmSubsystem extends SubsystemBase {
 
   public void modevalue() {
     if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {
-      SmartDashboard.putString("mode", "brake");
     }
 
     if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {
-      SmartDashboard.putString("mode", "coast");
     }
   }
 
   public void modevalue2() {
     if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {
-      SmartDashboard.putString("mode2", "brake");
     }
 
     if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {
-      SmartDashboard.putString("mode2", "coast");
     }
   }
 
   public void modevalue3() {
     if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {
-      SmartDashboard.putString("mode3", "brake");
     }
 
     if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {
-      SmartDashboard.putString("mode3", "coast");
     }
   }
 
-  public static double createSmartDashboardNumber(String key, double defValue) {
-    double value = SmartDashboard.getNumber(key, defValue);
-    SmartDashboard.putNumber(key, value);
-    return value;
-  }
 }

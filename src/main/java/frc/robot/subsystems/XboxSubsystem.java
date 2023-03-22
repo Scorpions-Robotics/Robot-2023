@@ -16,7 +16,8 @@ public class XboxSubsystem extends SubsystemBase {
   public int mode;
   public boolean stabilmode = true;
 
-  public XboxSubsystem() {}
+  public XboxSubsystem() {
+  }
 
   public void mode1() {
     ThrottleValue = 0.20;
@@ -119,7 +120,6 @@ public class XboxSubsystem extends SubsystemBase {
       axis1Value = 0;
       axis2Value = 0;
       axis3Value = 0;
-      SmartDashboard.putNumber("axis3value31", axis3Value);
 
     } else if (mode == 2) {
       axis1Value = 20;
@@ -140,8 +140,5 @@ public class XboxSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-
-    SmartDashboard.putBoolean("stabilizemode", stabilmode);
-    SmartDashboard.putNumber("throttle", ThrottleValue);
   }
 }

@@ -2,14 +2,24 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.coastall;
+import frc.robot.commandgroups.level1;
+import frc.robot.commandgroups.level2;
+import frc.robot.commandgroups.level3;
+import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commands.Arm.ArmModeChanger2;
+import frc.robot.commands.Arm.ArmModeChanger3;
+import frc.robot.commands.Arm.ResetAxis1Encoder;
+import frc.robot.commands.Arm.Rotate_Axis_1;
+import frc.robot.commands.Arm.Rotate_Axis_2;
 import frc.robot.commands.Arm.Rotate_Axis_3;
+import frc.robot.commands.Arm.testAxis1;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
@@ -72,8 +82,17 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
+
+    button3.whileTrue(new level1(m_arm, m_lift, m_xboxSubsystem));
+    button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
+
+    // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
+    button1.whileTrue(new resetall(m_arm));
+    // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
+     * 2.+ ileri 1.+ geri
      * button1.onTrue(new Rotate_Axis_1(m_arm,120));
      * button2.onTrue(new ResetAxis1Encoder(m_arm));
      * button3.onTrue(new InstantCommand(() -> m_arm.Axis1MotorCoastMode()));
@@ -103,6 +122,9 @@ public class RobotContainer {
      * button3.whileTrue(new blue(m_lift, m_arm, m_drive));
      * button4.whileTrue(new coastall(m_arm, m_lift));
      */
+    button10.whileTrue(new Fixer(m_drive));
+    button9.whileTrue(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
+    button9.whileFalse(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));

@@ -11,11 +11,10 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
 
   public RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor =
-      new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
 
   public LiftSubsystem() {
-    LiftMotor.setIdleMode(IdleMode.kBrake);
+    // LiftMotor.setIdleMode(IdleMode.kBrake);
     LiftEncoder = LiftMotor.getEncoder();
   }
 
@@ -73,8 +72,7 @@ public class LiftSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("nummmmber", getRawEncoderOutput());
-    SmartDashboard.putNumber("edited", getEditedEncoderOutput());
+    SmartDashboard.putNumber("Lift data", getRawEncoderOutput());
     LiftEncoder = LiftMotor.getEncoder();
   }
 }

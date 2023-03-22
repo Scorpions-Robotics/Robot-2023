@@ -16,7 +16,7 @@ public class ArmModeChanger3 extends CommandBase {
   double axis2;
   double axis3;
 
-  PIDController controller = new PIDController(0.01, 0, 0);
+  PIDController controller = new PIDController(0.045, 0, 0);
   PIDController controller2 = new PIDController(0.025, 0, 0);
   PIDController controller3 = new PIDController(0.00415, 0, 0);
 
@@ -58,7 +58,7 @@ public class ArmModeChanger3 extends CommandBase {
     if (axis1 + 5 > -m_arm.getOutputAngle2) {
       m_arm.Axis1MotorOutput(Math.max(-motor1output, -0.20));
     } else if (-m_arm.getOutputAngle2 > axis1 + 5) {
-      m_arm.Axis1MotorOutput(Math.min(motor1output, 0.20));
+      m_arm.Axis1MotorOutput(Math.min(-motor1output, 0.20));
     }
 
     if (axis2 > m_arm.getOutputAngle_Axis2) {
