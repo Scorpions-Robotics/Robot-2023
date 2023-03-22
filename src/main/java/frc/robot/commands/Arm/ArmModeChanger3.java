@@ -4,7 +4,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.XboxSubsystem;
 
 public class ArmModeChanger3 extends CommandBase {
   ArmSubsystem m_arm;
@@ -73,12 +72,10 @@ public class ArmModeChanger3 extends CommandBase {
     } else if (m_arm.getOutputAngle_Axis3 > axis3) {
       m_arm.Axis3MotorOutput(Math.min(-motor3output, 0.25));
     }
-
   }
 
   @Override
   public void end(boolean interrupted) {
-
   }
 
   @Override
