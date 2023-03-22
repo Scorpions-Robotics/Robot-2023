@@ -127,6 +127,12 @@ public class Robot extends TimedRobot {
     }
     m_robotContainer.m_arm.Axis2MotorBreakMode();
     m_robotContainer.m_arm.Axis1MotorBreakMode();
+    m_robotContainer.m_drive.ResetGyro();
+    m_robotContainer.m_drive.ResetEncoders();
+    m_robotContainer.m_arm.Axis1EncoderReset();
+    m_robotContainer.m_arm.Axis2EncoderReset();
+    m_robotContainer.m_arm.Axis3EncoderReset();
+    m_robotContainer.m_lift.reset();
   }
 
   @Override

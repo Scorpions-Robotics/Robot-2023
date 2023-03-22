@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.level1;
 import frc.robot.commandgroups.level2;
 import frc.robot.commandgroups.level3;
+import frc.robot.commandgroups.level4;
 import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
+import frc.robot.commands.Drivetrain.pidChargeStation;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
@@ -66,9 +68,11 @@ public class RobotContainer {
     button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
     button3.whileTrue(new level1(m_arm, m_lift, m_xboxSubsystem));
-    button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
+    button4.whileTrue(new level4(m_arm, m_lift, m_xboxSubsystem));
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
-    button1.whileTrue(new resetall(m_arm));
+    button1.whileTrue(new pidChargeStation(m_drive));
+    // button1.whileTrue(new resetall(m_arm));
+
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
