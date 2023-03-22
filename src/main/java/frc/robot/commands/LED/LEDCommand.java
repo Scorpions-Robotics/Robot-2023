@@ -26,7 +26,6 @@ public class LEDCommand extends CommandBase {
   @Override
   public void execute() {
     m_led.rainbow();
-
   }
 
   // Called once the command ends or is interrupted.

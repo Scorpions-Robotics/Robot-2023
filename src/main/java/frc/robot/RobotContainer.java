@@ -2,29 +2,21 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commandgroups.ArmModeChanger;
 import frc.robot.commandgroups.Autonomous.blue;
-import frc.robot.commands.Arm.ArmModeChanger2;
-import frc.robot.commands.Arm.Rotate_Axis_3;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
-import frc.robot.commands.LED.LEDCommand;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
 // import frc.robot.commands.Arm.Rotate_Axis_2;
 // import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
-import frc.robot.commandgroups.ArmModeChanger;
 
 public class RobotContainer {
 
