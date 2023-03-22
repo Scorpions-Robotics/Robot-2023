@@ -29,6 +29,8 @@ public final class Constants {
 
     public static final int kMiddle1 = 5;
     public static final int kMiddle2 = 2;
+
+    public static final int kGripper = 23;
     // --------------------------------------
 
     public static final int kArmDown = 6;
@@ -115,5 +117,6 @@ public final class Constants {
     public static final boolean hdriveencoder2 = true;
 
     public static final boolean gyroinvert = true;
+    public static final boolean gripperinvert = false;
   }
 }

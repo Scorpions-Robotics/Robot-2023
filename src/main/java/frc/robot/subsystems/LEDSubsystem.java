@@ -60,7 +60,7 @@ public class LEDSubsystem extends SubsystemBase {
     // For every pixel
     for (var i = 0; i < m_ledBuffer.getLength(); i++) {
       // Calculate the hue - hue is easier for rainbows because the color
-      // shape is a circle so only one value needs to precess
+      // shape is a circle so only o ne value needs to precess
       final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;
       // Set the value
       m_ledBuffer.setHSV(i, hue, 255, 128);
@@ -69,6 +69,7 @@ public class LEDSubsystem extends SubsystemBase {
     m_rainbowFirstPixelHue += 3;
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
+    m_led.setData(m_ledBuffer);
   }
 
   public void collision(int index, Color color1, Color color2) {
@@ -89,6 +90,6 @@ public class LEDSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    m_led.setData(m_ledBuffer);
+    // m_led.setData(m_ledBuffer);
   }
 }
