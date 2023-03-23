@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
-// import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commandgroups.level1;
 import frc.robot.commandgroups.level2;
 import frc.robot.commandgroups.level3;
@@ -21,20 +21,12 @@ import frc.robot.commands.Arm.Rotate_Axis_1;
 import frc.robot.commands.Arm.Rotate_Axis_2;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Arm.testAxis1;
-// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
-import frc.robot.commands.LED.LEDCommand;
-// import frc.robot.commandgroups.Autonomous.ArmMovement1;
-// import frc.robot.commands.Arm.ResetAxis1Encoder;
-// import frc.robot.commands.Arm.Rotate_Axis_1;
-// import frc.robot.commands.Arm.Rotate_Axis_2;
-// import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
-import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
@@ -44,14 +36,7 @@ public class RobotContainer {
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
-<<<<<<< HEAD
-  LEDSubsystem m_led = new LEDSubsystem();
-  GripperSubsystem m_grip = new GripperSubsystem();
-  // public static VisionSubsystem m_vision = new VisionSubsystem();
-  // public static ArmSubsystem m_arm = new ArmSubsystem();
-=======
->>>>>>> e74998dcd2478328f1cc05fee766f5c2969c0aa3
-
+  public GripperSubsystem m_grip = new GripperSubsystem();
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
   JoystickButton button1 = new JoystickButton(joy, 1);
@@ -87,7 +72,6 @@ public class RobotContainer {
      * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
      * m_xboxSubsystem));
      */
-    m_led.setDefaultCommand(new LEDCommand(m_led));
   }
 
   private void configureBindings() {
