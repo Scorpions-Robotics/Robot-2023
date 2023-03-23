@@ -33,8 +33,7 @@ public class ArmModeChanger2 extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
@@ -75,12 +74,10 @@ public class ArmModeChanger2 extends CommandBase {
     } else if (m_arm.getOutputAngle_Axis3 > axis3) {
       m_arm.Axis3MotorOutput(Math.min(-motor3output, 0.25));
     }
-
   }
 
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   @Override
   public boolean isFinished() {

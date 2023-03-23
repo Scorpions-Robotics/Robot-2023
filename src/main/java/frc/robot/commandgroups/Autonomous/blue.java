@@ -12,10 +12,10 @@ public class blue extends SequentialCommandGroup {
 
     addCommands(
         new PidLiftCommand(m_lift, () -> 500)
-            .alongWith(
-                new Rotate_Axis_2(m_arm, -150))
+            .alongWith(new Rotate_Axis_2(m_arm, -150))
             .withTimeout(3)
-            .andThen(new Rotate_Axis_2(m_arm, 0)).withTimeout(5)
+            .andThen(new Rotate_Axis_2(m_arm, 0))
+            .withTimeout(5)
             .andThen(new PidLiftCommand(m_lift, () -> 0)));
   }
 }
