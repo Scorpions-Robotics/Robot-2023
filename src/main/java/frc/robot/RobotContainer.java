@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
-// import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commandgroups.level1;
 import frc.robot.commandgroups.level2;
 import frc.robot.commandgroups.level3;
@@ -21,15 +21,9 @@ import frc.robot.commands.Arm.Rotate_Axis_1;
 import frc.robot.commands.Arm.Rotate_Axis_2;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Arm.testAxis1;
-// import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
-// import frc.robot.commandgroups.Autonomous.ArmMovement1;
-// import frc.robot.commands.Arm.ResetAxis1Encoder;
-// import frc.robot.commands.Arm.Rotate_Axis_1;
-// import frc.robot.commands.Arm.Rotate_Axis_2;
-// import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
@@ -42,8 +36,7 @@ public class RobotContainer {
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
-  GripperSubsystem m_grip = new GripperSubsystem();
-
+  public GripperSubsystem m_grip = new GripperSubsystem();
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
   JoystickButton button1 = new JoystickButton(joy, 1);
