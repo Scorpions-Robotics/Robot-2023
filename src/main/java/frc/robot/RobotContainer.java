@@ -25,7 +25,6 @@ import frc.robot.commands.Arm.testAxis1;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
-import frc.robot.commands.LED.LEDCommand;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
@@ -34,7 +33,6 @@ import frc.robot.commands.LED.LEDCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
-import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
@@ -44,13 +42,7 @@ public class RobotContainer {
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
-<<<<<<< HEAD
-  LEDSubsystem m_led = new LEDSubsystem();
   GripperSubsystem m_grip = new GripperSubsystem();
-  // public static VisionSubsystem m_vision = new VisionSubsystem();
-  // public static ArmSubsystem m_arm = new ArmSubsystem();
-=======
->>>>>>> e74998dcd2478328f1cc05fee766f5c2969c0aa3
 
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
@@ -87,20 +79,20 @@ public class RobotContainer {
      * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
      * m_xboxSubsystem));
      */
-    m_led.setDefaultCommand(new LEDCommand(m_led));
   }
 
   private void configureBindings() {
-    button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
+    // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
     button3.whileTrue(new level1(m_arm, m_lift, m_xboxSubsystem));
     button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
     button7.whileTrue(new GripperCommand(0.8, m_grip));
-    button8.whileTrue(new GripperCommand(-0.8, m_grip));
+    button8.whileTrue(new GripperCommand(-0.5, m_grip));
     button7.whileFalse(new GripperCommand(0.1, m_grip));
     button8.whileFalse(new GripperCommand(0.1, m_grip));
+    button9.whileTrue(new resetall(m_arm, m_lift));
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
