@@ -11,6 +11,7 @@ public class level3 extends SequentialCommandGroup {
 
   public level3(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> 400).alongWith(new ArmModeChanger3(m_arm, -18, -130, 0)));
+        new PidLiftCommand(m_lift, () -> 400)
+            .alongWith(new ArmModeChanger3(m_arm, -18, -130, 0)));
   }
 }

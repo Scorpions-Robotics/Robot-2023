@@ -41,7 +41,7 @@ public final class Constants {
 
   public static class LED {
     public static final int kLEDCount = 60;
-    public static final int kLEDPWM = 9;
+    public static final int kLEDPWM = 8;
   }
 
   public static class ENCODERS {
