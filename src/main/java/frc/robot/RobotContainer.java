@@ -32,16 +32,14 @@ import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
 public class RobotContainer {
-
   XboxSubsystem m_xboxSubsystem = new XboxSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
-  // public static VisionSubsystem m_vision = new VisionSubsystem();
-  // public static ArmSubsystem m_arm = new ArmSubsystem();
 
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
