@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,8 +15,7 @@ public class XboxSubsystem extends SubsystemBase {
   public int mode;
   public boolean stabilmode = true;
 
-  public XboxSubsystem() {
-  }
+  public XboxSubsystem() {}
 
   public void mode1() {
     ThrottleValue = 0.20;
@@ -139,6 +137,5 @@ public class XboxSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-  }
+  public void periodic() {}
 }
