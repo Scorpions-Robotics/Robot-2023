@@ -7,11 +7,11 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
-public class level4 extends SequentialCommandGroup {
+public class second extends SequentialCommandGroup {
 
-  public level4(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
+  public second(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
     addCommands(
-        new ArmModeChanger3(m_arm, 0, 0, 0)
-            .alongWith(new PidLiftModeChanger(m_lift, () -> 500)));
+        new ArmModeChanger3(m_arm, 0, -135, 0)
+            .alongWith(new PidLiftModeChanger(m_lift, () -> 350)));
   }
 }

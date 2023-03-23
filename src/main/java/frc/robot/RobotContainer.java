@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commandgroups.level1;
-import frc.robot.commandgroups.level2;
-import frc.robot.commandgroups.level3;
+import frc.robot.commandgroups.grapthecone;
+import frc.robot.commandgroups.grabthecone2;
+import frc.robot.commandgroups.idle;
 import frc.robot.commandgroups.resetall;
+import frc.robot.commandgroups.second;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
@@ -77,15 +78,17 @@ public class RobotContainer {
   private void configureBindings() {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
-    button3.whileTrue(new level1(m_arm, m_lift, m_xboxSubsystem));
-    button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
+    button1.onTrue(new grapthecone(m_arm, m_lift));
+    button2.onTrue(new grabthecone2(m_arm, m_lift));
+    button3.onTrue(new idle(m_arm, m_lift));
+    button4.onTrue(new second(m_arm, m_lift, m_xboxSubsystem));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
-    button7.whileTrue(new GripperCommand(0.8, m_grip));
-    button8.whileTrue(new GripperCommand(-0.5, m_grip));
+    button7.whileTrue(new GripperCommand(0.7, m_grip));
+    button8.whileTrue(new GripperCommand(-0.375, m_grip));
     button7.whileFalse(new GripperCommand(0.1, m_grip));
     button8.whileFalse(new GripperCommand(0.1, m_grip));
-    button9.whileTrue(new resetall(m_arm, m_lift));
+    button5.whileTrue(new resetall(m_arm, m_lift));
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
@@ -128,13 +131,17 @@ public class RobotContainer {
     // button9.whileTrue(new ResetLiftEncoder(m_lift));
     // button10.whileFalse(new PidLiftTest(m_lift, 0, true));
     // button1.whileTrue(new Rotate)
-    button2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(1)));
+    // button2.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.changeAxisValue(1)));
 
-    button3.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(2)));
+    // button3.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.changeAxisValue(2)));
 
-    button4.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(3)));
+    // button4.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.changeAxisValue(3)));
 
-    button5.whileTrue(new InstantCommand(() -> m_xboxSubsystem.changeAxisValue(4)));
+    // button5.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.changeAxisValue(4)));
 
     // button1.whileTrue(new ArmModeChanger2(m_arm, m_xboxSubsystem));
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));

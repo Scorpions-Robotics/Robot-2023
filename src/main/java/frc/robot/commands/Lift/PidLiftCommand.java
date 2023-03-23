@@ -28,6 +28,6 @@ public class PidLiftCommand extends PIDCommand {
   @Override
   public boolean isFinished() {
     // return false;
-    return getController().atSetpoint();
+    return false;
   }
 }

@@ -90,8 +90,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_robotContainer.m_arm.Axis2MotorBreakMode();
-    m_robotContainer.m_arm.Axis1MotorBreakMode();
+
   }
 
   @Override

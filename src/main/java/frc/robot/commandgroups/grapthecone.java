@@ -7,11 +7,11 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
-public class level2 extends SequentialCommandGroup {
+public class grapthecone extends SequentialCommandGroup {
 
-  public level2(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
+  public grapthecone(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> -110)
-            .alongWith(new ArmModeChanger3(m_arm, -3.5, -2.5, 0)));
+        new PidLiftCommand(m_lift, () -> -170)
+            .alongWith(new ArmModeChanger3(m_arm, -210, -121, 0)));
   }
 }

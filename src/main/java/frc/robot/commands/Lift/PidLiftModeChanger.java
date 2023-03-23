@@ -12,7 +12,7 @@ public class PidLiftModeChanger extends PIDCommand {
 
   public PidLiftModeChanger(LiftSubsystem m_lift, DoubleSupplier position) {
     super(
-        new PIDController(0.0567, 0.01, 0),
+        new PIDController(0.0567, 0, 0),
         () -> m_lift.getEditedEncoderOutput(),
         () -> position.getAsDouble(),
         output -> {

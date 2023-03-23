@@ -5,13 +5,12 @@ import frc.robot.commands.Arm.ArmModeChanger3;
 import frc.robot.commands.Lift.PidLiftCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.subsystems.XboxSubsystem;
 
-public class level1 extends SequentialCommandGroup {
+public class idle extends SequentialCommandGroup {
 
-  public level1(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
+  public idle(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> -150)
-            .alongWith(new ArmModeChanger3(m_arm, -190, -110, 0)));
+        new PidLiftCommand(m_lift, () -> -7)
+            .alongWith(new ArmModeChanger3(m_arm, -20, -0, 0)));
   }
 }
