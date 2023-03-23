@@ -9,7 +9,7 @@ public final class Constants {
 
   public static class Joysticks {
     // bunu değiştir-----------------------
-    public static int xbox_port = 1;
+    public static int xbox_port = 0;
     // ----------------------------------
   }
 
@@ -30,7 +30,7 @@ public final class Constants {
     public static final int kMiddle1 = 5;
     public static final int kMiddle2 = 2;
 
-    public static final int kGripper = 23;
+    public static final int kGripper = 3;
     // --------------------------------------
 
     public static final int kArmDown = 6;
@@ -93,8 +93,8 @@ public final class Constants {
     public static final double CameraHeight = 0.845;
     public static final double TargetHeight = 0.56;
     public static final double CameraPitchRadians = Units.degreesToRadians(0.0);
-    public static final Transform3d robotToCam =
-        new Transform3d(new Translation3d(0.51, 0.0, 0.845), new Rotation3d(0, 0, 0));
+    public static final Transform3d robotToCam = new Transform3d(new Translation3d(0.51, 0.0, 0.845),
+        new Rotation3d(0, 0, 0));
   }
 
   public static class invert {

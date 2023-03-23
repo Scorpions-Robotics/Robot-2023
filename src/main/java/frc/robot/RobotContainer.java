@@ -24,6 +24,8 @@ import frc.robot.commands.Arm.testAxis1;
 // import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
+import frc.robot.commands.Gripper.GripperCommand;
+import frc.robot.commands.LED.LEDCommand;
 // import frc.robot.commandgroups.Autonomous.ArmMovement1;
 // import frc.robot.commands.Arm.ResetAxis1Encoder;
 // import frc.robot.commands.Arm.Rotate_Axis_1;
@@ -31,6 +33,8 @@ import frc.robot.commands.Drivetrain.Fixer;
 // import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GripperSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
@@ -40,6 +44,8 @@ public class RobotContainer {
   public static DriveSubsystem m_drive = new DriveSubsystem();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static ArmSubsystem m_arm = new ArmSubsystem();
+  LEDSubsystem m_led = new LEDSubsystem();
+  GripperSubsystem m_grip = new GripperSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
   // public static ArmSubsystem m_arm = new ArmSubsystem();
 
@@ -78,6 +84,7 @@ public class RobotContainer {
      * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
      * m_xboxSubsystem));
      */
+    m_led.setDefaultCommand(new LEDCommand(m_led));
   }
 
   private void configureBindings() {
@@ -87,7 +94,10 @@ public class RobotContainer {
     button4.whileTrue(new level3(m_arm, m_lift, m_xboxSubsystem));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
-    button1.whileTrue(new resetall(m_arm));
+    button7.whileTrue(new GripperCommand(0.8, m_grip));
+    button8.whileTrue(new GripperCommand(-0.8, m_grip));
+    button7.whileFalse(new GripperCommand(0.1, m_grip));
+    button8.whileFalse(new GripperCommand(0.1, m_grip));
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
     /*
@@ -113,7 +123,7 @@ public class RobotContainer {
     // button10.whileTrue(new TryLift(m_lift, true));
     // button1.whileTrue(new Rotate_Axis_2(m_arm, -20));
     // button2.whileTrue(new InstantCommand(() -> m_arm.Axis2MotorCoastMode()));
-    // button2.whileFalse(new InstantCommand(() -> m_arm.Axis2MotorBreakMode()));
+    // button2.whileFalse(new InstantCommand(() -> m_arm.Axis%2MotorBreakMode()));
     // button3.whileTrue(new ResetAxis2Encoder(m_arm));
     /*
      * button1.whileTrue(new AutoGyroDrive(m_drive));
@@ -121,9 +131,9 @@ public class RobotContainer {
      * button3.whileTrue(new blue(m_lift, m_arm, m_drive));
      * button4.whileTrue(new coastall(m_arm, m_lift));
      */
-    button10.whileTrue(new Fixer(m_drive));
-    button9.whileTrue(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
-    button9.whileFalse(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
+    // button10.whileTrue(new Fixer(m_drive));
+    // button9.whileTrue(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
+    // button9.whileFalse(new InstantCommand(() -> m_arm.Axis1MotorOutput(0.05)));
     // button9.whileTrue(new
     // pidAngleTurn(m_drive,m_drive.GetHeadingForFastReturn()));
     // button10.whileTrue(new PidLiftTest(m_lift, 350, false));
