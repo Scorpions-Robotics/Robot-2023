@@ -13,6 +13,7 @@ import frc.robot.commandgroups.level3;
 import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
 import frc.robot.commandgroups.Autonomous.blue;
+import frc.robot.commandgroups.Autonomous.blue2;
 import frc.robot.commands.Arm.ArmModeChanger2;
 import frc.robot.commands.Arm.ArmModeChanger3;
 import frc.robot.commands.Arm.ResetAxis1Encoder;
@@ -31,6 +32,7 @@ import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Lift.ResetLiftEncoder;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 import frc.robot.commandgroups.ArmModeChanger;
@@ -43,6 +45,7 @@ public class RobotContainer {
   public static ArmSubsystem m_arm = new ArmSubsystem();
   // public static VisionSubsystem m_vision = new VisionSubsystem();
   // public static ArmSubsystem m_arm = new ArmSubsystem();
+  public static LEDSubsystem m_led = new LEDSubsystem();
 
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
 
@@ -158,7 +161,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return null;
+          return new blue2(m_drive, m_arm, m_lift);
 
         default:
           return new blue(m_lift, m_arm, m_drive);
@@ -168,7 +171,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return null;
+          return new blue2(m_drive, m_arm, m_lift);
         default:
           return new blue(m_lift, m_arm, m_drive);
       }
