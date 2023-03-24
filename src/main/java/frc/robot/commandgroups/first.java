@@ -6,9 +6,9 @@ import frc.robot.commands.Lift.PidLiftModeChanger;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 
-public class second extends SequentialCommandGroup {
+public class first extends SequentialCommandGroup {
 
-  public second(ArmSubsystem m_arm, LiftSubsystem m_lift) {
+  public first(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
         new ArmModeChanger3(m_arm, 0, -135, 0)
             .alongWith(new PidLiftModeChanger(m_lift, () -> 350)));

@@ -6,11 +6,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
+import frc.robot.commandgroups.second;
+import frc.robot.commandgroups.first;
 import frc.robot.commandgroups.grabthecone2;
 import frc.robot.commandgroups.grapthecone;
 import frc.robot.commandgroups.idle;
 import frc.robot.commandgroups.resetall;
-import frc.robot.commandgroups.second;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
@@ -66,9 +67,9 @@ public class RobotContainer {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
     button1.onTrue(new grapthecone(m_arm, m_lift));
-    button2.onTrue(new grabthecone2(m_arm, m_lift));
+    button2.onTrue(new first(m_arm, m_lift));
     button3.onTrue(new idle(m_arm, m_lift));
-    button4.onTrue(new second(m_arm, m_lift, m_xboxSubsystem));
+    button4.onTrue(new second(m_arm, m_lift));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
     button7.whileTrue(new GripperCommand(0.7, m_grip));
