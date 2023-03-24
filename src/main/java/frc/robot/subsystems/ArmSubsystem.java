@@ -1,13 +1,17 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.AnalogInput;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmSubsystem extends SubsystemBase {
+
+  DigitalInput axis2HallSensor = new DigitalInput(3);
 
   // -------------------------------------
   // AXIS1----------------------------------------------
@@ -45,6 +49,11 @@ public class ArmSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+
+    if (axis2HallSensor.get()) {
+      resetAxis2GetOutputAngle();
+    }
+
     Axis1Encoder = Axis1Motor.getEncoder();
     Axis2Encoder = Axis2Motor.getEncoder();
     Axis3Encoder = Axis3Motor.getEncoder();
@@ -60,6 +69,7 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("1. axis", getOutputAngle2);
     SmartDashboard.putNumber("2. axis", getOutputAngle_Axis2);
     SmartDashboard.putNumber("3. axis", getOutputAngle_Axis3);
+    SmartDashboard.putBoolean("hall", axis2HallSensor.get());
   }
 
   public static double Axis1Angle() {
@@ -182,20 +192,26 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public void modevalue() {
-    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {}
+    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {
+    }
 
-    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {}
+    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {
+    }
   }
 
   public void modevalue2() {
-    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {}
+    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {
+    }
 
-    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {}
+    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {
+    }
   }
 
   public void modevalue3() {
-    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {}
+    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {
+    }
 
-    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {}
+    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {
+    }
   }
 }
