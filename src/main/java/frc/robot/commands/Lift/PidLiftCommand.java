@@ -12,11 +12,12 @@ public class PidLiftCommand extends PIDCommand {
 
   public PidLiftCommand(LiftSubsystem m_lift, DoubleSupplier position) {
     super(
-        new PIDController(0.0567, 0.01, 0),
+        new PIDController(0.0567, 0, 0),
         () -> m_lift.getEditedEncoderOutput(),
         () -> position.getAsDouble(),
         output -> {
-          m_lift.pidSetMotor(output * -0.15);
+          m_lift.pidSetMotor(output * -0.1);
+          SmartDashboard.putNumber("oooutputt", output * -0.1);
           SmartDashboard.putNumber("liftEncoder", m_lift.getEditedEncoderOutput());
           SmartDashboard.putNumber("liftEncoder", position.getAsDouble());
         });

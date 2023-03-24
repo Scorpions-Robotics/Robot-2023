@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
@@ -70,6 +71,11 @@ public class RobotContainer {
     button2.onTrue(new first(m_arm, m_lift));
     button3.onTrue(new idle(m_arm, m_lift));
     button4.onTrue(new second(m_arm, m_lift));
+
+    button4.whileTrue(new InstantCommand(() -> m_arm.yukarida()));
+    button3.whileTrue(new InstantCommand(() -> m_arm.yukarida()));
+    button2.whileTrue(new InstantCommand(() -> m_arm.yukarida()));
+    button1.whileTrue(new InstantCommand(() -> m_arm.assagida()));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
     button7.whileTrue(new GripperCommand(0.7, m_grip));

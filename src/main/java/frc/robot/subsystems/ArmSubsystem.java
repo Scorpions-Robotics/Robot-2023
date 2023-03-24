@@ -34,12 +34,15 @@ public class ArmSubsystem extends SubsystemBase {
   public double getOutputAngle_Axis2;
   public double getOutputAngle_Axis3;
   public static double b;
+  public boolean assagi = true;
 
   public ArmSubsystem() {
     // Axis1Motor.setIdleMode(IdleMode.kBrake);
     // Axis2Motor.setIdleMode(IdleMode.kBrake);
     // Axis3Motor.setIdleMode(IdleMode.kBrake);
-    Axis2Motor.setOpenLoopRampRate(0.5);
+    Axis2Motor.setOpenLoopRampRate(1);
+    Axis1Motor.setOpenLoopRampRate(0.3);
+    Axis3Motor.setOpenLoopRampRate(0.3);
 
   }
 
@@ -52,14 +55,15 @@ public class ArmSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    if (!axis2HallSensor.get()) {
-      resetAxis2GetOutputAngle();
-    }
-
-    if (!axis3HallSensor.get()) {
-      resetAxis3GetOutputAngle();
-    }
-
+    /*
+     * if (!axis2HallSensor.get()) {
+     * resetAxis2GetOutputAngle();
+     * }
+     * 
+     * if (!axis3HallSensor.get()) {
+     * resetAxis3GetOutputAngle();
+     * }
+     */
     Axis1Encoder = Axis1Motor.getEncoder();
     Axis2Encoder = Axis2Motor.getEncoder();
     Axis3Encoder = Axis3Motor.getEncoder();
@@ -80,6 +84,22 @@ public class ArmSubsystem extends SubsystemBase {
 
   public static double Axis1Angle() {
     return Axis1Encoder.getPosition();
+  }
+
+  public double getIdleAxis2() {
+    if (assagi) {
+      return -210;
+    } else {
+      return -170;
+    }
+  }
+
+  public void assagida() {
+    assagi = true;
+  }
+
+  public void yukarida() {
+    assagi = false;
   }
 
   public static double Axis2Angle() {

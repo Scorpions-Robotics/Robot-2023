@@ -21,7 +21,6 @@ public class ArmModeChanger3 extends CommandBase {
 
   public ArmModeChanger3(ArmSubsystem m_arm, double axis1, double axis2, double axis3) {
     this.m_arm = m_arm;
-
     this.axis1 = axis1;
     this.axis2 = axis2;
     this.axis3 = axis3;
@@ -55,15 +54,15 @@ public class ArmModeChanger3 extends CommandBase {
     SmartDashboard.putNumber("axis3value1234", motor3output);
 
     if (axis2 > m_arm.getOutputAngle_Axis2) {
-      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.20) * 1.4));
+      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.25) * 0.8));
     } else if (m_arm.getOutputAngle_Axis2 > axis2) {
-      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.20) * 1.4));
+      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.25) * 0.8));
     }
 
     if (axis1 > -m_arm.getOutputAngle2) {
-      m_arm.Axis1MotorOutput((Math.max(-motor1output, -0.20)) * 1.2);
+      m_arm.Axis1MotorOutput((Math.max(-motor1output, -0.20)) * 0.8);
     } else if (-m_arm.getOutputAngle2 > axis1) {
-      m_arm.Axis1MotorOutput((Math.min(-motor1output, 0.20) * 1.2));
+      m_arm.Axis1MotorOutput((Math.min(-motor1output, 0.20) * 0.8));
     }
     if (axis3 > m_arm.getOutputAngle_Axis3) {
       m_arm.Axis3MotorOutput(Math.max(-motor3output, -0.25));
