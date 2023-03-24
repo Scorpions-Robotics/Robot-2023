@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmSubsystem extends SubsystemBase {
 
-  DigitalInput axis2HallSensor = new DigitalInput(3);
+  DigitalInput axis2HallSensor = new DigitalInput(9);
+  DigitalInput axis3HallSensor = new DigitalInput(8);
 
   // -------------------------------------
   // AXIS1----------------------------------------------
@@ -52,6 +53,10 @@ public class ArmSubsystem extends SubsystemBase {
 
     if (axis2HallSensor.get()) {
       resetAxis2GetOutputAngle();
+    }
+
+    if (axis3HallSensor.get()) {
+      resetAxis3GetOutputAngle();
     }
 
     Axis1Encoder = Axis1Motor.getEncoder();
