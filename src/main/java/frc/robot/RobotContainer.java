@@ -3,33 +3,20 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commandgroups.grapthecone;
+import frc.robot.commandgroups.Autonomous.blue2;
 import frc.robot.commandgroups.grabthecone2;
+import frc.robot.commandgroups.grapthecone;
 import frc.robot.commandgroups.idle;
 import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.second;
-import frc.robot.commandgroups.Autonomous.AutoGyroDrive;
-import frc.robot.commandgroups.Autonomous.blue;
-import frc.robot.commandgroups.Autonomous.blue2;
-import frc.robot.commands.Arm.ArmModeChanger2;
-import frc.robot.commands.Arm.ArmModeChanger3;
-import frc.robot.commands.Arm.ResetAxis1Encoder;
-import frc.robot.commands.Arm.Rotate_Axis_1;
-import frc.robot.commands.Arm.Rotate_Axis_2;
-import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Arm.testAxis1;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
-import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
 public class RobotContainer {
@@ -158,7 +145,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift);
+          return new blue2(m_drive, m_arm, m_lift, m_grip);
 
         default:
           return new blue(m_lift, m_arm, m_drive);
@@ -168,7 +155,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift);
+          return new blue2(m_drive, m_arm, m_lift, m_grip);
         default:
           return new blue(m_lift, m_arm, m_drive);
       }

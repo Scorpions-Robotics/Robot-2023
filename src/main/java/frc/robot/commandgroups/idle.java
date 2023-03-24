@@ -10,7 +10,6 @@ public class idle extends SequentialCommandGroup {
 
   public idle(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> -7)
-            .alongWith(new ArmModeChanger3(m_arm, -20, -0, 0)));
+        new PidLiftCommand(m_lift, () -> -7).alongWith(new ArmModeChanger3(m_arm, -20, -0, 0)));
   }
 }
