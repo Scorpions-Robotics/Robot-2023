@@ -6,11 +6,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
+import frc.robot.commandgroups.Autonomous.blue3;
 import frc.robot.commandgroups.grabthecone2;
 import frc.robot.commandgroups.grapthecone;
 import frc.robot.commandgroups.idle;
 import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.second;
+import frc.robot.commands.Arm.Rotate_Axis_1;
+import frc.robot.commands.Arm.Rotate_Axis_2;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
@@ -67,8 +70,8 @@ public class RobotContainer {
 
     button1.onTrue(new grapthecone(m_arm, m_lift));
     button2.onTrue(new grabthecone2(m_arm, m_lift));
-    button3.onTrue(new idle(m_arm, m_lift));
-    button4.onTrue(new second(m_arm, m_lift, m_xboxSubsystem));
+    button3.onTrue(new Rotate_Axis_1(m_arm, 50));
+    button4.onTrue(new Rotate_Axis_2(m_arm, 50));
 
     // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
     button7.whileTrue(new GripperCommand(0.7, m_grip));
@@ -145,8 +148,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
-
+          return new blue3(m_drive, m_arm, m_lift, m_grip);
         default:
           return new blue(m_lift, m_arm, m_drive);
       }
@@ -155,7 +157,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
+          return new blue3(m_drive, m_arm, m_lift, m_grip);
         default:
           return new blue(m_lift, m_arm, m_drive);
       }

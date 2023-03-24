@@ -1,8 +1,11 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmModeChanger3 extends CommandBase {
@@ -15,9 +18,12 @@ public class ArmModeChanger3 extends CommandBase {
   double axis2;
   double axis3;
 
-  PIDController controller = new PIDController(0.045, 0, 0);
-  PIDController controller2 = new PIDController(0.0055, 0, 0);
-  PIDController controller3 = new PIDController(0.00415, 0, 0);
+  ProfiledPIDController controller = new ProfiledPIDController(0.045, 0, 0,
+      new TrapezoidProfile.Constraints(5, 10));
+  ProfiledPIDController controller2 = new ProfiledPIDController(0.0055, 0, 0,
+      new TrapezoidProfile.Constraints(5, 10));
+  ProfiledPIDController controller3 = new ProfiledPIDController(0.065, 0, 0,
+      new TrapezoidProfile.Constraints(5, 10));
 
   public ArmModeChanger3(ArmSubsystem m_arm, double axis1, double axis2, double axis3) {
     this.m_arm = m_arm;
@@ -34,14 +40,15 @@ public class ArmModeChanger3 extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
 
-    controller.setSetpoint(axis1 + 5);
-    controller2.setSetpoint(axis2);
-    controller3.setSetpoint(axis3);
+    controller.setGoal(axis1);
+    controller2.setGoal(axis2);
+    controller3.setGoal(axis3);
 
     controller.setTolerance(3);
     controller2.setTolerance(3);
@@ -74,7 +81,8 @@ public class ArmModeChanger3 extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {
