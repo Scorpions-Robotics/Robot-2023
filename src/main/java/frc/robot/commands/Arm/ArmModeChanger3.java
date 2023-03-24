@@ -55,15 +55,15 @@ public class ArmModeChanger3 extends CommandBase {
     SmartDashboard.putNumber("axis3value1234", motor3output);
 
     if (axis1 + 5 > -m_arm.getOutputAngle2) {
-      m_arm.Axis1MotorOutput(Math.max(-motor1output, -0.20));
+      m_arm.Axis1MotorOutput(Math.max(-motor1output, -0.25));
     } else if (-m_arm.getOutputAngle2 > axis1 + 5) {
-      m_arm.Axis1MotorOutput(Math.min(-motor1output, 0.20));
+      m_arm.Axis1MotorOutput(Math.min(-motor1output, 0.25));
     }
 
     if (axis2 > m_arm.getOutputAngle_Axis2) {
-      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.20) * 1.3));
+      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.20) * 1.6));
     } else if (m_arm.getOutputAngle_Axis2 > axis2) {
-      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.20) * 1.3));
+      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.20) * 1.6));
     }
 
     if (axis3 > m_arm.getOutputAngle_Axis3) {
