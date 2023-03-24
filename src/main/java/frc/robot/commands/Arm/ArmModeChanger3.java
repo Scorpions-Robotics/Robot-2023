@@ -15,7 +15,7 @@ public class ArmModeChanger3 extends CommandBase {
   double axis2;
   double axis3;
 
-  PIDController controller = new PIDController(0.045, 0, 0);
+  PIDController controller = new PIDController(0.0065, 0, 0);
   PIDController controller2 = new PIDController(0.0055, 0, 0);
   PIDController controller3 = new PIDController(0.00415, 0, 0);
 
@@ -34,12 +34,13 @@ public class ArmModeChanger3 extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
 
-    controller.setSetpoint(axis1 + 5);
+    controller.setSetpoint(axis1);
     controller2.setSetpoint(axis2);
     controller3.setSetpoint(axis3);
 
@@ -53,18 +54,17 @@ public class ArmModeChanger3 extends CommandBase {
 
     SmartDashboard.putNumber("axis3value1234", motor3output);
 
-    if (axis1 + 5 > -m_arm.getOutputAngle2) {
-      m_arm.Axis1MotorOutput(Math.max(-motor1output, -0.25));
-    } else if (-m_arm.getOutputAngle2 > axis1 + 5) {
-      m_arm.Axis1MotorOutput(Math.min(-motor1output, 0.25));
-    }
-
     if (axis2 > m_arm.getOutputAngle_Axis2) {
-      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.20) * 1.6));
+      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.20) * 1.4));
     } else if (m_arm.getOutputAngle_Axis2 > axis2) {
-      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.20) * 1.6));
+      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.20) * 1.4));
     }
 
+    if (axis1 > -m_arm.getOutputAngle2) {
+      m_arm.Axis1MotorOutput((Math.max(-motor1output, -0.20)) * 1.2);
+    } else if (-m_arm.getOutputAngle2 > axis1) {
+      m_arm.Axis1MotorOutput((Math.min(-motor1output, 0.20) * 1.2));
+    }
     if (axis3 > m_arm.getOutputAngle_Axis3) {
       m_arm.Axis3MotorOutput(Math.max(-motor3output, -0.25));
 
@@ -74,7 +74,8 @@ public class ArmModeChanger3 extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

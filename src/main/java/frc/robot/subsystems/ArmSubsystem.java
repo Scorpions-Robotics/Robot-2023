@@ -40,6 +40,7 @@ public class ArmSubsystem extends SubsystemBase {
     // Axis2Motor.setIdleMode(IdleMode.kBrake);
     // Axis3Motor.setIdleMode(IdleMode.kBrake);
     Axis2Motor.setOpenLoopRampRate(0.5);
+
   }
 
   public double GetOutputAngle() {
@@ -51,11 +52,11 @@ public class ArmSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    if (axis2HallSensor.get()) {
+    if (!axis2HallSensor.get()) {
       resetAxis2GetOutputAngle();
     }
 
-    if (axis3HallSensor.get()) {
+    if (!axis3HallSensor.get()) {
       resetAxis3GetOutputAngle();
     }
 
