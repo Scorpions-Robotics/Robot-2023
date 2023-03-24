@@ -69,7 +69,7 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("1. axis", getOutputAngle2);
     SmartDashboard.putNumber("2. axis", getOutputAngle_Axis2);
     SmartDashboard.putNumber("3. axis", getOutputAngle_Axis3);
-    SmartDashboard.putBoolean("hall", axis2HallSensor.get());
+    SmartDashboard.putBoolean("wthall", axis2HallSensor.get());
   }
 
   public static double Axis1Angle() {
