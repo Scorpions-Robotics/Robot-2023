@@ -7,8 +7,8 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 
-public class blue2 extends SequentialCommandGroup {
-  public blue2(DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift) {
+public class blue3 extends SequentialCommandGroup {
+  public blue3(DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
         new PidLiftCommand(m_lift, () -> 400)
             .alongWith(new ArmModeChanger3(m_arm, -18, -130, 0))

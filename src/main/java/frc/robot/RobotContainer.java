@@ -145,7 +145,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
+          return new blue2(m_drive, m_arm, m_lift);
 
         default:
           return new blue(m_lift, m_arm, m_drive);
@@ -155,7 +155,7 @@ public class RobotContainer {
         case 1:
           return new blue(m_lift, m_arm, m_drive);
         case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
+          return new blue2(m_drive, m_arm, m_lift);
         default:
           return new blue(m_lift, m_arm, m_drive);
       }
