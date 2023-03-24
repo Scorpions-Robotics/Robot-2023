@@ -69,7 +69,7 @@ public class RobotContainer {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
 
     button1.onTrue(new grapthecone(m_arm, m_lift));
-    button2.onTrue(new grabthecone2(m_arm, m_lift));
+    button2.onTrue(new second(m_arm, m_lift, m_xboxSubsystem));
     button3.onTrue(new Rotate_Axis_1(m_arm, 50));
     button4.onTrue(new Rotate_Axis_2(m_arm, 50));
 

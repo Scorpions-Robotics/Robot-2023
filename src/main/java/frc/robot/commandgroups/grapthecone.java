@@ -10,7 +10,8 @@ public class grapthecone extends SequentialCommandGroup {
 
   public grapthecone(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> -170)
-            .alongWith(new ArmModeChanger3(m_arm, -210, -121, 0)));
+        // new PidLiftCommand(m_lift, () -> -170)
+        // .alongWith(
+        new ArmModeChanger3(m_arm, 0, -121, 0));
   }
 }

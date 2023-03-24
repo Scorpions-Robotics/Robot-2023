@@ -48,14 +48,22 @@ public class ArmSubsystem extends SubsystemBase {
     // 1800 değişeceks
   }
 
+  public boolean getAxis2Hall() {
+    return axis2HallSensor.get();
+  }
+
+  public boolean getAxis3Hall() {
+    return axis3HallSensor.get();
+  }
+
   @Override
   public void periodic() {
 
-    if (axis2HallSensor.get()) {
+    if (!(axis2HallSensor.get())) {
       resetAxis2GetOutputAngle();
     }
 
-    if (axis3HallSensor.get()) {
+    if (!(axis3HallSensor.get())) {
       resetAxis3GetOutputAngle();
     }
 
@@ -74,6 +82,10 @@ public class ArmSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("1. axis", getOutputAngle2);
     SmartDashboard.putNumber("2. axis", getOutputAngle_Axis2);
     SmartDashboard.putNumber("3. axis", getOutputAngle_Axis3);
+
+    SmartDashboard.putNumber("aşk illetine tutulmuş müslüman axis1", Axis1Encoder.getVelocity());
+    SmartDashboard.putNumber("ne yapmalıdır hocam 2", Axis2Encoder.getVelocity());
+
     SmartDashboard.putBoolean("wthall", axis2HallSensor.get());
   }
 

@@ -11,7 +11,7 @@ public class second extends SequentialCommandGroup {
 
   public second(ArmSubsystem m_arm, LiftSubsystem m_lift, XboxSubsystem m_xbox) {
     addCommands(
-        new ArmModeChanger3(m_arm, 0, -135, 0)
-            .alongWith(new PidLiftModeChanger(m_lift, () -> 350)));
+        new ArmModeChanger3(m_arm, 0, -135, 0));
+    // .alongWith(new PidLiftModeChanger(m_lift, () -> 350)));
   }
 }
