@@ -18,7 +18,6 @@ public class VisionSubsystem extends SubsystemBase {
 
   public VisionSubsystem() {
     inst.startServer("networktables.json", "", 1735);
-
   }
 
   public double getCone() {

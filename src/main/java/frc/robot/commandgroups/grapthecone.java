@@ -5,7 +5,6 @@ import frc.robot.commands.Arm.ArmModeChanger3;
 import frc.robot.commands.Lift.PidLiftCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.subsystems.XboxSubsystem;
 
 public class grapthecone extends SequentialCommandGroup {
 
