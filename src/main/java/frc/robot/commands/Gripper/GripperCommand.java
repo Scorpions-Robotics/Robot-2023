@@ -16,7 +16,7 @@ public class GripperCommand extends CommandBase {
   public GripperCommand(double speed, GripperSubsystem m_grip) {
     this.m_grip = m_grip;
     this.speed = speed;
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_grip);
   }
 
   // Called when the command is initially scheduled.

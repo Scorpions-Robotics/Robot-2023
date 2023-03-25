@@ -18,6 +18,7 @@ public class GripperSubsystem extends SubsystemBase {
   public GripperSubsystem() {
     gripper.setInverted(Constants.invert.gripperinvert);
     setBrake();
+    gripper.configOpenloopRamp(4);
   }
 
   public void setBrake() {

@@ -12,10 +12,10 @@ public class pidChargeStation extends PIDCommand {
         () -> 0,
         output -> {
           if (m_drive.GetRoll() > 2) {
-            m_drive.RunTogether(output, -output, 0.0, 0.0);
+            m_drive.RunTogether(output * 0.24, -output * 0.24, 0.0, 0.0);
             // outputtaki "-"leri gözden geçir!
           } else if (m_drive.GetRoll() < -2) {
-            m_drive.RunTogether(output, -output, 0.0, 0.0);
+            m_drive.RunTogether(output * 0.24, -output * 0.24, 0.0, 0.0);
             // outputtaki "-"leri gözden geçir!
           }
         });

@@ -20,16 +20,14 @@ public class blue4 extends SequentialCommandGroup {
 
         new second(m_arm, m_lift)
             .alongWith(
-                new WaitCommand(2)
-                    .andThen(new GripperCommand(-0.3, m_grip).withTimeout(3)))
+                new WaitCommand(4)
+                    .deadlineWith(new GripperCommand(-0.6, m_grip).withTimeout(3)))
             .withTimeout(3)
             .andThen(new idlefromup(m_arm, m_lift)
                 .alongWith(
                     new GripperCommand(0, m_grip).withTimeout(4)
-                        .andThen(new InstantCommand(() -> m_drive.stopfixed()))
-                        .andThen(new AutoStraightDrive2(m_drive, -1)
-                            .andThen(new pidChargeStation(m_drive)))))
-
-    );
+                        // .andThen(new InstantCommand(() -> m_drive.stopfixed()))
+                        .andThen(new AutoStraightDrive2(m_drive, 2.32))
+                        .andThen(new pidChargeStation(m_drive)))));
   }
 }

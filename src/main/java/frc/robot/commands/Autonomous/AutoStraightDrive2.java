@@ -17,13 +17,15 @@ public class AutoStraightDrive2 extends PIDCommand {
           double rightSpeed = X + m_drive.GetHeading() * 0.01;
           double leftSpeed = X - m_drive.GetHeading() * 0.01;
           // -ler degisecek
-          m_drive.RunTogether(-Math.min(output, 0.5), -Math.max(-output, -0.5), 0.0, 0.0);
+          m_drive.RunTogether(-Math.min(output, 0.80), -Math.max(-output, -0.80), 0.0, 0.0);
 
           SmartDashboard.putNumber("asd", meters * 100);
           SmartDashboard.putNumber("asad", m_drive.getStraightDriveDistance());
+
         });
 
     getController().setTolerance(3);
+    addRequirements(m_drive);
   }
 
   @Override

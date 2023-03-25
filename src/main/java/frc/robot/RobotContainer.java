@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commandgroups.Autonomous.Blue5;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
 import frc.robot.commandgroups.Autonomous.blue4;
@@ -175,6 +176,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
     // return new blue4(m_drive, m_arm, m_lift, m_grip);
-    return new blue(m_lift, m_arm, m_drive);
+    return new blue4(m_drive, m_arm, m_lift, m_grip);
   }
 }
