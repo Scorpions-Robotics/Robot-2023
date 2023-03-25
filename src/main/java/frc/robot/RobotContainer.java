@@ -97,13 +97,18 @@ public class RobotContainer {
     button6.whileFalse(new GripperCommand(0, m_grip));
 
     // //button3.onTrue(new first(m_arm, m_lift));
-    button7_2.whileTrue(new grabthecone2(m_arm, m_lift));
-    button8_2.whileTrue(new grapthecone(m_arm, m_lift));
-    button9_2.whileTrue(new second(m_arm, m_lift));
-    button10_2.whileTrue(new first(m_arm, m_lift));
+    button7_2.onTrue(new grabthecone2(m_arm, m_lift));
+    button8_2.onTrue(new grapthecone(m_arm, m_lift));
+    button9_2.onTrue(new second(m_arm, m_lift));
+    button10_2.onTrue(new first(m_arm, m_lift));
     button2_2.onTrue(new ConditionalCommand(new idlefromup(m_arm, m_lift),
         new idlefromdown(m_arm, m_lift),
         () -> m_lift.yukari));
+
+    button3_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(false)));
+    button4_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(true)));
+    button3_2.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
+    button4_2.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
 
     // button2.onTrue(new grapthecone(m_arm, m_lift));
 
