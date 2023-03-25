@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.AnalogInput;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -43,7 +42,6 @@ public class ArmSubsystem extends SubsystemBase {
     Axis2Motor.setOpenLoopRampRate(1);
     Axis1Motor.setOpenLoopRampRate(0.3);
     Axis3Motor.setOpenLoopRampRate(0.3);
-
   }
 
   public double GetOutputAngle() {
@@ -59,7 +57,7 @@ public class ArmSubsystem extends SubsystemBase {
      * if (!axis2HallSensor.get()) {
      * resetAxis2GetOutputAngle();
      * }
-     * 
+     *
      * if (!axis3HallSensor.get()) {
      * resetAxis3GetOutputAngle();
      * }
@@ -218,26 +216,20 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public void modevalue() {
-    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 
   public void modevalue2() {
-    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 
   public void modevalue3() {
-    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 }

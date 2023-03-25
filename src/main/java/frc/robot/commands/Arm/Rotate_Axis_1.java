@@ -1,9 +1,6 @@
 package frc.robot.commands.Arm;
 
-import java.lang.ModuleLayer.Controller;
-
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.ArmSubsystem;
 
@@ -23,10 +20,8 @@ public class Rotate_Axis_1 extends PIDCommand {
           } else if (-m_arm.getOutputAngle2 > degree) {
             m_arm.Axis1MotorOutput((Math.min(-output, 0.20) * 0.8));
           }
-
         });
     getController().setTolerance(3);
-
   }
 
   @Override

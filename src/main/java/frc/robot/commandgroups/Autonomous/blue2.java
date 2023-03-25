@@ -13,17 +13,19 @@ import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 
 public class blue2 extends SequentialCommandGroup {
-  public blue2(DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift, GripperSubsystem m_grip) {
+  public blue2(
+      DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift, GripperSubsystem m_grip) {
     addCommands(
         new PidLiftCommand(m_lift, () -> 350)
-            .alongWith( new ArmModeChanger3(m_arm, 0, -135, 0))
+            .alongWith(new ArmModeChanger3(m_arm, 0, -135, 0))
             .withTimeout(2)
-            .andThen( new GripperCommand(.5, m_grip))
+            .andThen(new GripperCommand(.5, m_grip))
             .withTimeout(1)
-            .andThen( new InstantCommand( () -> m_grip.push(0))
-            .andThen( new PidLiftCommand(m_lift, () -> -7))
-            .alongWith( new ArmModeChanger3(m_arm, -20, 0, 0)))
-            .alongWith( new AutoStraightDrive2(m_drive, -100))
+            .andThen(
+                new InstantCommand(() -> m_grip.push(0))
+                    .andThen(new PidLiftCommand(m_lift, () -> -7))
+                    .alongWith(new ArmModeChanger3(m_arm, -20, 0, 0)))
+            .alongWith(new AutoStraightDrive2(m_drive, -100))
             .andThen(new AutoHStraightDrive(m_drive, 50))
             .andThen(new AutoStraightDrive2(m_drive, 80)));
   }
