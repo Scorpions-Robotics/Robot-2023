@@ -85,6 +85,7 @@ public class Robot extends TimedRobot {
     // Constants.Joysticks.panel_port = i;
     // }
     // }
+    m_robotContainer.m_grip.setGripperConfig();
     m_robotContainer.m_drive.ResetEncoders();
     m_robotContainer.m_lift.brakemod();
     m_robotContainer.m_drive.ResetGyro();

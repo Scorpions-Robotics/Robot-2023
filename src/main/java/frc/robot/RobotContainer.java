@@ -21,7 +21,9 @@ import frc.robot.commands.Arm.ManualAxis3;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Autonomous.AutoStraightDrive2;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
+import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
+import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
@@ -68,9 +70,9 @@ public class RobotContainer {
         new FixedTeleoperatedDrive(
             m_drive,
             m_xboxSubsystem,
-            () -> -joy.getRawAxis(5),
-            () -> joy.getRawAxis(4),
-            () -> joy.getRawAxis(0)));
+            () -> -joy.getRawAxis(1),
+            () -> joy.getRawAxis(0),
+            () -> joy.getRawAxis(4)));
     configureBindings();
 
     /*
@@ -83,29 +85,38 @@ public class RobotContainer {
      * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
      * m_xboxSubsystem));
      */
+    // m_arm.setDefaultCommand(new Rotate_Axis_3(m_arm, ()-));
   }
 
   private void configureBindings() {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
+    button3.whileTrue(new Fixer(m_drive));
+    button5.whileTrue(new GripperCommand(-0.4, m_grip));
+    button5.whileFalse(new GripperCommand(0, m_grip));
+    button6.whileTrue(new GripperCommand(0.8, m_grip));
+    button6.whileFalse(new GripperCommand(0, m_grip));
 
-    button1.onTrue(new ConditionalCommand(new idlefromup(m_arm, m_lift),
+    // //button3.onTrue(new first(m_arm, m_lift));
+    button7_2.whileTrue(new grabthecone2(m_arm, m_lift));
+    button8_2.whileTrue(new grapthecone(m_arm, m_lift));
+    button9_2.whileTrue(new second(m_arm, m_lift));
+    button10_2.whileTrue(new first(m_arm, m_lift));
+    button2_2.onTrue(new ConditionalCommand(new idlefromup(m_arm, m_lift),
         new idlefromdown(m_arm, m_lift),
         () -> m_lift.yukari));
 
-    button3.onTrue(new first(m_arm, m_lift));
+    // button2.onTrue(new grapthecone(m_arm, m_lift));
 
-    button2.onTrue(new grapthecone(m_arm, m_lift));
+    // button4.onTrue(
+    // new second(m_arm, m_lift));
 
-    button4.onTrue(
-        new second(m_arm, m_lift));
-
-    // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
-    button7.whileTrue(new GripperCommand(0.7, m_grip));
-    button8.whileTrue(new GripperCommand(-0.375, m_grip));
-    button7.whileFalse(new GripperCommand(0.1, m_grip));
-    button8.whileFalse(new GripperCommand(0.1, m_grip));
-    button5.whileTrue(new resetall(m_arm, m_lift));
-    button1_2.whileTrue(new grabthecone2(m_arm, m_lift));
+    // // button2.whileTrue(new Rotate_Axis_1(m_arm, 10));
+    // button7.whileTrue(new GripperCommand(0.7, m_grip));
+    // button8.whileTrue(new GripperCommand(-0.375, m_grip));
+    // button7.whileFalse(new GripperCommand(0.1, m_grip));
+    // button8.whileFalse(new GripperCommand(0.1, m_grip));
+    // button5.whileTrue(new resetall(m_arm, m_lift));
+    // button1_2.whileTrue(new grabthecone2(m_arm, m_lift));
 
     // burası çalışıyor ise
     // button1.whileTrue(new ChargeStationBalance(m_drive));
@@ -160,11 +171,15 @@ public class RobotContainer {
 
     // button5.whileTrue(new InstantCommand(() ->
     // m_xboxSubsystem.changeAxisValue(4)));
-    button10.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(false)));
-    button9.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(true)));
-    button10.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
-    button9.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
-    button2_2.whileTrue(new AutoStraightDrive2(m_drive, -1));
+    // button10.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.modeChange(false)));
+    // button9.whileTrue(new InstantCommand(() ->
+    // m_xboxSubsystem.modeChange(true)));
+    // button10.onTrue(new Rotate_Axis_3(m_arm, () ->
+    // m_xboxSubsystem.getAxis3Value()));
+    // button9.onTrue(new Rotate_Axis_3(m_arm, () ->
+    // m_xboxSubsystem.getAxis3Value()));
+    // button2_2.whileTrue(new AutoStraightDrive2(m_drive, -1));
 
     // button1.whileTrue(new ArmModeChanger2(m_arm, m_xboxSubsystem));
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));

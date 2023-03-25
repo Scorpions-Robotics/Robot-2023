@@ -51,7 +51,7 @@ public class DriveSubsystem extends SubsystemBase {
   RelativeEncoder encoder1;
   // ---------------------------------------
   public static boolean duzelt = false;
-  public boolean fixed = false;
+  public boolean fixed = true;
   public boolean islevsiz = true;
   // Motor----------------------------------
 
