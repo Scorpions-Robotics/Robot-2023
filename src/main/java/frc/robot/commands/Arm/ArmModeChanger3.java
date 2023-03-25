@@ -33,7 +33,8 @@ public class ArmModeChanger3 extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
@@ -53,26 +54,26 @@ public class ArmModeChanger3 extends CommandBase {
     SmartDashboard.putNumber("axis3value1234", motor3output);
 
     if (axis2 > m_arm.getOutputAngle_Axis2) {
-      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.25) * 0.8));
+      m_arm.Axis2MotorOutput((Math.min(-motor2output, 0.25) * 1.2));
     } else if (m_arm.getOutputAngle_Axis2 > axis2) {
-      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.25) * 0.8));
+      m_arm.Axis2MotorOutput((Math.max(-motor2output, -0.25) * 1.2));
     }
 
     if (axis1 > -m_arm.getOutputAngle2) {
-      m_arm.Axis1MotorOutput((Math.max(-motor1output, -0.20)) * 0.8);
+      m_arm.Axis1MotorOutput((Math.max(-motor1output, -0.20)) * 1.2);
     } else if (-m_arm.getOutputAngle2 > axis1) {
-      m_arm.Axis1MotorOutput((Math.min(-motor1output, 0.20) * 0.8));
+      m_arm.Axis1MotorOutput((Math.min(-motor1output, 0.20) * 1.2));
     }
-    if (axis3 > m_arm.getOutputAngle_Axis3) {
-      m_arm.Axis3MotorOutput(Math.max(-motor3output, -0.25));
-
-    } else if (m_arm.getOutputAngle_Axis3 > axis3) {
-      m_arm.Axis3MotorOutput(Math.min(-motor3output, 0.25));
-    }
+    // if (axis3 > m_arm.getOutputAngle_Axis3) {
+    // m_arm.Axis3MotorOutput(Math.max(-motor3output, -0.25));
+    // } else if (m_arm.getOutputAngle_Axis3 > axis3) {
+    // m_arm.Axis3MotorOutput(Math.min(-motor3output, 0.25));
+    // }
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

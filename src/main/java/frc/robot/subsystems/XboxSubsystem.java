@@ -1,21 +1,47 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class XboxSubsystem extends SubsystemBase {
   public double ThrottleValue = 1;
 
+  public double axis3Value;
+
   public double liftValue = 0;
 
-  public double axis1Value = 0;
-  public double axis2Value = 0;
-  public double axis3Value = 0;
+  public int mode = 1;
+  public int mode_axis;
 
-  public int mode;
   public boolean stabilmode = true;
 
-  public XboxSubsystem() {}
+  public void modeChange(boolean increase) {
+    if (increase) {
+      if (mode < 3) {
+        mode++;
+      }
+    } else {
+      if (mode > 1) {
+        mode--;
+      }
+    }
+    if (mode == 1) {
+      axis3Value = 0;
+    }
+    if (mode == 2) {
+      axis3Value = 90;
+    }
+    if (mode == 3) {
+      axis3Value = 180;
+    }
+    SmartDashboard.putNumber("axis3modu ne la", mode);
+    SmartDashboard.putNumber("axis3 degeri ne la", axis3Value);
+
+  }
+
+  public XboxSubsystem() {
+  }
 
   public void mode1() {
     ThrottleValue = 0.20;
@@ -101,41 +127,11 @@ public class XboxSubsystem extends SubsystemBase {
     return liftValue;
   }
 
-  public double getAxis1Value() {
-    return axis1Value;
-  }
-
-  public double getAxis2Value() {
-    return axis2Value;
-  }
-
   public double getAxis3Value() {
     return axis3Value;
   }
 
-  public void changeAxisValue(int mode) {
-    if (mode == 1) {
-      axis1Value = 0;
-      axis2Value = 0;
-      axis3Value = 0;
-
-    } else if (mode == 2) {
-      axis1Value = 20;
-      axis2Value = 20;
-      axis3Value = 20;
-
-    } else if (mode == 3) {
-      axis1Value = 30;
-      axis2Value = 30;
-      axis3Value = 30;
-
-    } else if (mode == 4) {
-      axis1Value = 50;
-      axis2Value = 50;
-      axis3Value = 50;
-    }
-  }
-
   @Override
-  public void periodic() {}
+  public void periodic() {
+  }
 }

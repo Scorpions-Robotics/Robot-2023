@@ -11,6 +11,6 @@ public class first extends SequentialCommandGroup {
   public first(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
         new ArmModeChanger3(m_arm, 0, -135, 0)
-            .alongWith(new PidLiftModeChanger(m_lift, () -> 350)));
+            .alongWith(new PidLiftModeChanger(m_lift, () -> 158)));
   }
 }

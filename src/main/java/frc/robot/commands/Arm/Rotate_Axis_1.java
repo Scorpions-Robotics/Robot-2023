@@ -16,12 +16,12 @@ public class Rotate_Axis_1 extends PIDCommand {
         () -> degree,
         output -> {
           if (degree > -m_arm.getOutputAngle2) {
-            m_arm.Axis1MotorOutput((Math.max(-output, -0.20)) * 0.8);
+            m_arm.Axis1MotorOutput((Math.max(-output, -0.20)) * 1);
           } else if (-m_arm.getOutputAngle2 > degree) {
-            m_arm.Axis1MotorOutput((Math.min(-output, 0.20) * 0.8));
+            m_arm.Axis1MotorOutput((Math.min(-output, 0.20) * 1));
           }
         });
-    getController().setTolerance(3);
+    getController().setTolerance(4);
   }
 
   @Override

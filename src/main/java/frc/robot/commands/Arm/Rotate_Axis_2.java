@@ -13,13 +13,13 @@ public class Rotate_Axis_2 extends PIDCommand {
         () -> degree,
         output -> {
           if (degree > m_arm.getOutputAngle_Axis2) {
-            m_arm.Axis2MotorOutput((Math.min(-output, 0.25) * 0.8));
+            m_arm.Axis2MotorOutput((Math.min(-output, 0.25) * 1));
           } else if (m_arm.getOutputAngle_Axis2 > degree) {
-            m_arm.Axis2MotorOutput((Math.max(-output, -0.25) * 0.8));
+            m_arm.Axis2MotorOutput((Math.max(-output, -0.25) * 1));
           }
         });
 
-    getController().setTolerance(3);
+    getController().setTolerance(5);
   }
 
   @Override

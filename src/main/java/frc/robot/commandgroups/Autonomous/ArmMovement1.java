@@ -11,6 +11,6 @@ public class ArmMovement1 extends SequentialCommandGroup {
     addCommands(
         new Rotate_Axis_1(m_arm, 90)
             .alongWith(new Rotate_Axis_2(m_arm, 45))
-            .alongWith(new Rotate_Axis_3(m_arm, 180)));
+            .alongWith(new Rotate_Axis_3(m_arm, () -> 180)));
   }
 }

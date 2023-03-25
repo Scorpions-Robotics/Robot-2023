@@ -11,8 +11,11 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
 
   public RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor =
-      new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public boolean yukari = false;
+  public boolean yukari2 = true;
+
+  public double axiss1 = -200;
 
   public LiftSubsystem() {
     // LiftMotor.setIdleMode(IdleMode.kBrake);
@@ -40,6 +43,11 @@ public class LiftSubsystem extends SubsystemBase {
     LiftEncoder.setPosition(0);
   }
 
+  public void alert() {
+    SmartDashboard.putString("Uyarı", "BENGİSU ELİNE KOLUNA HAKİM OL AMK");
+
+  }
+
   public void setMotor(double option) {
     if (option > 0.25) {
       LiftMotor.set(0.25);
@@ -51,10 +59,10 @@ public class LiftSubsystem extends SubsystemBase {
   }
 
   public void pidSetMotor(double option) {
-    if (option > 0.25) {
-      LiftMotor.set(0.25);
-    } else if (option < -0.6) {
-      LiftMotor.set(-0.6);
+    if (option > 0.2) {
+      LiftMotor.set(0.2);
+    } else if (option < -0.4) {
+      LiftMotor.set(-0.4);
     } else {
       LiftMotor.set(option);
     }
@@ -82,5 +90,25 @@ public class LiftSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Lift data", getRawEncoderOutput());
     LiftEncoder = LiftMotor.getEncoder();
+
+    if (getEditedEncoderOutput() > -120) {
+      yukari = true;
+    } else {
+      yukari = false;
+    }
+
+    if (getEditedEncoderOutput() > -120) {
+      yukari = true;
+    } else {
+      yukari = false;
+    }
+
+    if (getEditedEncoderOutput() > -140 && getEditedEncoderOutput() < -130) {
+      yukari2 = true;
+    } else {
+      yukari2 = false;
+    }
+
+    SmartDashboard.putBoolean("asaadadd", yukari);
   }
 }
