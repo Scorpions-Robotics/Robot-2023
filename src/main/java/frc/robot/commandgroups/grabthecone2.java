@@ -12,10 +12,10 @@ public class grabthecone2 extends SequentialCommandGroup {
 
   public grabthecone2(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new Rotate_Axis_1(m_arm, -150)
-            .andThen(new PidLiftCommand(m_lift, () -> -100)).withTimeout(2.5)
-            .andThen(new ArmModeChanger3(m_arm, -150, -30, 0).alongWith()
-                .alongWith(new PidLiftCommand(m_lift, () -> -100))));
+        new Rotate_Axis_1(m_arm, -160)
+            .andThen(new PidLiftCommand(m_lift, () -> -140)).withTimeout(2.5)
+            .andThen(new ArmModeChanger3(m_arm, -145, -0, 0).alongWith()
+                .alongWith(new PidLiftCommand(m_lift, () -> -140))));
 
   }
 }

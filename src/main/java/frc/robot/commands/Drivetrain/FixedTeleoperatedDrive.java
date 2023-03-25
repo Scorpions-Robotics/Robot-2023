@@ -36,11 +36,11 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
-
     if (m_drivesubsystem.fixed) {
 
       if (Math.abs(m_drivesubsystem.GetHeading()) < 180) {
@@ -83,6 +83,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
           -yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
           -xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
           zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
+
     }
 
     SmartDashboard.putBoolean("fixed?", m_drivesubsystem.fixed);
@@ -159,7 +160,8 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue;
 import frc.robot.commandgroups.Autonomous.blue2;
+import frc.robot.commandgroups.Autonomous.blue4;
 import frc.robot.commandgroups.first;
 import frc.robot.commandgroups.grabthecone2;
 import frc.robot.commandgroups.grapthecone;
@@ -17,6 +18,7 @@ import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.second;
 import frc.robot.commands.Arm.ManualAxis3;
 import frc.robot.commands.Arm.Rotate_Axis_3;
+import frc.robot.commands.Autonomous.AutoStraightDrive2;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
@@ -33,6 +35,7 @@ public class RobotContainer {
   public GripperSubsystem m_grip = new GripperSubsystem();
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
   Joystick joy2 = new Joystick(Constants.Joysticks.port2);
+  public static boolean abc;
 
   JoystickButton button1 = new JoystickButton(joy, 1);
   JoystickButton button2 = new JoystickButton(joy, 2);
@@ -67,7 +70,6 @@ public class RobotContainer {
             () -> -joy.getRawAxis(5),
             () -> joy.getRawAxis(4),
             () -> joy.getRawAxis(0)));
-
     configureBindings();
 
     /*
@@ -161,6 +163,7 @@ public class RobotContainer {
     button9.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(true)));
     button10.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
     button9.onTrue(new Rotate_Axis_3(m_arm, () -> m_xboxSubsystem.getAxis3Value()));
+    button2_2.whileTrue(new AutoStraightDrive2(m_drive, -1));
 
     // button1.whileTrue(new ArmModeChanger2(m_arm, m_xboxSubsystem));
     // button7.whileTrue(new Throttle(false, m_xboxSubsystem));
@@ -169,28 +172,9 @@ public class RobotContainer {
     // button10.whileTrue(new StabilizeMode(true,m_xboxSubsystem,m_drive));
   }
 
-  public Command getAutonomousCommand(int mode) {
-    String alliance = DriverStation.getAlliance().toString();
+  public Command getAutonomousCommand() {
 
-    if (alliance == "Blue") {
-      switch (mode) {
-        case 1:
-          return new blue(m_lift, m_arm, m_drive);
-        case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
-
-        default:
-          return new blue(m_lift, m_arm, m_drive);
-      }
-    } else {
-      switch (mode) {
-        case 1:
-          return new blue(m_lift, m_arm, m_drive);
-        case 2:
-          return new blue2(m_drive, m_arm, m_lift, m_grip);
-        default:
-          return new blue(m_lift, m_arm, m_drive);
-      }
-    }
+    // return new blue4(m_drive, m_arm, m_lift, m_grip);
+    return new blue(m_lift, m_arm, m_drive);
   }
 }

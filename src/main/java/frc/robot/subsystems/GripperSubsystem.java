@@ -13,6 +13,7 @@ import frc.robot.Constants;
 public class GripperSubsystem extends SubsystemBase {
   /** Creates a new GripperSubsystem. */
   private WPI_VictorSPX gripper = new WPI_VictorSPX(Constants.CAN.kGripper);
+  public boolean interupt = false;
 
   public GripperSubsystem() {
     gripper.setInverted(Constants.invert.gripperinvert);
@@ -29,6 +30,10 @@ public class GripperSubsystem extends SubsystemBase {
 
   public void push(double a) {
     gripper.set(a);
+  }
+
+  public void interupt() {
+    interupt = true;
   }
 
   @Override
