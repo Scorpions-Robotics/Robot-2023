@@ -15,6 +15,7 @@ import frc.robot.commandgroups.second;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
+import frc.robot.commands.Drivetrain.GyroReset;
 import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -77,16 +78,19 @@ public class RobotContainer {
      * m_arm.setDefaultCommand(new ArmModeChanger2(m_arm,
      * m_xboxSubsystem));
      */
-    // m_arm.setDefaultCommand(new Rotate_Axis_3(m_arm, ()-));
+    // m_arm.setDefaultCommand(new Rotate_Axis_3(m_arm, () ->
+    // m_xboxSubsystem.getAxis3Value()));
   }
 
   private void configureBindings() {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
     button3.whileTrue(new Fixer(m_drive));
-    button5.whileTrue(new GripperCommand(-0.4, m_grip));
-    button5.whileFalse(new GripperCommand(0, m_grip));
-    button6.whileTrue(new GripperCommand(0.8, m_grip));
-    button6.whileFalse(new GripperCommand(0, m_grip));
+    button5.whileTrue(new GripperCommand(0.8, m_grip));
+    button5.whileFalse(new GripperCommand(0.2, m_grip));
+    button6.whileTrue(new GripperCommand(-0.4, m_grip));
+    button6.whileFalse(new GripperCommand(0.2, m_grip));
+
+    button4.whileTrue(new GyroReset(m_drive));
 
     // //button3.onTrue(new first(m_arm, m_lift));
     button7_2.onTrue(new grabthecone2(m_arm, m_lift));

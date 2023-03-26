@@ -8,10 +8,13 @@ public class Fixer extends CommandBase {
 
   public Fixer(DriveSubsystem m_drive) {
     this.m_drive = m_drive;
+    addRequirements(m_drive);
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_drive.fixer();
+  }
 
   @Override
   public void execute() {
@@ -19,7 +22,8 @@ public class Fixer extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {
