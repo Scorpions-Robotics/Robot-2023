@@ -1,6 +1,5 @@
 package frc.robot.commandgroups.Autonomous;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commandgroups.idlefromup;
@@ -14,20 +13,21 @@ import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 
 public class blue4 extends SequentialCommandGroup {
-  public blue4(DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift, GripperSubsystem m_grip) {
+  public blue4(
+      DriveSubsystem m_drive, ArmSubsystem m_arm, LiftSubsystem m_lift, GripperSubsystem m_grip) {
 
     addCommands(
-
         new second(m_arm, m_lift)
             .alongWith(
-                new WaitCommand(4)
-                    .deadlineWith(new GripperCommand(-0.6, m_grip).withTimeout(3)))
+                new WaitCommand(4).deadlineWith(new GripperCommand(-0.6, m_grip).withTimeout(3)))
             .withTimeout(3)
-            .andThen(new idlefromup(m_arm, m_lift)
-                .alongWith(
-                    new GripperCommand(0, m_grip).withTimeout(4)
-                        // .andThen(new InstantCommand(() -> m_drive.stopfixed()))
-                        .andThen(new AutoStraightDrive2(m_drive, 2.32))
-                        .andThen(new pidChargeStation(m_drive)))));
+            .andThen(
+                new idlefromup(m_arm, m_lift)
+                    .alongWith(
+                        new GripperCommand(0, m_grip)
+                            .withTimeout(4)
+                            // .andThen(new InstantCommand(() -> m_drive.stopfixed()))
+                            .andThen(new AutoStraightDrive2(m_drive, 2.32))
+                            .andThen(new pidChargeStation(m_drive)))));
   }
 }

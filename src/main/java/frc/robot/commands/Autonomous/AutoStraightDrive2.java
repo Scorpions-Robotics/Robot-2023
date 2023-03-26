@@ -21,7 +21,6 @@ public class AutoStraightDrive2 extends PIDCommand {
 
           SmartDashboard.putNumber("asd", meters * 100);
           SmartDashboard.putNumber("asad", m_drive.getStraightDriveDistance());
-
         });
 
     getController().setTolerance(3);

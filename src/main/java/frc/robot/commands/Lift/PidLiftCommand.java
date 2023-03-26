@@ -22,7 +22,6 @@ public class PidLiftCommand extends PIDCommand {
           SmartDashboard.putNumber("liftEncoder", position.getAsDouble());
         });
     getController().setTolerance(3);
-
   }
 
   @Override

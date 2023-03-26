@@ -224,26 +224,20 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public void modevalue() {
-    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis1Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis1Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 
   public void modevalue2() {
-    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis2Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis2Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 
   public void modevalue3() {
-    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {
-    }
+    if (Axis3Motor.getIdleMode() == IdleMode.kBrake) {}
 
-    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {
-    }
+    if (Axis3Motor.getIdleMode() == IdleMode.kCoast) {}
   }
 }

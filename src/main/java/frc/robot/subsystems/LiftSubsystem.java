@@ -11,7 +11,8 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
 
   public RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor =
+      new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
   public boolean yukari = false;
   public boolean yukari2 = true;
 
@@ -45,7 +46,6 @@ public class LiftSubsystem extends SubsystemBase {
 
   public void alert() {
     SmartDashboard.putString("Uyarı", "BENGİSU ELİNE KOLUNA HAKİM OL AMK");
-
   }
 
   public void setMotor(double option) {

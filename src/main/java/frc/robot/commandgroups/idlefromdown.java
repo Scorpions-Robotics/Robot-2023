@@ -19,9 +19,11 @@ public class idlefromdown extends SequentialCommandGroup {
   /** Creates a new idlefromdown. */
   public idlefromdown(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new ArmModeChanger3(m_arm, -230, -243, 0).withTimeout(2)
-            .andThen(new Rotate_Axis_2(m_arm, -210)
-                .andThen(new Rotate_Axis_1(m_arm, -120)))
-            .andThen(new PidLiftCommand(m_lift, () -> -125).alongWith(new ArmModeChanger3(m_arm, -120, -210, 0))));
+        new ArmModeChanger3(m_arm, -230, -243, 0)
+            .withTimeout(2)
+            .andThen(new Rotate_Axis_2(m_arm, -210).andThen(new Rotate_Axis_1(m_arm, -120)))
+            .andThen(
+                new PidLiftCommand(m_lift, () -> -125)
+                    .alongWith(new ArmModeChanger3(m_arm, -120, -210, 0))));
   }
 }

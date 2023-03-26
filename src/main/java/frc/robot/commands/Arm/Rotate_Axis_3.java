@@ -1,12 +1,9 @@
 package frc.robot.commands.Arm;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.networktables.DoubleSubscriber;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.ArmSubsystem;
+import java.util.function.DoubleSupplier;
 
 public class Rotate_Axis_3 extends PIDCommand {
 

@@ -37,11 +37,9 @@ public class XboxSubsystem extends SubsystemBase {
     }
     SmartDashboard.putNumber("axis3modu ne la", mode);
     SmartDashboard.putNumber("axis3 degeri ne la", axis3Value);
-
   }
 
-  public XboxSubsystem() {
-  }
+  public XboxSubsystem() {}
 
   public void mode1() {
     ThrottleValue = 0.20;
@@ -132,6 +130,5 @@ public class XboxSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-  }
+  public void periodic() {}
 }

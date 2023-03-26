@@ -1,29 +1,21 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commandgroups.Autonomous.Blue5;
-import frc.robot.commandgroups.Autonomous.blue;
-import frc.robot.commandgroups.Autonomous.blue2;
 import frc.robot.commandgroups.Autonomous.blue4;
 import frc.robot.commandgroups.first;
 import frc.robot.commandgroups.grabthecone2;
 import frc.robot.commandgroups.grapthecone;
 import frc.robot.commandgroups.idlefromdown;
 import frc.robot.commandgroups.idlefromup;
-import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.second;
-import frc.robot.commands.Arm.ManualAxis3;
 import frc.robot.commands.Arm.Rotate_Axis_3;
-import frc.robot.commands.Autonomous.AutoStraightDrive2;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
 import frc.robot.commands.Drivetrain.Fixer;
 import frc.robot.commands.Gripper.GripperCommand;
-import frc.robot.commands.Joystick.StabilizeMode;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
@@ -101,9 +93,9 @@ public class RobotContainer {
     button8_2.onTrue(new grapthecone(m_arm, m_lift));
     button9_2.onTrue(new second(m_arm, m_lift));
     button10_2.onTrue(new first(m_arm, m_lift));
-    button2_2.onTrue(new ConditionalCommand(new idlefromup(m_arm, m_lift),
-        new idlefromdown(m_arm, m_lift),
-        () -> m_lift.yukari));
+    button2_2.onTrue(
+        new ConditionalCommand(
+            new idlefromup(m_arm, m_lift), new idlefromdown(m_arm, m_lift), () -> m_lift.yukari));
 
     button3_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(false)));
     button4_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(true)));
