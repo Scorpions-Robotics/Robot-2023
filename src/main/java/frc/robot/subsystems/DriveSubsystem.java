@@ -102,6 +102,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     BrakeMode();
     fixed = true;
+    calibrate();
   }
 
   public void CoastMode() {
