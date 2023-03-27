@@ -15,7 +15,7 @@ public class grapthecone extends SequentialCommandGroup {
         // .andThen(new PidLiftCommand(m_lift, () -> -125))
         // .withTimeout(2.5)
         // .andThen(
-        new ArmModeChanger3(m_arm, -112, -130, 0)
-            .alongWith(new PidLiftCommand(m_lift, () -> -125)));
+        new ArmModeChanger3(m_arm, -115, -80, 0)
+            .alongWith(new PidLiftCommand(m_lift, () -> -100)));
   }
 }

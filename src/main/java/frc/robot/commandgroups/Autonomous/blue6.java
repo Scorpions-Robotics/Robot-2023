@@ -36,7 +36,11 @@ public class blue6 extends SequentialCommandGroup {
                                                                                                                 .andThen(new AutoStraightDrive2(
                                                                                                                                 m_drive,
                                                                                                                                 2.75))
-                                                                                                                .andThen(new pidChargeStation(
-                                                                                                                                m_drive)))));
+                                                                                                                // .andThen(new
+                                                                                                                // pidChargeStation(m_drive)))));
+                                                                                                                .andThen(new AutoStraightDrive2(
+                                                                                                                                m_drive,
+                                                                                                                                -2)))));
+
         }
 }

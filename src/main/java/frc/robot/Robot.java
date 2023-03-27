@@ -13,16 +13,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    auto_chooser.setDefaultOption("otonom31", 1);
-    auto_chooser.addOption("otonom31", 1);
-    auto_chooser.addOption("otonom36", 2);
+    // auto_chooser.setDefaultOption("Otonom - Cube + Charge Station", 1);
+    // auto_chooser.addOption("Otonom - Cube + Charge Station", 1);
+    // auto_chooser.addOption("Otonom - Cube + Park and Back", 2);
+    // auto_chooser.addOption("Otonom - Cube ", 3);
 
-    SmartDashboard.putData(auto_chooser);
+    // SmartDashboard.putData(auto_chooser);
 
     m_robotContainer = new RobotContainer();
     m_robotContainer.m_arm.Axis2MotorBreakMode();
     m_robotContainer.m_arm.Axis1MotorBreakMode();
     m_robotContainer.m_lift.brakemod();
+
     // m_robotContainer.m_drive.BrakeMode();
 
   }
@@ -41,10 +43,11 @@ public class Robot extends TimedRobot {
 
     // m_robotContainer.m_lift.coastmode();
     // m_robotContainer.m_arm.Axis1MotorStop();
-    m_robotContainer.m_lift.brakemod();
-    m_robotContainer.m_arm.Axis1MotorBreakMode();
-    m_robotContainer.m_arm.Axis2MotorBreakMode();
-    m_robotContainer.m_arm.Axis3MotorBreakMode();
+    m_robotContainer.m_lift.coastmode();
+    m_robotContainer.m_arm.Axis1MotorCoastMode();
+    m_robotContainer.m_arm.Axis2MotorCoastMode();
+    m_robotContainer.m_arm.Axis3MotorCoastMode();
+
   }
 
   @Override
@@ -69,12 +72,14 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_arm.Axis3MotorBreakMode();
 
     // schedule the autonomous command (example)
+    // m_autonomousCommand =
+    // m_robotContainer.getAutonomousCommand(auto_chooser.getSelected());
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
     RobotContainer.m_lift.reset();
   }
 
