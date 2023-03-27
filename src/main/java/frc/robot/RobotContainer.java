@@ -20,6 +20,7 @@ import frc.robot.commands.Gripper.GripperCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
+//import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.XboxSubsystem;
 
@@ -31,6 +32,7 @@ public class RobotContainer {
   public GripperSubsystem m_grip = new GripperSubsystem();
   Joystick joy = new Joystick(Constants.Joysticks.xbox_port);
   Joystick joy2 = new Joystick(Constants.Joysticks.port2);
+  // public LEDSubsystem m_led = new LEDSubsystem();
   public static boolean abc;
 
   JoystickButton button1 = new JoystickButton(joy, 1);
@@ -86,9 +88,9 @@ public class RobotContainer {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
     button3.whileTrue(new Fixer(m_drive));
     button5.whileTrue(new GripperCommand(0.8, m_grip));
-    button5.whileFalse(new GripperCommand(0.2, m_grip));
+    button5.whileFalse(new GripperCommand(0.1, m_grip));
     button6.whileTrue(new GripperCommand(-0.4, m_grip));
-    button6.whileFalse(new GripperCommand(0.2, m_grip));
+    button6.whileFalse(new GripperCommand(0.1, m_grip));
 
     button4.whileTrue(new GyroReset(m_drive));
 

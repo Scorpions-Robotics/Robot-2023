@@ -22,7 +22,9 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_robotContainer.m_arm.Axis2MotorBreakMode();
     m_robotContainer.m_arm.Axis1MotorBreakMode();
+    m_robotContainer.m_lift.brakemod();
     // m_robotContainer.m_drive.BrakeMode();
+
   }
 
   @Override
@@ -56,7 +58,6 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_arm.Axis2EncoderReset();
     m_robotContainer.m_arm.Axis3EncoderReset();
     m_robotContainer.m_lift.reset();
-
     // robotContainer.m_lift.brakemod();
     // m_robotContainer.m_arm.Axis1MotorBreakMode();
     // m_robotContainer.m_arm.Axis2MotorBreakMode();
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+
   }
 
   @Override
@@ -105,6 +107,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+
   }
 
   @Override

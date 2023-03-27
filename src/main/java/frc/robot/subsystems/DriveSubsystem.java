@@ -11,6 +11,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -62,6 +63,9 @@ public class DriveSubsystem extends SubsystemBase {
 
   private WPI_VictorSPX middle1 = new WPI_VictorSPX(Constants.CAN.kMiddle1);
   private WPI_VictorSPX middle2 = new WPI_VictorSPX(Constants.CAN.kMiddle2);
+
+  private double startTime;
+  private double driftPerSecond;
 
   // ---------------------------------------
 
@@ -187,10 +191,24 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double GetHeading() {
+    double runTime = Timer.getFPGATimestamp() - startTime;
+    double drift = runTime * driftPerSecond;
+    return imu.getAngle() - drift;
     // açı
     // return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert
     // ? -1.0 : 1.0);
-    return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    // return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+  }
+
+  public void calibrate() {
+    this.startTime = Timer.getFPGATimestamp();
+    double startAngle = imu.getAngle();
+    try {
+      Thread.sleep(5000);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    this.driftPerSecond = (imu.getAngle() - startAngle) / (Timer.getFPGATimestamp() - startTime);
   }
 
   public double GetHeadingForFastReturn() {
@@ -214,7 +232,9 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void ResetGyro() {
-    imu.reset();
+    this.imu.reset();
+    this.startTime = Timer.getFPGATimestamp();
+    // imu.reset();
   }
 
   public void ResetOdometry() {
