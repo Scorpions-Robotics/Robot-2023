@@ -104,9 +104,13 @@ public class RobotContainer {
     button8_2.onTrue(new grapthecone(m_arm, m_lift));
     button9_2.onTrue(new second(m_arm, m_lift));
     button10_2.onTrue(new first(m_arm, m_lift));
+    // button2_2.onTrue(
+    // new ConditionalCommand(
+    // new idlefromup(m_arm, m_lift), new idlefromdown(m_arm, m_lift), () ->
+    // m_lift.yukari));
+
     button2_2.onTrue(
-        new ConditionalCommand(
-            new idlefromup(m_arm, m_lift), new idlefromdown(m_arm, m_lift), () -> m_lift.yukari));
+        new idlefromup(m_arm, m_lift));
 
     button3_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(false)));
     button4_2.whileTrue(new InstantCommand(() -> m_xboxSubsystem.modeChange(true)));
