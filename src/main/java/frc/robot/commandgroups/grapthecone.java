@@ -11,11 +11,11 @@ public class grapthecone extends SequentialCommandGroup {
 
   public grapthecone(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new Rotate_Axis_1(m_arm, -210)
+        new Rotate_Axis_1(m_arm, -100)
             .andThen(new PidLiftCommand(m_lift, () -> -125))
             .withTimeout(2.5)
             .andThen(
-                new ArmModeChanger3(m_arm, -226, -130, 0)
+                new ArmModeChanger3(m_arm, -112, -130, 0)
                     .alongWith(new PidLiftCommand(m_lift, () -> -125))));
   }
 }

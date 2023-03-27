@@ -191,13 +191,14 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double GetHeading() {
-    double runTime = Timer.getFPGATimestamp() - startTime;
-    double drift = runTime * driftPerSecond;
-    return imu.getAngle() - drift;
+    // double runTime = Timer.getFPGATimestamp() - startTime;
+    // double drift = runTime * driftPerSecond;
+    // return imu.getAngle() - drift;
     // açı
     // return Math.IEEEremainder(imu.getAngle(), 360) * (Constants.invert.gyroinvert
     // ? -1.0 : 1.0);
-    // return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    return imu.getAngle() * (Constants.invert.gyroinvert ? -1.0 : 1.0);
+    // return imu.getAngle();
   }
 
   public void calibrate() {

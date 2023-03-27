@@ -11,15 +11,14 @@ import frc.robot.Constants;
 public class LiftSubsystem extends SubsystemBase {
 
   public RelativeEncoder LiftEncoder;
-  public static CANSparkMax LiftMotor =
-      new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
+  public static CANSparkMax LiftMotor = new CANSparkMax(Constants.CAN.kLiftMotor, MotorType.kBrushless);
   public boolean yukari = false;
   public boolean yukari2 = true;
 
   public double axiss1 = -200;
 
   public LiftSubsystem() {
-    // LiftMotor.setIdleMode(IdleMode.kBrake);
+    LiftMotor.setIdleMode(IdleMode.kBrake);
     LiftEncoder = LiftMotor.getEncoder();
     LiftMotor.setOpenLoopRampRate(1);
   }

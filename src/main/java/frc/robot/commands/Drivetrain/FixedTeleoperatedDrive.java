@@ -36,7 +36,8 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @Override
   public void execute() {
@@ -56,11 +57,11 @@ public class FixedTeleoperatedDrive extends CommandBase {
       }
 
       X = -(xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
-      double rightSpeed = X + gyrovalue * 0.03;
-      double leftSpeed = X - gyrovalue * 0.03;
-      Y = (yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.9;
-      hDriveFront = Y - gyrovalue * 0.06;
-      hDriveBack = Y + gyrovalue * 0.06;
+      double rightSpeed = X + gyrovalue * 0.02;
+      double leftSpeed = X - gyrovalue * 0.02;
+      Y = (yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue) * 0.95;
+      hDriveFront = Y - gyrovalue * 0.03;
+      hDriveBack = Y + gyrovalue * 0.03;
       SmartDashboard.putNumber("rightSS", rightSpeed);
       SmartDashboard.putNumber("leftSS", leftSpeed);
       SmartDashboard.putNumber("hDriveFSS", hDriveFront);
@@ -81,7 +82,7 @@ public class FixedTeleoperatedDrive extends CommandBase {
       m_drivesubsystem.hDrive(
           -yrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue,
           -xspeed.getAsDouble() * m_xboxSubsystem.ThrottleValue,
-          zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue);
+          zrotation.getAsDouble() * m_xboxSubsystem.ThrottleValue * 0.80);
     }
 
     SmartDashboard.putBoolean("fixed?", m_drivesubsystem.fixed);
@@ -158,7 +159,8 @@ public class FixedTeleoperatedDrive extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

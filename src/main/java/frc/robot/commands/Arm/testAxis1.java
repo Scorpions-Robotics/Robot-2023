@@ -13,7 +13,7 @@ public class testAxis1 extends PIDCommand {
         new PIDController(0.0545, 0, 0),
         // 0.001347
         () -> -m_arm.getOutputAngle2,
-        () -> degree + 5,
+        () -> degree,
         output -> {
           m_arm.editedAxis1MotorOutput(output * 0.9);
         });

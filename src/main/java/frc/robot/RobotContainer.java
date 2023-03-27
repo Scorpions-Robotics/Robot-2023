@@ -6,11 +6,13 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Autonomous.blue4;
+import frc.robot.commandgroups.coastall;
 import frc.robot.commandgroups.first;
 import frc.robot.commandgroups.grabthecone2;
 import frc.robot.commandgroups.grapthecone;
 import frc.robot.commandgroups.idlefromdown;
 import frc.robot.commandgroups.idlefromup;
+import frc.robot.commandgroups.resetall;
 import frc.robot.commandgroups.second;
 import frc.robot.commands.Arm.Rotate_Axis_3;
 import frc.robot.commands.Drivetrain.FixedTeleoperatedDrive;
@@ -87,10 +89,13 @@ public class RobotContainer {
   private void configureBindings() {
     // button2.whileTrue(new level2(m_arm, m_lift, m_xboxSubsystem));
     button3.whileTrue(new Fixer(m_drive));
-    button5.whileTrue(new GripperCommand(0.8, m_grip));
+    button5.whileTrue(new GripperCommand(1, m_grip));
     button5.whileFalse(new GripperCommand(0.1, m_grip));
     button6.whileTrue(new GripperCommand(-0.4, m_grip));
     button6.whileFalse(new GripperCommand(0.1, m_grip));
+
+    button10.whileTrue(new coastall(m_arm, m_lift));
+    button9.whileTrue(new resetall(m_arm, m_lift));
 
     button4.whileTrue(new GyroReset(m_drive));
 
