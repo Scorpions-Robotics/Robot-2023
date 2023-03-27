@@ -43,13 +43,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void disabledPeriodic() {
-  }
+  public void disabledPeriodic() {}
 
-  /**
-   * This autonomous runs the autonomous command selected by your
-   * {@link RobotContainer} class.
-   */
+  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
     m_robotContainer.m_drive.ResetGyro();
@@ -74,9 +70,13 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+<<<<<<< HEAD
   public void autonomousPeriodic() {
 
   }
+=======
+  public void autonomousPeriodic() {}
+>>>>>>> 93fb01e6e876db55ed6865d89b63d91d79d996b2
 
   @Override
   public void teleopInit() {
@@ -106,9 +106,13 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+<<<<<<< HEAD
   public void teleopPeriodic() {
 
   }
+=======
+  public void teleopPeriodic() {}
+>>>>>>> 93fb01e6e876db55ed6865d89b63d91d79d996b2
 
   @Override
   public void testInit() {
@@ -119,14 +123,11 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void testPeriodic() {
-  }
+  public void testPeriodic() {}
 
   @Override
-  public void simulationInit() {
-  }
+  public void simulationInit() {}
 
   @Override
-  public void simulationPeriodic() {
-  }
+  public void simulationPeriodic() {}
 }
