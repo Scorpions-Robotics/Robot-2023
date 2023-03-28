@@ -17,7 +17,6 @@ public class idlefromup extends SequentialCommandGroup {
   /** Creates a new idlefromdown. */
   public idlefromup(ArmSubsystem m_arm, LiftSubsystem m_lift) {
     addCommands(
-        new PidLiftCommand(m_lift, () -> -125)
-            .alongWith(new ArmModeChanger3(m_arm, -68, -145, 0)));
+        new PidLiftCommand(m_lift, () -> -125).alongWith(new ArmModeChanger3(m_arm, -68, -145, 0)));
   }
 }

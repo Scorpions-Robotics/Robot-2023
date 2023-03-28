@@ -2,7 +2,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -47,17 +46,12 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_arm.Axis1MotorCoastMode();
     m_robotContainer.m_arm.Axis2MotorCoastMode();
     m_robotContainer.m_arm.Axis3MotorCoastMode();
-
   }
 
   @Override
-  public void disabledPeriodic() {
-  }
+  public void disabledPeriodic() {}
 
-  /**
-   * This autonomous runs the autonomous command selected by your
-   * {@link RobotContainer} class.
-   */
+  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
     m_robotContainer.m_drive.ResetGyro();
@@ -84,8 +78,7 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {
-  }
+  public void autonomousPeriodic() {}
 
   @Override
   public void teleopInit() {
@@ -116,9 +109,7 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {
-
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void testInit() {
@@ -129,14 +120,11 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void testPeriodic() {
-  }
+  public void testPeriodic() {}
 
   @Override
-  public void simulationInit() {
-  }
+  public void simulationInit() {}
 
   @Override
-  public void simulationPeriodic() {
-  }
+  public void simulationPeriodic() {}
 }
